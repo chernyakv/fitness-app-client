@@ -6,6 +6,7 @@ export class Registration extends Component {
             <div>
                 This is Registration Component;
             </div>
+            
         )
     }
 }
