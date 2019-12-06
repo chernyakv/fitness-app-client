@@ -1,32 +1,37 @@
 import React from 'react';
 import './App.css';
-
-import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
+import { Route, Router, Redirect, Switch } from 'react-router-dom'
 import Registration from '../Registration/Registration';
 import Login from '../Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from '../Header/Header';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+import { NotAuthenticatedRoute } from '../PrivateRoute/NotAuthenticatedRoute';
+import Home from '../Home/Home';
+import { history } from '../../helpers/History';
 
 function App(store) {
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <div className="App">
         <Header />
         <div className="app-content-wrapper">
           <div className="container">
-            <div className="row">
+           
               <Switch>
-                <Route path="/login" component={Login} />
-                <Route path="/registration" component={Registration} />
+                <PrivateRoute exact path="/" component={Home} />
+                <NotAuthenticatedRoute exact  path="/registration" component={Registration} />
+                <NotAuthenticatedRoute exact  path="/login" component={Login} />
                 <Redirect from="*" to="/" />
               </Switch>
-            </div>
+           
           </div>
         </div>
+
       </div>
-    </BrowserRouter>
-  );
+    </Router>
+  );  
 }
 
 export default App;

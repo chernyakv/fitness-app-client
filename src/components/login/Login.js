@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from "redux-form"
 import { connect } from 'react-redux';
-import { authService } from '../../service/auth.service';
 import { authActions } from '../../actions/auth.actions';
+import { Link } from 'react-router-dom';
 
 
-class LoginForm extends Component {  
+class LoginForm extends Component {
 
-  constructor(props) {     
+  constructor(props) {
     super(props);
-    this.state = { login: "", password: ""};
+    this.state = { login: "", password: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleLoginChange = ({ target }) => {    
+  handleLoginChange = ({ target }) => {
     this.setState({ login: target.value })
   }
 
-  handlePasswordChange = ({ target }) => {    
+  handlePasswordChange = ({ target }) => {
     this.setState({ password: target.value })
-  }  
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { login, password } = this.state
-    this.setState({})
     if (login && password) {
       this.props.login(login, password);
     }
@@ -50,13 +49,14 @@ class LoginForm extends Component {
                 <div className="col-md-6">
                   <input type="password" className="form-control" placeholder="Enter password" onChange={this.handlePasswordChange} />
                 </div>
-              </div>              
+              </div>
 
-              <div className="col-md-6 offset-md-4">
+              <div className="form-group">
                 <button type="submit" className="btn btn-primary">
                   Submit
-                </button>            
-              </div>  
+                </button>
+                <Link to="/registration" className="btn btn-link">Register</Link>
+              </div>
 
             </form>
           </div>
@@ -70,7 +70,6 @@ function mapStateToProps(state) {
   return {
 
   }
-
 }
 
 const actionCreators = {

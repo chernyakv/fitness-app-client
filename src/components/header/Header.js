@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { authActions } from '../../actions/auth.actions';
 import photo from '../../assets/default_avatar.jpg'
-
+import { history } from "../../helpers/History"
 import { Dropdown } from 'react-bootstrap';
 
 class Header extends Component {
@@ -13,16 +13,12 @@ class Header extends Component {
     super(props);
 
     const isLoggedIn = props.isAuth;
-    console.log(photo);
-
-
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.logout();
+    this.props.logout();    
   }
 
   generateUl(isLoggedIn) {
@@ -31,14 +27,9 @@ class Header extends Component {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <div className="nav-link">
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/login">Sign In</NavLink>
             </div>
-          </li>
-          <li className="nav-item">
-            <div className="nav-link">
-              <NavLink to="/registration">Registration</NavLink>
-            </div>
-          </li>
+          </li>         
         </ul>)
     } else {
       return (
@@ -57,8 +48,6 @@ class Header extends Component {
     }
   }
 
-
-
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light navbar-laravel">
@@ -75,10 +64,7 @@ class Header extends Component {
       </nav>
     )
   }
-
-
 }
-
 
 function mapStateToProps(state) {
   return {
