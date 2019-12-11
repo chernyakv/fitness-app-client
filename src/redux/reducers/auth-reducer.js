@@ -21,6 +21,7 @@ export function authReducer(state = initialState, action) {
                 user: action.user
             };
         case constants.LOGIN_SUCCESS:
+            debugger;
             return {
                 isAuth: true,
                 user: action.user

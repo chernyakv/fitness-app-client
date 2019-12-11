@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './Header.css';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { authActions } from '../../actions/auth.actions';
-import photo from '../../assets/default_avatar.jpg'
-import { history } from "../../helpers/History"
+import { authActions } from '../../../actions/auth.actions';
+import photo from '../../../assets/default_avatar1.png'
+import { history } from "../../../helpers/History"
 import { Dropdown } from 'react-bootstrap';
 
 class Header extends Component {
@@ -18,7 +18,7 @@ class Header extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.logout();    
+    this.props.logout();
   }
 
   generateUl(isLoggedIn) {
@@ -29,7 +29,7 @@ class Header extends Component {
             <div className="nav-link">
               <NavLink to="/login">Sign In</NavLink>
             </div>
-          </li>         
+          </li>
         </ul>)
     } else {
       return (
@@ -40,6 +40,7 @@ class Header extends Component {
                 <img src={photo} alt="Avatar" className="avatar"></img>
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight="true">
+                <Dropdown.Item><NavLink to="/resetPassword">Reset password</NavLink></Dropdown.Item>
                 <Dropdown.Item onClick={this.handleSubmit}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

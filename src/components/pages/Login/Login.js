@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from "redux-form"
 import { connect } from 'react-redux';
-import { authActions } from '../../actions/auth.actions';
+import { authActions } from '../../../actions/auth.actions';
 import { Link } from 'react-router-dom';
+import 'antd/dist/antd.css';
+import { Button, notification } from 'antd';
 
 
-class LoginForm extends Component {
+class LoginForm extends Component { 
 
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class LoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { login, password } = this.state
-    if (login && password) {
+    if (login && password) {      
       this.props.login(login, password);
     }
   }

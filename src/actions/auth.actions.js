@@ -1,11 +1,13 @@
 import { authService } from "../service/auth.service";
 import { constants } from "../constants/constants";
 import { history } from "../helpers/History"
+import jwt_decode from 'jwt-decode';
 
 export const authActions = {
     register,
     login,
-    logout
+    logout,
+    resetPassword
 };
 
 function register(login, password) {
@@ -14,11 +16,12 @@ function register(login, password) {
 
         authService.register(login, password)
             .then(                
-                response => {                               
+                response => {  
+                    history.push("/login");                               
                     dispatch(success(response.data));                    
                 },
                 error => {
-                    alert(error.response.data.message);
+                    alert(error.message);
                 }
             );
     };
@@ -35,8 +38,10 @@ function login(login, password) {
             .then(                
                 response => {                   
                     localStorage.setItem('jwt', JSON.stringify(response.data));  
+                    const user = jwt_decode(response.data.accessToken);
+                    dispatch(success(user));
                     history.push("/");                                            
-                    dispatch(success(response.data));                    
+                                        
                 },
                 error => {
                     alert(error.response.data.message);
@@ -46,6 +51,27 @@ function login(login, password) {
 
     function request(user) { return { type: constants.LOGIN_REQUEST, user } }
     function success(user) { return { type: constants.LOGIN_SUCCESS, user } }   
+}
+
+function resetPassword(password, newPassword) {
+    return dispatch => {
+        dispatch(request());        
+
+        authService.resetPassword(password, newPassword)
+            .then(                
+                response => {    
+                    dispatch(success());
+                    history.push("/");                                            
+                                        
+                },
+                error => {
+                    alert(error.message);
+                }
+            );
+    };
+
+    function request() { return { type: constants.RESET_PASS_REQUEST } }
+    function success() { return { type: constants.RESET_PASS_SUCCESS } }   
 }
 
 function logout() {

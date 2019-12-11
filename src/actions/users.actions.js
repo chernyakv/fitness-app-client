@@ -5,22 +5,52 @@ import { show } from 'redux-modal';
 
 export const usersActions = {
     getAll,
+    addUser,
+    updateUser,
     deleteUser,
-    showModa
+    showModal
 };
 
-function getAll(login, password) {
-    return dispatch => {      
+function getAll() {
+    return dispatch => {    
+        dispatch(request())
 
         userService.getAll()
             .then(                
                 response => {                            
                     dispatch(success(response.data));                    
-                }
+                },
+                error => {
+                    debugger;
+                    dispatch(failure());
+                }                
             );
     };
 
-    function success(users) { return { type: constants.USERS_GET_ALL, users } }
+    function request() { return { type: constants.USERS_GET_ALL_REQUEST } }
+    function success(users) { return { type: constants.USERS_GET_ALL_SUCCESS, users } }
+    function failure() { return { type: constants.USERS_GET_ALL_FAILURE } }
+}
+
+function addUser(user) {
+    return dispatch => {    
+        dispatch(request(user));  
+
+        userService.addUser(user)
+            .then(                
+                response => {                            
+                    dispatch(success(response.data));                
+                },
+                error => {
+                    dispatch(failure());
+                }                
+            );
+    };
+    
+    function success(user) { return { type: constants.USER_ADD_SUCCESS, user} }
+    function request(user) { return { type: constants.USER_ADD_REQUEST, user } }
+    function failure() { return { type: constants.USER_ADD_FAILURE } }
+
 }
 
 function deleteUser(id) {
@@ -43,12 +73,30 @@ function deleteUser(id) {
     function failure(id) { return { type: constants.USER_DELETE_FAILURE, id } }
 }
 
-
-function showModa(modal, props) {
-    debugger;
+function updateUser(user) {
     return dispatch => {    
-        debugger;
-        dispatch(success());  
+        dispatch(request(user));  
+
+        userService.updateUser(user)
+            .then(                
+                response => {                            
+                    dispatch(success(user));                    
+                },
+                error => {
+                    dispatch(failure(error.message));
+                }                
+            );
+    };
+    
+    function success(user) { return { type: constants.USER_UPDATE_SUCCESS, user} }
+    function request(user) { return { type: constants.USER_UPDATE_REQUEST, user } }
+    function failure(message) { return { type: constants.USER_UPDATE_FAILURE, message } }
+}
+
+function showModal(modal, props) {
+
+    return dispatch => {
+        dispatch(success(modal, props));  
     };
     
     function success() { return show(modal, props) }

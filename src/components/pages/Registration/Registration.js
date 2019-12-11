@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { authActions } from '../../actions/auth.actions';
+import { authActions } from '../../../actions/auth.actions';
 
 export class Registration extends Component {
     constructor(props) {
@@ -30,12 +30,10 @@ export class Registration extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
      
         const { user } = this.state;
         debugger;
         if (user.login && user.password) {
-            debugger;
             this.props.register(user.login, user.password);
         }
     }
