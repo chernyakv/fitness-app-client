@@ -3,7 +3,7 @@ import './Header.css';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { authActions } from '../../../actions/auth.actions';
-import photo from '../../../assets/default_avatar1.png'
+import photo from '../../../assets/avatar.png'
 import { history } from "../../../helpers/History"
 import { Dropdown } from 'react-bootstrap';
 

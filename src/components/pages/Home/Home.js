@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import jwt_decode from 'jwt-decode';
+import { authActions } from '../../../actions/auth.actions'
 import './Home.css';
-import photo from '../../../assets/default_avatar1.png'
 import UserProfileSideBar from '../../content/User/UserProfileSideBar/UserProfileSideBar';
+import GoalsContainerComponent from '../../content/Goal/GoalsConatainerComponent/GoalsContainerComponent';
 
 export class Home extends Component {
+  componentDidMount() {    
+    this.props.setUserProfile(this.props.login);
+  }
 
-  
   render() {
-    const user = jwt_decode(JSON.parse(localStorage.getItem('jwt')).accessToken);
-    
+    const {profile} = this.props;
+
     return (
       <div className="row con">
         <div className="col-md-3">
-          <UserProfileSideBar user={user} />
+          <UserProfileSideBar profile={profile} />
         </div>
-        <div className="col-md-9">
-          <div className="content">
-            <h4>User goals here</h4>
-          </div>
+        <div className="col-md-9">          
+          <GoalsContainerComponent profile={profile}/>          
         </div>
       </div>
     )
@@ -27,10 +28,12 @@ export class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user
+  profile: state.auth.profile,
+  login: state.auth.login
 })
 
 const mapDispatchToProps = {
+  setUserProfile: authActions.setCurrentUser
 
 }
 

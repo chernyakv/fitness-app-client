@@ -1,8 +1,12 @@
 import React from 'react'
-import photo from '../../../../assets/default_avatar1.png'
+import photo from '../../../../assets/avatar.png'
 
 const UserProfileSideBar = props => {
-    const { user } = props;
+    const { profile } = props;
+
+    if(!profile) {
+        return <h4>No user profile</h4>
+    }
 
     return (
         <div className="profile-sidebar">
@@ -11,10 +15,10 @@ const UserProfileSideBar = props => {
             </div>
             <div className="profile-usertitle">
                 <div className="profile-usertitle-name">
-                    {user.sub}
+                    {profile.firstName + ' ' + profile.lastName}
                 </div>
                 <div className="profile-usertitle-job">
-                    {user.scopes}
+                    {profile.role.role}
                 </div>
             </div>
         </div>

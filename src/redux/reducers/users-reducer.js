@@ -1,10 +1,7 @@
 import { constants } from "../../constants/constants";
-import { userService } from "../../service/user.service";
-import { usersActions } from "../../actions/users.actions";
-
 
 const initialState =  {
-    loading: true,
+    loading: false,
     error: false,
     users: false
 };

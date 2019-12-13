@@ -42,7 +42,7 @@ class AddUserModal extends Component {
     }
 
     render() {
-        const { show, handleHide, message, submit } = this.props
+        const { show, handleHide, message, submit } = this.props;
     
         return (
             <Modal show={show}>
@@ -51,7 +51,7 @@ class AddUserModal extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Login</Form.Label>
                             <Form.Control type="text" name="login" onChange={this.handleChange} />
@@ -85,8 +85,8 @@ class AddUserModal extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button  className= "btn btn-primary btn-sm" onClick={handleHide}>Close</button>
-                    <button className= "btn btn-primary btn-sm" onClick={this.handleSubmit}>Submit</button>
+                    <Button  className= "btn btn-primary btn-sm" onClick={handleHide}>Close</Button>
+                    <Button className= "btn btn-primary btn-sm" onClick={this.handleSubmit}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         );

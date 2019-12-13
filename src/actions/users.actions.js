@@ -1,4 +1,3 @@
-
 import { constants } from "../constants/constants";
 import { userService } from "../service/user.service";
 import { show } from 'redux-modal';
@@ -76,7 +75,7 @@ function deleteUser(id) {
 function updateUser(user) {
     return dispatch => {    
         dispatch(request(user));  
-
+        
         userService.updateUser(user)
             .then(                
                 response => {                            

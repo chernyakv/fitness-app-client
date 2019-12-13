@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import AddUserModal from '../../modals/AddUserModal'
 import EditUserModal from '../../modals/EditUserModal'
 import { usersActions } from '../../../actions/users.actions'
@@ -9,9 +10,9 @@ const { Column, ColumnGroup } = Table;
 
 const openNotificationWithIcon = (type, message) => {
     notification[type]({
-      message: message     
+        message: message
     });
-  };
+};
 
 export class Admin extends Component {
 
@@ -25,11 +26,11 @@ export class Admin extends Component {
         this.props.getAll();
     }
 
-    handleAddUser(user) {       
+    handleAddUser(user) {
         this.props.addUser(user)
             .then(() => {
                 openNotificationWithIcon('success', 'user has been added')
-            });                 
+            });
     }
 
     handleUpdateUser(user) {
@@ -54,12 +55,14 @@ export class Admin extends Component {
 
             return (
                 <div>
+                    <AddUserModal />
+                    <EditUserModal />
                     <div style={{ paddingTop: 10 }}>
-                        <Button type="primary" onClick={() => {this.props.showModal("AddUserModal", { ...modalProps })}}>
+                        <Button type="primary" onClick={() => { this.props.showModal("AddUserModal", { ...modalProps }) }}>
                             Add user
                         </Button>
                     </div>
-                    <Table dataSource={this.props.users}  expandedRowRender={record => <p style={{ margin: 0 }}>Height: {record.height} Weight: {record.weight} </p>}>
+                    <Table dataSource={this.props.users} expandedRowRender={record => <p style={{ margin: 0 }}>Height: {record.height} Weight: {record.weight} </p>}>
                         <Column title="ID" dataIndex="id" key="id" />
                         <Column title="First Name" dataIndex="firstName" key="firstName" />
                         <Column title="Last Name" dataIndex="lastName" key="lastName" />
@@ -70,17 +73,15 @@ export class Admin extends Component {
                             render={(text, record) => (
                                 <span>
                                     <button type="button" className="btn" onClick={() => {
-                                        
-                                        this.props.showModal("EditUserModal", { ...modalProps, record })
-                                    }}>Edit</button>
-                                    <AddUserModal />
+                                        this.props.showModal("EditUserModal", { ...modalProps, record })}}>
+                                        Edit
+                                    </button>
                                     <Divider type="vertical" />
                                     <button type="button" className="btn" onClick={() => {
                                         openNotificationWithIcon('success', 'user has been deleted')
-                                        this.props.deleteUser(record.id)
-                                    }}>Delete</button>
-                                    <EditUserModal />
-                                    <Divider type="vertical" />
+                                        this.props.deleteUser(record.id)}}>
+                                        Delete
+                                    </button>
                                 </span>
                             )}
                         />
@@ -96,8 +97,7 @@ export class Admin extends Component {
 const mapStateToProps = (state) => ({
     error: state.users.error,
     loading: state.users.loading,
-    users: state.users.users,
-    deleteSucces: state.users.userDeleted
+    users: state.users.users
 })
 
 const mapDispatchToProps = {
