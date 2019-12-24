@@ -3,7 +3,8 @@ import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
 import {Button, DatePicker, Form, Input} from 'antd';
-const { RangePicker } = DatePicker;
+
+const {RangePicker} = DatePicker;
 
 class AddGoalModal extends Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class AddGoalModal extends Component {
           description: values.description,
           startDate: values.startEndTime[0]._d,
           endDate: values.startEndTime[1]._d,
+          measureFrom: values.measureFrom,
+          measureTo: values.measureTo,
+          measureLabel: values.measureLabel
         }
         this.props.addGoal(goal);
         this.props.handleHide();
@@ -84,7 +88,19 @@ class AddGoalModal extends Component {
             </Form.Item>
 
             <Form.Item label="Time" onClick={(event) => event.stopPropagation()}>
-              {getFieldDecorator('startEndTime')(<RangePicker />)}
+              {getFieldDecorator('startEndTime')(<RangePicker/>)}
+            </Form.Item>
+
+            <Form.Item label="Measure From">
+              {getFieldDecorator('measureFrom')(<Input/>)}
+            </Form.Item>
+
+            <Form.Item label="Measure To">
+              {getFieldDecorator('measureTo')(<Input/>)}
+            </Form.Item>
+
+            <Form.Item label="Measure Label">
+              {getFieldDecorator('measureLabel')(<Input/>)}
             </Form.Item>
           </Form>
 
@@ -107,7 +123,7 @@ class AddGoalModal extends Component {
           >
             Submit
           </Button>
-          </Modal.Footer>
+        </Modal.Footer>
       </Modal>
     );
   }

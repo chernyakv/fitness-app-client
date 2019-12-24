@@ -21,7 +21,7 @@ class GoalsContainerComponent extends Component {
   }
 
   handleAddGoal(goal) {
-    goal.userId = "101";
+    goal.userId = this.props.profile.id;
     this.props.addGoal(goal);
   }
 
@@ -34,10 +34,6 @@ class GoalsContainerComponent extends Component {
     const modalProps = {
       addGoal: this.handleAddGoal,
       updateGoal: this.handleUpdateGoal
-    }
-
-    if (!this.props.goals) {
-      return <h4>No goals</h4>
     }
 
     return (
@@ -76,9 +72,11 @@ class GoalsContainerComponent extends Component {
               <Column
                 title="Progress"
                 key="Progress"
-                render={(text, record) => (
-                  <Progress percent={30} size="small"/>
-                )}
+                render={(text, record) => {
+                  const progress = (5 / (record.measureTo - record.measureFrom)) * 100;
+                  const test = progress.toFixed(0);
+                  return <Progress percent={test} size="small"/>
+                }}
               />
               <Column
                 align="right"
@@ -121,7 +119,8 @@ class GoalsContainerComponent extends Component {
 const mapStateToProps = (state) => ({
   error: state.goals.error,
   loading: state.goals.loading,
-  goals: state.goals.goals
+  goals: state.goals.goals,
+  profile: state.auth.profile
 })
 
 const mapDispatchToProps = {

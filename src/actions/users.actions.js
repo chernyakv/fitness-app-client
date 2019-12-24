@@ -1,6 +1,7 @@
 import { constants } from "../constants/constants";
 import { userService } from "../service/user.service";
 import { show } from 'redux-modal';
+import {createNotification} from "../helpers/helpers";
 
 export const usersActions = {
     getAll,
@@ -17,6 +18,7 @@ function getAll() {
         userService.getAll()
             .then(
                 response => {
+                    console.log(response.data);
                     dispatch(success(response.data));
                 },
                 error => {
@@ -58,6 +60,7 @@ function deleteUser(id) {
         userService.deleteUser(id)
             .then(
                 response => {
+                    createNotification('success', 'User has been deleted');
                     dispatch(success(id));
                 },
                 error => {

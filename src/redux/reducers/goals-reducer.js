@@ -38,7 +38,7 @@ export function goalsReducer(state = initialState, action) {
       return {
         loading: false,
         error: false,
-        goals: state.goals.concat(action.goal),
+        goals: state.goals ? state.goals.concat(action.goal) : [action.goal]
       };
     case constants.ADD_USER_GOAL_FAILURE:
       return {
