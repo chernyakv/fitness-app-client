@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from "redux-form"
 import { connect } from 'react-redux';
 import { authActions } from '../../../actions/auth.actions';
-import { Link } from 'react-router-dom';
 
 
 class ResetPassword extends Component {
@@ -54,7 +52,7 @@ class ResetPassword extends Component {
               <div className="form-group">
                 <button type="submit" className="btn btn-primary">
                   Submit
-                </button>                
+                </button>
               </div>
 
             </form>

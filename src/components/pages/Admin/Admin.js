@@ -27,10 +27,7 @@ export class Admin extends Component {
     }
 
     handleAddUser(user) {
-        this.props.addUser(user)
-            .then(() => {
-                openNotificationWithIcon('success', 'user has been added')
-            });
+        this.props.addUser(user);
     }
 
     handleUpdateUser(user) {
@@ -68,24 +65,35 @@ export class Admin extends Component {
                         <Column title="Last Name" dataIndex="lastName" key="lastName" />
                         <Column title="Login" dataIndex="login" key="login" />
                         <Column
+                            align="right"
                             title="Action"
                             key="action"
                             render={(text, record) => (
                                 <span>
-                                    <button type="button" className="btn" onClick={() => {
-                                        this.props.showModal("EditUserModal", { ...modalProps, record })}}>
+                                    <Button
+                                        type="primary"
+                                        size="small"
+                                        className="btn"
+                                        onClick={() => {
+                                            this.props.showModal("EditUserModal", { ...modalProps, record })}
+                                        }>
                                         Edit
-                                    </button>
+                                    </Button>
                                     <Divider type="vertical" />
-                                    <button type="button" className="btn" onClick={() => {
-                                        openNotificationWithIcon('success', 'user has been deleted')
-                                        this.props.deleteUser(record.id)}}>
+                                    <Button
+                                        type="danger"
+                                        size="small"
+                                        className="btn"
+                                        onClick={() => {
+                                            openNotificationWithIcon('success', 'user has been deleted')
+                                            this.props.deleteUser(record.id)}
+                                        }>
                                         Delete
-                                    </button>
+                                    </Button>
                                 </span>
                             )}
                         />
-                        <Pagination defaultCurrent={2} total={50} />
+                        <Pagination defaultCurrent={2} total={40} />
                     </Table>
                 </div>
             )

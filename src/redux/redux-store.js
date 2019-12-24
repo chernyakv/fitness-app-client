@@ -15,7 +15,6 @@ let reducers = combineReducers({
     modal
 });
 
-
 let store =  createStore(
     reducers,
     applyMiddleware(

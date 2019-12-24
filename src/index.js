@@ -8,12 +8,10 @@ import { Provider } from 'react-redux';
 import App from './components/App/App';
 import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.js';
-import $ from 'jquery';
-import Popper from 'popper.js';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>         
+        <App/>
     </Provider>,
     document.getElementById('root'));
 

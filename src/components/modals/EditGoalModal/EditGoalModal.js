@@ -3,11 +3,16 @@ import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
 import {Button, DatePicker, Form, Input} from 'antd';
-const { RangePicker } = DatePicker;
+import moment from 'moment';
 
-class AddGoalModal extends Component {
+const {RangePicker} = DatePicker;
+
+
+class EditGoalModal extends Component {
   constructor(props) {
     super(props);
+    console.log(moment(this.props.record.startDate))
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
@@ -16,17 +21,20 @@ class AddGoalModal extends Component {
     console.log(dateString);
   }
 
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const goal = {
+          ...this.props.record,
           description: values.description,
           startDate: values.startEndTime[0]._d,
           endDate: values.startEndTime[1]._d,
+          measureFrom: values.measureFrom,
+          measureTo: values.measureTo
         }
-        this.props.addGoal(goal);
+        console.log(goal);
+        this.props.updateGoal(goal);
         this.props.handleHide();
       }
     });
@@ -43,15 +51,15 @@ class AddGoalModal extends Component {
       },
       wrapperCol: {
         xs: {span: 24},
-        sm: {span: 16},
+        sm: {span: 8},
       },
     };
 
     const tailFormItemLayout = {
       wrapperCol: {
         xs: {
-          span: 24,
-          offset: 0,
+          span: 16,
+          offset: 8,
         },
         sm: {
           span: 16,
@@ -67,13 +75,14 @@ class AddGoalModal extends Component {
     return (
       <Modal show={show}>
         <Modal.Header>
-          <Modal.Title>Create goal</Modal.Title>
+          <Modal.Title>Edit goal</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Form.Item label="Goal Name">
               {getFieldDecorator('description', {
+                initialValue: this.props.record.description,
                 rules: [
                   {
                     required: true,
@@ -83,11 +92,23 @@ class AddGoalModal extends Component {
               })(<Input/>)}
             </Form.Item>
 
-            <Form.Item label="Time" onClick={(event) => event.stopPropagation()}>
-              {getFieldDecorator('startEndTime')(<RangePicker />)}
+            <Form.Item label="Time">
+              {getFieldDecorator('startEndTime', {
+                initialValue: [
+                  this.props.record.startDate ? moment(this.props.record.startDate) : null,
+                  this.props.record.endDate ? moment(this.props.record.endDate) : null,
+                ]
+              })(<RangePicker/>)}
+            </Form.Item>
+
+            <Form.Item label="Measure From">
+              {getFieldDecorator('measureFrom')(<Input/>)}
+            </Form.Item>
+
+            <Form.Item label="Measure To">
+              {getFieldDecorator('measureTo')(<Input/>)}
             </Form.Item>
           </Form>
-
         </Modal.Body>
 
         <Modal.Footer>
@@ -107,12 +128,12 @@ class AddGoalModal extends Component {
           >
             Submit
           </Button>
-          </Modal.Footer>
+        </Modal.Footer>
       </Modal>
     );
   }
 }
 
-const WrappedAddGoalForm = Form.create({name: 'addGoalModal'})(AddGoalModal);
+const WrappedEditGoalForm = Form.create({name: 'editGoalModal'})(EditGoalModal);
 
-export default connectModal({name: 'AddGoalModal', destroyOnHide: false})(WrappedAddGoalForm)
+export default connectModal({name: 'EditGoalModal', destroyOnHide: false})(WrappedEditGoalForm)

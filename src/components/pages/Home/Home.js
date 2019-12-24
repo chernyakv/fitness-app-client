@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import jwt_decode from 'jwt-decode';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { authActions } from '../../../actions/auth.actions'
 import './Home.css';
 import UserProfileSideBar from '../../content/User/UserProfileSideBar/UserProfileSideBar';
 import GoalsContainerComponent from '../../content/Goal/GoalsConatainerComponent/GoalsContainerComponent';
 
 export class Home extends Component {
-  componentDidMount() {    
+  componentDidMount() {
     this.props.setUserProfile(this.props.login);
   }
 
@@ -19,8 +18,8 @@ export class Home extends Component {
         <div className="col-md-3">
           <UserProfileSideBar profile={profile} />
         </div>
-        <div className="col-md-9">          
-          <GoalsContainerComponent profile={profile}/>          
+        <div className="col-md-9">
+          <GoalsContainerComponent profile={profile}/>
         </div>
       </div>
     )

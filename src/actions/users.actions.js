@@ -11,18 +11,17 @@ export const usersActions = {
 };
 
 function getAll() {
-    return dispatch => {    
+    return dispatch => {
         dispatch(request())
 
         userService.getAll()
-            .then(                
-                response => {                            
-                    dispatch(success(response.data));                    
+            .then(
+                response => {
+                    dispatch(success(response.data));
                 },
                 error => {
-                    debugger;
                     dispatch(failure());
-                }                
+                }
             );
     };
 
@@ -32,20 +31,20 @@ function getAll() {
 }
 
 function addUser(user) {
-    return dispatch => {    
-        dispatch(request(user));  
+    return dispatch => {
+        dispatch(request(user));
 
         userService.addUser(user)
-            .then(                
-                response => {                            
-                    dispatch(success(response.data));                
+            .then(
+                response => {
+                    dispatch(success(response.data));
                 },
                 error => {
                     dispatch(failure());
-                }                
+                }
             );
     };
-    
+
     function success(user) { return { type: constants.USER_ADD_SUCCESS, user} }
     function request(user) { return { type: constants.USER_ADD_REQUEST, user } }
     function failure() { return { type: constants.USER_ADD_FAILURE } }
@@ -53,40 +52,40 @@ function addUser(user) {
 }
 
 function deleteUser(id) {
-    return dispatch => {    
-        dispatch(request(id));  
+    return dispatch => {
+        dispatch(request(id));
 
         userService.deleteUser(id)
-            .then(                
-                response => {                            
-                    dispatch(success(id));                    
+            .then(
+                response => {
+                    dispatch(success(id));
                 },
                 error => {
                     dispatch(failure(id));
-                }                
+                }
             );
     };
-    
+
     function success(id) { return { type: constants.USER_DELETE_SUCCESS, id} }
     function request(id) { return { type: constants.USER_DELETE_REQUEST, id } }
     function failure(id) { return { type: constants.USER_DELETE_FAILURE, id } }
 }
 
 function updateUser(user) {
-    return dispatch => {    
-        dispatch(request(user));  
-        
+    return dispatch => {
+        dispatch(request(user));
+
         userService.updateUser(user)
-            .then(                
-                response => {                            
-                    dispatch(success(user));                    
+            .then(
+                response => {
+                    dispatch(success(user));
                 },
                 error => {
                     dispatch(failure(error.message));
-                }                
+                }
             );
     };
-    
+
     function success(user) { return { type: constants.USER_UPDATE_SUCCESS, user} }
     function request(user) { return { type: constants.USER_UPDATE_REQUEST, user } }
     function failure(message) { return { type: constants.USER_UPDATE_FAILURE, message } }
@@ -95,8 +94,8 @@ function updateUser(user) {
 function showModal(modal, props) {
 
     return dispatch => {
-        dispatch(success(modal, props));  
+        dispatch(success(modal, props));
     };
-    
+
     function success() { return show(modal, props) }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Router, Redirect, Switch } from 'react-router-dom'
+import { Router, Redirect, Switch } from 'react-router-dom'
 import Login from '../pages/Login/Login';
 import Admin from '../pages/Admin/Admin';
 import Home from '../pages/Home/Home';
@@ -21,7 +21,7 @@ function App() {
       <div className="App">
         <Header />
         <div className="app-content-wrapper">
-          <div className="container">           
+          <div className="container">
               <Switch>
                 <PrivateRoute exact path="/" component={Home} />
                 <NotAuthenticatedRoute exact  path="/registration" component={Registration} />
@@ -29,13 +29,12 @@ function App() {
                 <PrivateRoute exact  path="/admin" roles={['ADMIN']} component={Admin} />
                 <PrivateRoute exact  path="/resetPassword" component={ResetPassword} />
                 <Redirect from="*" to="/" />
-              </Switch>           
+              </Switch>
           </div>
         </div>
-
       </div>
     </Router>
-  );  
+  );
 }
 
 export default App;

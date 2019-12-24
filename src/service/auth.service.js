@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import {authHeader} from '../helpers/authHeader'
+import { authHeader } from '../helpers/authHeader'
 import { BehaviorSubject } from 'rxjs';
 
 export const authService = {
@@ -10,7 +10,6 @@ export const authService = {
     resetPassword,
     getCurrentUserLogin
 }
-    
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('jwt')));
 
@@ -25,24 +24,27 @@ function login(login, password) {
     return axios.post('http://localhost:8080/auth/login', {
         login,
         password
-    });
+    }).then(
+        response => {
+            localStorage.setItem('jwt', JSON.stringify(response.data));
+            currentUserSubject.next();
+            return response;
+        }
+    );
 }
 
 function logout() {
-    const user = jwt_decode(JSON.parse(localStorage.getItem('jwt')).accessToken);
-    localStorage.removeItem('jwt'); 
+    localStorage.removeItem('jwt');
 }
 
 function resetPassword(password, newPassword) {
-    return axios.post(`http://localhost:8080/auth/resetPassword?password=${password}&newPassword=${newPassword}`, {}, { headers:  authHeader()});
+    return axios.post(`http://localhost:8080/auth/resetPassword?password=${password}&newPassword=${newPassword}`, {}, { headers: authHeader() });
 }
 
 function getCurrentUserLogin() {
-    if(!currentUserSubject.value) {
+    if (!currentUserSubject.value) {
         return null;
     }
-    
+
     return jwt_decode(currentUserSubject.value.accessToken).sub;
 }
-
-
