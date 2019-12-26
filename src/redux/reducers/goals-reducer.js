@@ -34,7 +34,6 @@ export function goalsReducer(state = initialState, action) {
         goals: state.goals
       };
     case constants.ADD_USER_GOAL_SUCCESS:
-      debugger;
       return {
         loading: false,
         error: false,

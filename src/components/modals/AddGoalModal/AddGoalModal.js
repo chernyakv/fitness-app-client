@@ -81,14 +81,21 @@ class AddGoalModal extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Please input your name!',
+                    message: 'Please input task description!',
                   },
                 ],
               })(<Input/>)}
             </Form.Item>
 
             <Form.Item label="Time" onClick={(event) => event.stopPropagation()}>
-              {getFieldDecorator('startEndTime')(<RangePicker/>)}
+              {getFieldDecorator('startEndTime', {
+                rules:  [
+                  {
+                    required: true,
+                    message: 'Please input time!',
+                  },
+                ],
+              })(<RangePicker/>)}
             </Form.Item>
 
             <Form.Item label="Measure From">

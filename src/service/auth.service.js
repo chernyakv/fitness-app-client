@@ -14,7 +14,7 @@ export const authService = {
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('jwt')));
 
 function register(login, password) {
-    return axios.post('http://localhost:8080/api/v1/users', {
+    return axios.post('http://localhost:8080/auth/registration', {
         login,
         password
     });

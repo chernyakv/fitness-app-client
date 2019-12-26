@@ -3,16 +3,9 @@ import {connect} from 'react-redux'
 import AddUserModal from '../../modals/AddUserModal'
 import EditUserModal from '../../modals/EditUserModal'
 import {usersActions} from '../../../actions/users.actions'
-import {Button, Divider, notification, Pagination, Table} from 'antd';
+import {Button, Divider, Pagination, Table} from 'antd';
 import 'antd/dist/antd.css';
-
 const {Column, ColumnGroup} = Table;
-
-const openNotificationWithIcon = (type, message) => {
-  notification[type]({
-    message: message
-  });
-};
 
 export class Admin extends Component {
 
@@ -31,7 +24,6 @@ export class Admin extends Component {
   }
 
   handleUpdateUser(user) {
-    openNotificationWithIcon('success', 'user has been updated')
     this.props.updateUser(user);
   }
 

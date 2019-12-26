@@ -74,7 +74,6 @@ function resetPassword(password, newPassword) {
         response => {
           dispatch(success());
           history.push("/");
-
         },
         error => {
           alert(error.message);
