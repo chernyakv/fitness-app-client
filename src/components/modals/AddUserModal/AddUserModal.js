@@ -1,46 +1,49 @@
 import React, {Component} from 'react'
-import {Button, Form, Modal} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
+import {Button, DatePicker, Form, Input} from 'antd';
+import 'antd/dist/antd.css';
 
 class AddUserModal extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      user: {
-        login: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        weight: '',
-        height: ''
-      }
-    }
-
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.addUser(this.state.user);
-    this.props.handleHide();
-  }
-
-  handleChange(event) {
-    const {name, value} = event.target;
-    const {user} = this.state;
-    this.setState({
-      user: {
-        ...user,
-        [name]: value
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if(!err) {
+        const user = {
+          login: values.login,
+          password: values.password,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          age: values.age,
+          weight: values.weight,
+          height: values.height,
+        }
+        this.props.addUser(user);
+        this.props.handleHide();
       }
     });
   }
 
   render() {
     const {show, handleHide, message, submit} = this.props;
+    const {getFieldDecorator} = this.props.form;
+
+    const formItemLayout = {
+      labelCol: {
+        xs: {span: 6},
+        sm: {span: 6},
+      },
+      wrapperCol: {
+        xs: {span: 14},
+        sm: {span: 14},
+      },
+    };
 
     return (
       <Modal show={show}>
@@ -49,46 +52,109 @@ class AddUserModal extends Component {
         </Modal.Header>
 
         <Modal.Body>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formLogin">
-              <Form.Label>Login</Form.Label>
-              <Form.Control type="text" name="login" onChange={this.handleChange}/>
-            </Form.Group>
+          <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+            <Form.Item label="Login">
+              {getFieldDecorator('login', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input login!',
+                  },
+                ],
+              })(<Input/>)}
+            </Form.Item>
 
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name="password" onChange={this.handleChange}/>
-            </Form.Group>
+            <Form.Item label="Password">
+              {getFieldDecorator('password', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input password!',
+                  },
+                ],
+              })(<Input type="password"/>)}
+            </Form.Item>
 
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="firstName" onChange={this.handleChange}/>
-            </Form.Group>
+            <Form.Item label="First Name">
+              {getFieldDecorator('firstName', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input firstName!',
+                  },
+                ],
+              })(<Input/>)}
+            </Form.Item>
 
-            <Form.Group controlId="formSurname">
-              <Form.Label>Surname</Form.Label>
-              <Form.Control type="text" name="lastName" onChange={this.handleChange}/>
-            </Form.Group>
+            <Form.Item label="Last Name">
+              {getFieldDecorator('lastName', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input lastName!',
+                  },
+                ],
+              })(<Input/>)}
+            </Form.Item>
 
-            <Form.Group controlId="formHeight">
-              <Form.Label>Height</Form.Label>
-              <Form.Control type="text" name="height" onChange={this.handleChange}/>
-            </Form.Group>
+            <Form.Item label="Age">
+              {getFieldDecorator('age', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input age!',
+                  },
+                ],
+              })(<Input/>)}
+            </Form.Item>
 
-            <Form.Group controlId="formWeight">
-              <Form.Label>Weight</Form.Label>
-              <Form.Control type="text" name="weight" onChange={this.handleChange}/>
-            </Form.Group>
+            <Form.Item label="Height">
+              {getFieldDecorator('height', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input height!',
+                  },
+                ],
+              })(<Input/>)}
+            </Form.Item>
+
+            <Form.Item label="Weight">
+              {getFieldDecorator('weight', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input weight!',
+                  },
+                ],
+              })(<Input/>)}
+            </Form.Item>
           </Form>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button className="btn btn-primary btn-sm" onClick={handleHide}>Close</Button>
-          <Button className="btn btn-primary btn-sm" onClick={this.handleSubmit}>Submit</Button>
+          <Button
+            type="primary"
+            size="small"
+            className="btn"
+            onClick={handleHide}
+          >
+            Close
+          </Button>
+          <Button
+            type="primary"
+            size="small"
+            className="btn"
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
 
-export default connectModal({name: 'AddUserModal', destroyOnHide: true})(AddUserModal)
+const WrappedAddUserForm = Form.create({name: 'addGoalModal'})(AddUserModal);
+
+export default connectModal({name: 'AddUserModal', destroyOnHide: true})(WrappedAddUserForm)

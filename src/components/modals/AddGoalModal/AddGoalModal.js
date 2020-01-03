@@ -10,11 +10,6 @@ class AddGoalModal extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(date, dateString) {
-    console.log(dateString);
   }
 
 
@@ -42,12 +37,12 @@ class AddGoalModal extends Component {
 
     const formItemLayout = {
       labelCol: {
-        xs: {span: 24},
-        sm: {span: 8},
+        xs: {span: 6},
+        sm: {span: 6},
       },
       wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 16},
+        xs: {span: 14},
+        sm: {span: 14},
       },
     };
 
@@ -62,10 +57,6 @@ class AddGoalModal extends Component {
           offset: 8,
         },
       },
-    };
-
-    const config = {
-      rules: [{type: 'object', required: true, message: 'Please select time!'}],
     };
 
     return (

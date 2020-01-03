@@ -3,6 +3,7 @@ import {userService} from "../service/user.service";
 import {constants} from "../constants/constants";
 import {history} from "../helpers/History"
 import {goalsActions} from '../actions/goals.actions'
+import {createNotification} from "../helpers/helpers";
 import jwt_decode from 'jwt-decode';
 
 export const authActions = {
@@ -24,7 +25,9 @@ function register(login, password) {
           dispatch(success(response.data));
         },
         error => {
-          alert(error.message);
+          console.log(error);
+          debugger;
+          createNotification('error', error.response.data.message);
         }
       );
   };
@@ -51,7 +54,7 @@ function login(login, password) {
           history.push("/");
         },
         error => {
-          alert(error.response.data.message);
+          createNotification('error', error.response.data.message);
         }
       );
   };

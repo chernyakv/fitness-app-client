@@ -53,8 +53,13 @@ export class Admin extends Component {
               Add user
             </Button>
           </div>
-          <Table dataSource={this.props.users} expandedRowRender={record => <p
-            style={{margin: 0}}>Height: {record.height} Weight: {record.weight} </p>}>
+          <Table
+            dataSource={this.props.users}
+            expandedRowRender={
+              record => <p style={{margin: 0}}>Height: {record.height} Weight: {record.weight} Age: {record.age}</p>
+            }
+            rowKey={record => record.id}
+          >
             <Column title="ID" dataIndex="id" key="id"/>
             <Column title="First Name" dataIndex="firstName" key="firstName"/>
             <Column title="Last Name" dataIndex="lastName" key="lastName"/>
