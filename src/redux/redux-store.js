@@ -6,7 +6,6 @@ import { usersReducer } from "./reducers/users-reducer";
 import { goalsReducer } from "./reducers/goals-reducer";
 import { reducer as modal } from 'redux-modal'
 
-
 let reducers = combineReducers({
     auth: authReducer,
     form: formReducer,
@@ -15,7 +14,7 @@ let reducers = combineReducers({
     modal
 });
 
-let store =  createStore(
+let store = createStore(
     reducers,
     applyMiddleware(
         thunkMiddleware
@@ -23,4 +22,4 @@ let store =  createStore(
 );
 
 export default store;
-window.store = store;
+window.store = store

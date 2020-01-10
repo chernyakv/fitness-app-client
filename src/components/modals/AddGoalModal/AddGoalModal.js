@@ -4,6 +4,7 @@ import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
 import {Button, DatePicker, Form, Input} from 'antd';
 
+
 const {RangePicker} = DatePicker;
 
 class AddGoalModal extends Component {

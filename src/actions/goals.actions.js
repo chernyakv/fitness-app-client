@@ -6,7 +6,9 @@ export const goalsActions = {
   removeGoal,
   setUserGoals,
   addUserGoal,
-  updateUserGoal
+  updateUserGoal,
+  getTodayExercise,
+  getTodayActivities
 };
 
 function setUserGoals(id) {
@@ -118,5 +120,60 @@ function removeGoal(goalId) {
 
   function failure() {
     return {type: constants.REMOVE_GOAL_FAILURE}
+  }
+}
+
+function getTodayExercise(id) {
+  return dispatch => {
+    dispatch(request())
+    goalService.getTodayExercise(id)
+      .then(
+        response => {
+          dispatch(success(response.data));
+        },
+        error => {
+          dispatch(failure(error.message));
+        }
+      );
+  };
+
+  function request() {
+    return {type: constants.GET_TODAY_EXERCISE_REQUEST}
+  }
+
+  function success(exercise) {
+    return {type: constants.GET_TODAY_EXERCISE_SUCCESS, exercise}
+  }
+
+  function failure() {
+    return {type: constants.GET_TODAY_EXERCISE_FAILURE}
+  }
+}
+
+
+function getTodayActivities(id) {
+  return dispatch => {
+    dispatch(request())
+    goalService.getTodayActivities(id)
+      .then(
+        response => {
+          dispatch(success(response.data));
+        },
+        error => {
+          dispatch(failure(error.message));
+        }
+      );
+  };
+
+  function request() {
+    return {type: constants.GET_TODAY_ACTIVITIES_REQUEST}
+  }
+
+  function success(activities) {
+    return {type: constants.GET_TODAY_ACTIVITIES_SUCCESS, activities}
+  }
+
+  function failure() {
+    return {type: constants.GET_TODAY_ACTIVITIES_FAILURE}
   }
 }

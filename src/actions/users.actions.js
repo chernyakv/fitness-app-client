@@ -8,7 +8,9 @@ export const usersActions = {
   addUser,
   updateUser,
   deleteUser,
-  showModal
+  setGoal,
+  showModal,
+  getUserParameters
 };
 
 function getAll() {
@@ -124,6 +126,65 @@ function updateUser(user) {
 
   function failure(message) {
     return {type: constants.USER_UPDATE_FAILURE, message}
+  }
+}
+
+function setGoal(userId, templateId) {
+  return dispatch => {
+    debugger;
+    dispatch(request(userId));
+
+    userService.setGoal(userId, templateId)
+      .then(
+        response => {
+          createNotification('success', 'Goal set');
+          dispatch(success(response.data));
+        },
+        error => {
+          dispatch(failure(error.message));
+        }
+      );
+  };
+
+  function success(user) {
+    return {type: constants.SET_USER_GOAL_SUCCESS, user}
+  }
+
+  function request(user) {
+    return {type: constants.SET_CURRENT_USER_REQUEST, user}
+  }
+
+  function failure(message) {
+    return {type: constants.SET_USER_GOAL_FAILURE, message}
+  }
+}
+
+function getUserParameters(userId, fromDate, toDate) {
+  return dispatch => {
+    dispatch(request(userId));
+
+    userService.getUserParameters(userId, fromDate, toDate)
+      .then(
+        response => {
+
+          dispatch(success(response.data));
+        },
+        error => {
+          dispatch(failure(error.message));
+        }
+      );
+  };
+
+  function success(userParameters) {
+    return {type: constants.GET_USER_PARAMETERS_SUCCESS, userParameters}
+  }
+
+  function request(userId) {
+    return {type: constants.GET_USER_PARAMETERS_REQUEST, userId}
+  }
+
+  function failure(message) {
+    return {type: constants.GET_USER_PARAMETERS_FAILURE, message}
   }
 }
 

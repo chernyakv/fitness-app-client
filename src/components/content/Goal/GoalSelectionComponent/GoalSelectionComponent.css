@@ -1,0 +1,16 @@
+.goal-selection-wrapper {
+    padding: 10px 10px 10px 10px;
+    background: #fff;
+    border-radius: 25px !important;
+    height: 30vh;
+    margin: 0px auto;
+    float: none;
+}
+
+.radio-group-wrapper {
+    margin-bottom: 10px;
+}
+
+.ant-btn {
+    margin-right: 10px;
+}

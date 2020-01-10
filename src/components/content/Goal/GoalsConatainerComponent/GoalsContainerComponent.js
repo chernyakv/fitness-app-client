@@ -4,7 +4,7 @@ import {goalsActions} from '../../../../actions/goals.actions'
 import {usersActions} from '../../../../actions/users.actions'
 import {Button, Divider, Progress, Table} from 'antd';
 import 'antd/dist/antd.css';
-import './GoalsContainerComponent.css'
+
 import AddGoalModal from '../../../modals/AddGoalModal';
 import EditGoalModal from '../../../modals/EditGoalModal';
 import moment from 'moment';
@@ -51,7 +51,10 @@ class GoalsContainerComponent extends Component {
             Create goal
           </Button>
           <div className="goals-table-wrapper">
-            <Table dataSource={this.props.goals}>
+            <Table
+              dataSource={this.props.goals}
+              rowKey={record => record.id}
+            >
               <Column title="Description" dataIndex="description" key="description"/>
               <Column
                 title="Start Date"

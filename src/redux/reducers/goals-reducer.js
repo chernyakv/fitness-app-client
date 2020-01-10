@@ -3,7 +3,9 @@ import {constants} from "../../constants/constants";
 const initialState = {
   loading: false,
   error: false,
-  goals: false
+  goals: false,
+  exercise: false,
+  activities: false
 };
 
 export function goalsReducer(state = initialState, action) {
@@ -84,6 +86,45 @@ export function goalsReducer(state = initialState, action) {
         error: true
       }
 
+    case constants.GET_TODAY_EXERCISE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    case constants.GET_TODAY_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        exercise: action.exercise,
+        loading: false,
+        error: false
+      }
+    case constants.GET_TODAY_EXERCISE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      }
+
+    case constants.GET_TODAY_ACTIVITIES_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    case constants.GET_TODAY_ACTIVITIES_SUCCESS:
+      return {
+        ...state,
+        activities: action.activities,
+        loading: false,
+        error: false
+      }
+    case constants.GET_TODAY_ACTIVITIES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      }
     default:
       return state;
   }

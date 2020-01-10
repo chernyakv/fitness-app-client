@@ -3,7 +3,8 @@ import {constants} from "../../constants/constants";
 const initialState = {
   loading: false,
   error: false,
-  users: false
+  users: false,
+  userParameters: false
 };
 
 export function usersReducer(state = initialState, action) {
@@ -58,7 +59,7 @@ export function usersReducer(state = initialState, action) {
         loading: false,
         error: false
       }
-    case constants.USER_ADD_REQUEST:
+    case constants.USER_ADD_FAILURE:
       return {
         ...state,
         loading: false,
@@ -70,19 +71,40 @@ export function usersReducer(state = initialState, action) {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case constants.USER_UPDATE_SUCCESS:
       return {
         ...state,
         loading: false,
         error: false
-      }
-    case constants.USER_UPDATE_REQUEST:
+      };
+    case constants.USER_UPDATE_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
+
+    case constants.GET_USER_PARAMETERS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+    case constants.GET_USER_PARAMETERS_SUCCESS:
+      return {
+        ...state,
+        userParameters: action.userParameters,
+        loading: false,
+        error: false
+      };
+    case constants.GET_USER_PARAMETERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      };
+
     default:
       return state;
   }

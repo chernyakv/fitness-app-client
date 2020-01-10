@@ -10,18 +10,22 @@ export function authReducer(state = initialState, action) {
 
     case constants.REGISTER_REQUEST:
       return {
+        ...state,
         user: action.user
       };
     case constants.REGISTER_SUCCESS:
       return {
+        ...state,
         user: action.user
       };
     case constants.LOGIN_REQUEST:
       return {
+        ...state
         //user: action.user
       };
     case constants.LOGIN_SUCCESS:
       return {
+        ...state,
         isAuth: true,
         login: action.user
         //user: action.user
@@ -34,6 +38,13 @@ export function authReducer(state = initialState, action) {
       };
     case constants.LOGOUT:
       return {};
+
+    case constants.SET_USER_GOAL_SUCCESS:
+      return {
+        ...state,
+        isAuth: true,
+        profile: action.user
+      };
 
     default:
       return state;

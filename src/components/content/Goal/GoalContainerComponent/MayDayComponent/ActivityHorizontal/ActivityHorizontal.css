@@ -1,0 +1,38 @@
+.menu-item {
+    position: relative;
+    padding: 5px;
+    width: 110px;
+    height: 100px;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    background-color: gainsboro;
+    vertical-align: baseline;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.menu-item-time {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.menu-item-text {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 10px;
+
+}
+.menu-item-wrapper.active {
+    border: 1px blue solid;
+}
+.menu-item.active {
+    border: 1px green solid;
+}
+
+.scroll-menu-arrow {
+    padding: 0px;
+    cursor: pointer;
+}

@@ -101,7 +101,8 @@ function setCurrentUser(login) {
       .then(
         response => {
           dispatch(success(response.data));
-          dispatch(goalsActions.setUserGoals(response.data.id))
+          //dispatch(goalsActions.setUserGoals(response.data.id));
+          dispatch(goalsActions.getTodayExercise(response.data.id));
         },
         error => {
           alert(error.message);

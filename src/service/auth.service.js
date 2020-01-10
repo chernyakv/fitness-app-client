@@ -14,7 +14,7 @@ export const authService = {
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('jwt')));
 
 function register(login, password) {
-    return axios.post('http://localhost:8080/auth/registration', {
+    return axios.post('http://localhost:8080/auth/register', {
         login,
         password
     });
@@ -38,7 +38,7 @@ function logout() {
 }
 
 function resetPassword(password, newPassword) {
-    return axios.post(`http://localhost:8080/auth/resetPassword?password=${password}&newPassword=${newPassword}`, {}, { headers: authHeader() });
+    return axios.post(`http://localhost:8080/auth/changePassword?password=${password}&newPassword=${newPassword}`, {}, { headers: authHeader() });
 }
 
 function getCurrentUserLogin() {
