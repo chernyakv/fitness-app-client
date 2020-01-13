@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import './ActivityHorizontal.css'
-import {Tag} from 'antd';
+import {Tag, Switch, Icon} from 'antd';
 import 'antd/dist/antd.css';
 
-const MenuItem = ({text, selected}) => {
+const MenuItem = ({text, isCompleted}) => {
   return <div className={`menu-item`}>
     <div className={'menu-item-text'}>
       {text}
@@ -14,36 +14,29 @@ const MenuItem = ({text, selected}) => {
         5-6.30
       </Tag>
     </div>
+    <div className={'menu-item-switch'}>
+      <Switch
+        checkedChildren={<Icon type="check" />}
+        unCheckedChildren={<Icon type="close" />}
+        defaultChecked={isCompleted}
+      />
+    </div>
   </div>;
 };
 
-const Menu = (list, selected) =>
+const Menu = (list) =>
   list.map(el => {
-    const {name} = el;
-
-    return <MenuItem text={name} key={name} selected={selected}/>;
+    const {name, isCompleted} = el;
+    return <MenuItem isCompleted={isCompleted} text={name} key={name}/>;
   });
-
-const selected = 'item1';
 
 export default class ActivityHorizontal extends Component {
   constructor(props) {
     super(props);
-    this.menuItems = Menu(props.activities, selected);
-  }
-
-  state = {
-    selected
-  };
-
-  onSelect = key => {
-    this.setState({selected: key});
+    this.menuItems = Menu(props.activities);
   }
 
   render() {
-    const {selected} = this.state;
-
-
     const menu = this.menuItems;
 
     return (

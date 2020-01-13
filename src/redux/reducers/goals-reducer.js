@@ -125,6 +125,26 @@ export function goalsReducer(state = initialState, action) {
         loading: false,
         error: true
       }
+
+    case constants.UPDATE_GOAL_EXERCISE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    case constants.UPDATE_GOAL_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        exercise: action.exercise,
+        loading: false,
+        error: false
+      }
+    case constants.UPDATE_GOAL_EXERCISE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      }
     default:
       return state;
   }

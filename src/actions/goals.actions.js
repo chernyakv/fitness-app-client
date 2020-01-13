@@ -8,7 +8,8 @@ export const goalsActions = {
   addUserGoal,
   updateUserGoal,
   getTodayExercise,
-  getTodayActivities
+  getTodayActivities,
+  updateExercise
 };
 
 function setUserGoals(id) {
@@ -127,6 +128,33 @@ function getTodayExercise(id) {
   return dispatch => {
     dispatch(request())
     goalService.getTodayExercise(id)
+      .then(
+        response => {
+          dispatch(success(response.data));
+        },
+        error => {
+          dispatch(failure(error.message));
+        }
+      );
+  };
+
+  function request() {
+    return {type: constants.GET_TODAY_EXERCISE_REQUEST}
+  }
+
+  function success(exercise) {
+    return {type: constants.GET_TODAY_EXERCISE_SUCCESS, exercise}
+  }
+
+  function failure() {
+    return {type: constants.GET_TODAY_EXERCISE_FAILURE}
+  }
+}
+
+function updateExercise(exerciseId, exercise) {
+  return dispatch => {
+    dispatch(request())
+    goalService.updateExercise(exerciseId, exercise)
       .then(
         response => {
           dispatch(success(response.data));

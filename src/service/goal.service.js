@@ -6,7 +6,8 @@ export const goalService = {
     removeGoal,
     getById,
     getTodayExercise,
-    getTodayActivities
+    getTodayActivities,
+    updateExercise
 }
 
 function getById(userId) {
@@ -31,5 +32,9 @@ function getTodayExercise(goalId) {
 
 function getTodayActivities(goalId) {
     return axios.get(`http://localhost:8080/api/v1/goals/${goalId}/activities`);
+}
+
+function updateExercise(exerciseId, exercise) {
+    return axios.put(`http://localhost:8080/api/v1/goals/${exerciseId}/exercise/${exerciseId}`, {...exercise});
 }
 

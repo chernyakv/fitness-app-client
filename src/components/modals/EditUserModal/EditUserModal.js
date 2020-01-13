@@ -13,7 +13,8 @@ class   EditUserModal extends Component {
         firstName: props.record.firstName,
         lastName: props.record.lastName,
         weight: props.record.weight,
-        height: props.record.height
+        height: props.record.height,
+        age: props.record.age
       }
     }
 
@@ -66,6 +67,12 @@ class   EditUserModal extends Component {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Surname</Form.Label>
               <Form.Control type="text" name="lastName" defaultValue={this.state.user.lastName}
+                            onChange={this.handleChange}/>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Age</Form.Label>
+              <Form.Control type="text" name="age" defaultValue={this.state.user.age}
                             onChange={this.handleChange}/>
             </Form.Group>
 

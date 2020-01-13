@@ -7,9 +7,10 @@
     cursor: pointer;
     border: none;
     background-color: gainsboro;
+    background-image: url("https://image.shutterstock.com/image-photo/business-man-accountant-working-on-260nw-605858807.jpg");
     vertical-align: baseline;
     border-radius: 5px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .menu-item-time {
@@ -18,11 +19,16 @@
     right: 5px;
 }
 
+.menu-item-switch {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
 .menu-item-text {
     position: absolute;
     top: 5px;
     left: 5px;
-    font-size: 10px;
+    font-size: 13px;
+    font-weight: bold;
 }
-
-

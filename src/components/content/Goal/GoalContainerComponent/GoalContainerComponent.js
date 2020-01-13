@@ -10,6 +10,7 @@ import ProgressComponent from "./ProgressComponent/ProgressComponent";
 import PlanningComponent from "./PlanningComponent/PlanningComponent";
 import MotivationComponent from "./MotivationComponent/MotivationComponent";
 import moment from 'moment';
+import EditExerciseModal from "../../../modals/EditExerciseModal/EditExerciseModal";
 
 const {TabPane} = Tabs;
 const {Column, ColumnGroup} = Table;
@@ -33,9 +34,15 @@ class GoalContainerComponent extends Component {
   };
 
   render() {
+    const modalProps = {
+      updateExercise: this.props.updateExercise,
+      exercise: this.props.exercise,
+    }
+
 
     return (
       <div className='goals-content'>
+        <EditExerciseModal/>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Мой день" key="1">
             <MayDayComponent activities={this.props.activities} exercise={this.props.exercise}/>
@@ -54,6 +61,9 @@ class GoalContainerComponent extends Component {
           <Button
             shape="circle"
             type="primary"
+            onClick={() => {
+              this.props.showModal("EditExerciseModal", {...modalProps})
+            }}>
           >
             +
           </Button>
@@ -78,6 +88,7 @@ const mapDispatchToProps = {
   showModal: usersActions.showModal,
   addGoal: goalsActions.addUserGoal,
   updateGoal: goalsActions.updateUserGoal,
+  updateExercise: goalsActions.updateExercise,
   deleteGoal: goalsActions.removeGoal,
   getUserParameters: usersActions.getUserParameters,
   getTodayActivities: goalsActions.getTodayActivities
