@@ -5,26 +5,26 @@ import {Button, Radio} from 'antd';
 
 class GoalSelectionComponent extends Component {
   state = {
-    goalId: '1',
+    goalType: '',
   };
 
   handleSizeChange = e => {
-    this.setState({goalId: e.target.value});
+    this.setState({goalType: e.target.value});
   };
 
   handleSubmit = e => {
-    this.props.setUserGaol("1", this.state.goalId);
-    console.log(this.state.goalId);
+    const {profile} = this.props;
+    this.props.setUserGaol(profile.id, this.state.goalType);
   }
 
   render() {
-    const {goalId} = this.state;
+    const {goalType} = this.state;
 
     return (
       <div className='goal-selection-wrapper'>
         <h3>Какая у вас главная цель?</h3>
         <div className='radio-group-wrapper'>
-          <Radio.Group value={goalId} onChange={this.handleSizeChange}>
+          <Radio.Group value={goalType} onChange={this.handleSizeChange}>
             <Radio.Button value="GAIN">Набрать вес</Radio.Button>
             <Radio.Button value="HOLD">Держать вес</Radio.Button>
             <Radio.Button value="LOSE">Сбросить вес</Radio.Button>

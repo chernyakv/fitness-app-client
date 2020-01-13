@@ -37,10 +37,10 @@ export class Home extends Component {
           <UserProfileSideBar profile={profile} />
         </div>
         <div className="col-md-9">
-          {profile.goalId ? (
+          {profile.hasGoal ? (
             <GoalContainerComponent />
           ) : (
-            <GoalSelectionComponent setUserGaol={this.setUserGoal}/>
+            <GoalSelectionComponent profile={profile} setUserGaol={this.setUserGoal}/>
           )}
         </div>
       </div>

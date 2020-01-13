@@ -14,6 +14,10 @@ class MayDayComponent extends Component {
     if(!exercise) {
       return <h4>No goal</h4>
     }
+
+    if(!activities) {
+      return <h4>No activities</h4>
+    }
     return (
       <div className='goals-conte1nt'>
         <h4>Ближайшее</h4>

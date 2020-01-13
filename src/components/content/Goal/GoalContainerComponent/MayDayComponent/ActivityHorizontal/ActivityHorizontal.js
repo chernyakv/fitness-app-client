@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import './ActivityHorizontal.css'
-import { Tag } from 'antd';
+import {Tag} from 'antd';
 import 'antd/dist/antd.css';
 
 const MenuItem = ({text, selected}) => {
-  return <div
-    className={`menu-item ${selected ? 'active' : ''}`}
-  >
+  return <div className={`menu-item`}>
     <div className={'menu-item-text'}>
       {text}
     </div>
