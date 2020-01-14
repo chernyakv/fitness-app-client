@@ -71,14 +71,7 @@ class EditExerciseModal extends Component {
         <Modal.Body>
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Form.Item label="Calories">
-              {getFieldDecorator('calories', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input task description!',
-                  },
-                ],
-              })(<Input/>)}
+              {getFieldDecorator('calories')(<Input/>)}
             </Form.Item>
 
             <Form.Item label="Water">
@@ -88,9 +81,7 @@ class EditExerciseModal extends Component {
             <Form.Item label="Sleep">
               {getFieldDecorator('sleep')(<Input/>)}
             </Form.Item>
-
           </Form>
-
         </Modal.Body>
 
         <Modal.Footer>

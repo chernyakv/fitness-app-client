@@ -15,7 +15,6 @@ import EditExerciseModal from "../../../modals/EditExerciseModal/EditExerciseMod
 const {TabPane} = Tabs;
 const {Column, ColumnGroup} = Table;
 
-
 class GoalContainerComponent extends Component {
 
   constructor(props) {
@@ -24,7 +23,7 @@ class GoalContainerComponent extends Component {
 
   componentDidMount() {
     const startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
-    const endOfMonth   = moment().endOf('month').format('YYYY-MM-DD');
+    const endOfMonth = moment().endOf('month').format('YYYY-MM-DD');
     this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
     this.props.getTodayActivities("1", endOfMonth);
   }
@@ -38,7 +37,6 @@ class GoalContainerComponent extends Component {
       updateExercise: this.props.updateExercise,
       exercise: this.props.exercise,
     }
-
 
     return (
       <div className='goals-content'>
@@ -57,14 +55,13 @@ class GoalContainerComponent extends Component {
             <MotivationComponent/>
           </TabPane>
         </Tabs>
-        <Affix  style={{ position: 'absolute', top: 10, right: 15 }}>
+        <Affix style={{position: 'absolute', top: 10, right: 15}}>
           <Button
             shape="circle"
             type="primary"
             onClick={() => {
               this.props.showModal("EditExerciseModal", {...modalProps})
             }}>
-          >
             +
           </Button>
         </Affix>

@@ -6,18 +6,18 @@ import {VerticalBarSeries, VerticalBarSeriesCanvas, XAxis, XYPlot, YAxis} from '
 
 class ProgressComponent extends Component {
   state = {
-    useCanvas: true
+    useCanvas: false
   };
 
   render() {
+    const ONE_DAY = 86400000;
     const myDATA1 = this.props.parameters.map((param) => {
+      const date = new Date(param.date);
       return {
         y: param.weight,
-        x: new Date(param.date).getTime()
+        x: new Date(date.getFullYear(), date.getMonth(), date.getDay()).getTime(),
       }
     });
-
-    console.log(myDATA1);
 
     const yDomain = myDATA1.reduce(
       (res, row) => {
