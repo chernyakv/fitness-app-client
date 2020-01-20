@@ -1,19 +1,25 @@
 import * as axios from 'axios';
+import instance from "./instance";
+
 export const planService = {
-    updateActivities,
-    getDailyActivities,
+    getById,
+    updateActivities: updatePlanActivities,
+    getPlan,
     removeActivity,
-    addActivity
+    addPlanActivity: addActivity
 }
-function getDailyActivities(planId) {
-    return axios.get(`http://localhost:8080/api/v1/plan/${planId}/activities`);
+function getById(userId) {
+    return instance.get(`plan/u/${userId}`);
+}
+function getPlan(planId) {
+    return instance.get(`plan/${planId}/activities`);
 }
 function addActivity(activity) {
-    return axios.post(`http://localhost:8080/api/v1/plan/activities`, {...activity});
+    return instance.post(`plan/activities`, {...activity});
 }
-function updateActivities(id ,plan) {
-    return axios.put(`http://localhost:8080/api/v1/plan/${id}`, {...plan});
+function updatePlanActivities(id , activity) {
+    return instance.put(`plan/activities/${id}`, {...activity});
 }
 function removeActivity(activityId) {
-    return axios.delete(`http://localhost:8080/api/v1/goals/${activityId}`);
+    return instance.delete(`plan/activities/${activityId}`);
 }
