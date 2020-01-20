@@ -11,9 +11,7 @@ import PlanningComponent from "./PlanningComponent/PlanningComponent";
 import MotivationComponent from "./MotivationComponent/MotivationComponent";
 import moment from 'moment';
 import EditExerciseModal from "../../Exercises/EditExerciseModal/EditExerciseModal";
-
 const {TabPane} = Tabs;
-const {Column, ColumnGroup} = Table;
 
 class GoalContainerComponent extends Component {
 
@@ -27,10 +25,6 @@ class GoalContainerComponent extends Component {
     this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
     this.props.getTodayActivities("1", endOfMonth);
   }
-
-  state = {
-    top: 100
-  };
 
   render() {
     const modalProps = {

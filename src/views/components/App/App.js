@@ -1,36 +1,29 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Router, Redirect, Switch } from 'react-router-dom'
-import Login from '../../pages/Login/Login';
-import Admin from '../../pages/Admin/Admin';
-import Home from '../../pages/Home/Home';
-import Registration from '../../pages/Registration/Registration';
-import ResetPassword from '../../pages/ResetPassword/ResetPassword';
-import { Header } from "../Header/Header"
-import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
-import { NotAuthenticatedRoute } from '../PrivateRoute/NotAuthenticatedRoute';
-import { history } from '../../../helpers/History';
+import {Router, Redirect, Switch} from 'react-router-dom'
+import AdminPage from '../../pages/Admin'
+import HomePage from '../../pages/Home'
+import ChangePasswordPage from '../../pages/ChangePassword'
+import LoginPage from '../../pages/Login'
+import RegistrationPage from '../../pages/Registration'
+import {Header} from "../Header/Header"
+import {PrivateRoute} from '../PrivateRoute/PrivateRoute';
+import {NotAuthenticatedRoute} from '../PrivateRoute/NotAuthenticatedRoute';
+import {history} from '../../../helpers/History';
 
 
 const App = () => {
   return (
     <Router history={history}>
-      <div className="App">
-        <Header />
-        <div className="app-content-wrapper">
-          <div className="container">
-              <Switch>
-                <PrivateRoute exact path="/" component={Home} />
-                <NotAuthenticatedRoute exact  path="/registration" component={Registration} />
-                <NotAuthenticatedRoute exact  path="/login" component={Login} />
-                <PrivateRoute exact  path="/admin" roles={['ADMIN']} component={Admin} />
-                <PrivateRoute exact  path="/resetPassword" component={ResetPassword} />
-                <Redirect from="*" to="/" />
-              </Switch>
-          </div>
-        </div>
-      </div>
+      <Switch>
+        <PrivateRoute exact path="/" component={HomePage}/>
+        <NotAuthenticatedRoute exact path="/registration" component={RegistrationPage}/>
+        <NotAuthenticatedRoute exact path="/login" component={LoginPage}/>
+        <PrivateRoute exact path="/admin" roles={['ADMIN']} component={AdminPage}/>
+        <PrivateRoute exact path="/resetPassword" component={ChangePasswordPage}/>
+        <Redirect from="*" to="/"/>
+      </Switch>
     </Router>
   );
 };

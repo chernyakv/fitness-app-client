@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import AddUserModal from '../../components/User/AddUserModal'
-import EditUserModal from '../../components/User/EditUserModal'
+import AddUserModal from '../User/AddUserModal'
+import EditUserModal from '../User/EditUserModal'
 import {actions} from '../../../state/ducks/user/actions'
 import {Button, Divider, Pagination, Table} from 'antd';
 import 'antd/dist/antd.css';
 const {Column, ColumnGroup} = Table;
 
-export class Admin extends Component {
+class Admin extends Component {
 
   constructor(props) {
     super(props);
@@ -55,7 +55,7 @@ export class Admin extends Component {
           </div>
           <Table
             dataSource={this.props.users}
-            expandedRowRender={
+            expandedRowR-ender={
               record => <p style={{margin: 0}}>Height: {record.height} Weight: {record.weight} Age: {record.age}</p>
             }
             rowKey={record => record.id}

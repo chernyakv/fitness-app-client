@@ -1,6 +1,7 @@
 import * as axios from 'axios';
+import instance from "./instance";
 import jwt_decode from 'jwt-decode';
-import { authHeader } from '../helpers/authHeader'
+import { authHeader } from './helpers'
 import { BehaviorSubject } from 'rxjs';
 
 export const authService = {
@@ -14,14 +15,14 @@ export const authService = {
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('jwt')));
 
 function register(login, password) {
-    return axios.post('http://localhost:8080/auth/register', {
+    return instance.post('auth/register', {
         login,
         password
     });
 }
 
 function login(login, password) {
-    return axios.post('http://localhost:8080/auth/login', {
+    return instance.post('auth/login', {
         login,
         password
     }).then(
@@ -38,7 +39,7 @@ function logout() {
 }
 
 function resetPassword(password, newPassword) {
-    return axios.post(`http://localhost:8080/auth/changePassword?password=${password}&newPassword=${newPassword}`, {}, { headers: authHeader() });
+    return instance.post(`auth/changePassword?password=${password}&newPassword=${newPassword}`, {}, { headers: authHeader() });
 }
 
 function getCurrentUserLogin() {

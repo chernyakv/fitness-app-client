@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import instance from "./instance";
 
 export const userService = {
     getByLogin,
@@ -11,29 +12,29 @@ export const userService = {
 }
 
 function getByLogin(login) {
-    return axios.get(`http://localhost:8080/api/v1/users/login/${login}`);
+    return instance.get(`users/login/${login}`);
 }
 
 function getAll() {
-    return axios.get('http://localhost:8080/api/v1/users');
+    return instance.get('users');
 }
 
 function deleteUser(id) {
-    return axios.delete('http://localhost:8080/api/v1/users/' + id);
+    return instance.delete('users/' + id);
 }
 
 function addUser(user) {
-    return axios.post('http://localhost:8080/api/v1/users', {...user});
+    return instance.post('users', {...user});
 }
 
 function updateUser(user) {
-    return axios.put('http://localhost:8080/api/v1/users/' + user.id, {...user});
+    return instance.put('users/' + user.id, {...user});
 }
 
 function setGoal(userId, templateId) {
-    return axios.post(`http://localhost:8080/api/v1/users/${userId}/goal`);
+    return instance.post(`users/${userId}/goal`);
 }
 
 function getUserParameters(userId, fromDate, toDate) {
-    return axios.get(`http://localhost:8080/api/v1/users/${userId}/parameters?from=${fromDate}&to=${toDate}`);
+    return instance.get(`users/${userId}/parameters?from=${fromDate}&to=${toDate}`);
 }

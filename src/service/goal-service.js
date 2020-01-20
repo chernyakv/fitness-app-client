@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import instance from "./instance";
 
 export const goalService = {
     addGoal,
@@ -11,30 +12,30 @@ export const goalService = {
 }
 
 function getById(userId) {
-    return axios.get(`http://localhost:8080/api/v1/goals/u/${userId}`);
+    return instance.get(`goals/u/${userId}`);
 }
 
 function addGoal(goal) {
-    return axios.post(`http://localhost:8080/api/v1/goals`, {...goal});
+    return instance.post(`goals`, {...goal});
 }
 
 function updateGoal(id, goal) {
-    return axios.put(`http://localhost:8080/api/v1/goals/${id}`, {...goal});
+    return instance.put(`goals/${id}`, {...goal});
 }
 
 function removeGoal(goalId) {
-    return axios.delete(`http://localhost:8080/api/v1/goals/${goalId}`);
+    return instance.delete(`goals/${goalId}`);
 }
 
 function getTodayExercise(goalId) {
-    return axios.get(`http://localhost:8080/api/v1/goals/${goalId}/exercise`);
+    return instance.get(`goals/${goalId}/exercise`);
 }
 
 function getTodayActivities(goalId) {
-    return axios.get(`http://localhost:8080/api/v1/goals/${goalId}/activities`);
+    return instance.get(`goals/${goalId}/activities`);
 }
 
 function updateExercise(exerciseId, exercise) {
-    return axios.put(`http://localhost:8080/api/v1/goals/${exerciseId}/exercise/${exerciseId}`, {...exercise});
+    return instance.put(`goals/${exerciseId}/exercise/${exerciseId}`, {...exercise});
 }
 

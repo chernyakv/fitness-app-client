@@ -7,7 +7,7 @@ import GoalContainerComponent from '../../components/Goals/GoalContainerComponen
 import GoalSelectionComponent from "../../components/Goals/GoalSelectionComponent/GoalSelectionComponent";
 import {actions} from "../../../state/ducks/user/actions";
 
-export class Home extends Component {
+class Home extends Component {
 
   constructor(props) {
     super(props);
@@ -49,11 +49,11 @@ export class Home extends Component {
 const mapStateToProps = (state) => ({
   profile: state.auth.profile,
   login: state.auth.login
-})
+});
 
 const mapDispatchToProps = {
   setUserProfile: authActions.setCurrentUser,
   setUserGoal: actions.setGoal
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

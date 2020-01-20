@@ -1,7 +1,6 @@
 import * as types from "./types"
 import {goalService} from "../../../service/goal-service";
 import {createNotification} from "../../../helpers/helpers"
-import {catchError} from "rxjs/operators";
 
 export const goalActions = {
   removeGoal,
