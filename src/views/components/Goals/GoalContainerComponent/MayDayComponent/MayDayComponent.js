@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {Card, Col, Collapse, Row, Button, List} from 'antd';
+import {Card, Col, Collapse, Row} from 'antd';
 import 'antd/dist/antd.css';
 import './MayDayComponent.css'
 import ActivityHorizontal from "./ActivityHorizontal/ActivityHorizontal";
+
 const { Panel } = Collapse;
 
 
