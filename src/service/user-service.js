@@ -1,4 +1,3 @@
-import * as axios from 'axios';
 import instance from "./instance";
 
 export const userService = {

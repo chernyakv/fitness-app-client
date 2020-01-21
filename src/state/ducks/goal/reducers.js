@@ -4,7 +4,6 @@ const initialState = {
   loading: false,
   error: false,
   goals: false,
-  exercise: false,
   activities: false
 };
 
@@ -80,26 +79,6 @@ const goalReducer = (state = initialState, action) => {
         error: false
       }
     case types.UPDATE_USER_GOAL_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: true
-      }
-
-    case types.GET_TODAY_EXERCISE_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: false
-      }
-    case types.GET_TODAY_EXERCISE_SUCCESS:
-      return {
-        ...state,
-        exercise: action.exercise,
-        loading: false,
-        error: false
-      }
-    case types.GET_TODAY_EXERCISE_FAILURE:
       return {
         ...state,
         loading: false,

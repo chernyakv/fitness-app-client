@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, DatePicker, Form, Input} from 'antd';
+import {Button, DatePicker, Form, Input, Select} from 'antd';
 
-
+const { Option } = Select;
 const {RangePicker} = DatePicker;
 
 class AddGoalModal extends Component {
@@ -13,18 +13,15 @@ class AddGoalModal extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const goal = {
-          description: values.description,
           startDate: values.startEndTime[0]._d,
           endDate: values.startEndTime[1]._d,
           measureFrom: values.measureFrom,
           measureTo: values.measureTo,
-          measureLabel: values.measureLabel
         }
         this.props.addGoal(goal);
         this.props.handleHide();
@@ -68,17 +65,6 @@ class AddGoalModal extends Component {
 
         <Modal.Body>
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-            <Form.Item label="Goal Name">
-              {getFieldDecorator('description', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input task description!',
-                  },
-                ],
-              })(<Input/>)}
-            </Form.Item>
-
             <Form.Item label="Time" onClick={(event) => event.stopPropagation()}>
               {getFieldDecorator('startEndTime', {
                 rules:  [
@@ -98,8 +84,16 @@ class AddGoalModal extends Component {
               {getFieldDecorator('measureTo')(<Input/>)}
             </Form.Item>
 
-            <Form.Item label="Measure Label">
-              {getFieldDecorator('measureLabel')(<Input/>)}
+            <Form.Item label="Select" hasFeedback>
+              {getFieldDecorator('select', {
+                rules: [{ required: true, message: 'Please select your goal!' }],
+              })(
+                <Select placeholder="Please select a goal type">
+                  <Option value="hold1">Набрать вес</Option>
+                  <Option value="hold">Держать вес</Option>
+                  <Option value="lose">Сбросить вес</Option>
+                </Select>,
+              )}
             </Form.Item>
           </Form>
 

@@ -1,4 +1,4 @@
 export { default as auth} from "./auth"
 export { default as goals} from "./goal"
 export { default as users} from "./user"
-export { default as plan} from "./plan"
+export { default as exercises} from "./exercise"
