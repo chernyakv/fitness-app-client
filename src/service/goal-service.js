@@ -1,4 +1,3 @@
-import * as axios from 'axios';
 import instance from "./instance";
 
 export const goalService = {
@@ -36,6 +35,7 @@ function getTodayActivities(goalId) {
 }
 
 function updateExercise(exerciseId, exercise) {
+    debugger;
     return instance.put(`goals/${exerciseId}/exercise/${exerciseId}`, {...exercise});
 }
 

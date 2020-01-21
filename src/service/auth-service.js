@@ -1,8 +1,7 @@
-import * as axios from 'axios';
 import instance from "./instance";
 import jwt_decode from 'jwt-decode';
-import { authHeader } from './helpers'
-import { BehaviorSubject } from 'rxjs';
+import {authHeader} from './helpers'
+import {BehaviorSubject} from 'rxjs';
 
 export const authService = {
     register,

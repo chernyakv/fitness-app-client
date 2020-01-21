@@ -28,6 +28,8 @@ class EditExerciseModal extends Component {
           sleep: values.sleep ? exercise.sleep - values.sleep : exercise.sleep,
           activity: exercise.activity
         }
+        console.log(exercise1);
+        console.log(exercise);
         this.props.updateExercise(exercise1.id, exercise1);
         this.props.handleHide();
       }

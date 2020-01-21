@@ -38,7 +38,7 @@ class Home extends Component {
           {profile.hasGoal ? (
             <GoalContainerComponent />
           ) : (
-            <GoalSelectionComponent profile={profile} setUserGaol={this.setUserGoal}/>
+            <GoalSelectionComponent profile={profile} setUserGoal={this.setUserGoal}/>
           )}
         </div>
       </div>

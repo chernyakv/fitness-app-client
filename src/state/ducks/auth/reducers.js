@@ -18,16 +18,19 @@ const authReducer = (state = initialState, action) => {
         ...state,
         user: action.user
       };
-    case types.USER_LOGIN_REQUEST:
+
+    case types.LOGIN_REQUEST:
       return {
         ...state
       };
-    case types.USER_LOGIN_SUCCESS:
+    case types.LOGIN_SUCCESS:
       return {
         ...state,
         isAuth: true,
         login: action.user
       };
+
+
     case types.SET_CURRENT_USER_SUCCESS:
       return {
         ...state,

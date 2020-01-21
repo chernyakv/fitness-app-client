@@ -11,6 +11,7 @@ import PlanningComponent from "./PlanningComponent/PlanningComponent";
 import MotivationComponent from "./MotivationComponent/MotivationComponent";
 import moment from 'moment';
 import EditExerciseModal from "../../Exercises/EditExerciseModal/EditExerciseModal";
+import {exerciseActions} from "../../../../state/ducks/exercise/actions";
 const {TabPane} = Tabs;
 
 class GoalContainerComponent extends Component {
@@ -24,9 +25,12 @@ class GoalContainerComponent extends Component {
     const endOfMonth = moment().endOf('month').format('YYYY-MM-DD');
     this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
     this.props.getTodayActivities("1", endOfMonth);
+    this.props.getTodayExercise(this.props.profile.id);
+
   }
 
   render() {
+
     const modalProps = {
       updateExercise: this.props.updateExercise,
       exercise: this.props.exercise,
@@ -34,7 +38,7 @@ class GoalContainerComponent extends Component {
 
     return (
       <div className='goals-content'>
-        <EditExerciseModal/>
+        <EditExerciseModal />
         <Tabs defaultActiveKey="1">
           <TabPane tab="Мой день" key="1">
             <MayDayComponent activities={this.props.activities} exercise={this.props.exercise}/>
@@ -68,21 +72,22 @@ const mapStateToProps = (state) => ({
   error: state.goals.error,
   loading: state.goals.loading,
   goals: state.goals.goals,
-  exercise: state.goals.exercise,
+  exercise: state.exercises.todayExercise,
   activities: state.goals.activities,
   profile: state.auth.profile,
   userParameters: state.users.userParameters
-})
+});
 
 const mapDispatchToProps = {
   setUserGoals: goalActions.setUserGoals,
   showModal: actions.showModal,
   addGoal: goalActions.addUserGoal,
   updateGoal: goalActions.updateUserGoal,
-  updateExercise: goalActions.updateExercise,
   deleteGoal: goalActions.removeGoal,
   getUserParameters: actions.getUserParameters,
-  getTodayActivities: goalActions.getTodayActivities
-}
+  getTodayActivities: goalActions.getTodayActivities,
+  getTodayExercise: exerciseActions.getExerciseForToday,
+  updateExercise: exerciseActions.updateExercise
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoalContainerComponent)

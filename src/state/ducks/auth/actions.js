@@ -50,15 +50,15 @@ function login(login, password) {
   };
 
   function request(user) {
-    return {type: types.USER_LOGIN_REQUEST, user}
+    return {type: types.LOGIN_REQUEST, user}
   }
 
   function success(user) {
-    return {type: types.USER_LOGIN_SUCCESS, user}
+    return {type: types.LOGIN_SUCCESS, user}
   }
 
   function error(user) {
-    return {type: types.USER_LOGIN_FAILURE, user}
+    return {type: types.LOGIN_FAILURE, user}
   }
 }
 
@@ -95,8 +95,6 @@ function setCurrentUser(login) {
       .then(
         response => {
           dispatch(success(response.data));
-          //dispatch(actions.setUserGoals(response.data.id));
-          dispatch(goalActions.getTodayExercise(response.data.id));
         },
         error => {
           alert(error.message);

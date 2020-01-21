@@ -7,8 +7,8 @@ const HomeLayout = (props) => {
 
   return (
     <Fragment>
-      <Header/>
-      <Home {...props} />
+      <Header />
+      <Home />
     </Fragment>
   );
 };
