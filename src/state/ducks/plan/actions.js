@@ -72,15 +72,15 @@ function updatePlanActivities(id, activity) {
     };
 
     function request() {
-        return {type: types.UPDATE_PLAN_ACTIVITIES_REQUEST}
+        return {type: types.UPDATE_PLAN_ACTIVITY_REQUEST}
     }
 
     function success(activity) {
-        return {type: types.UPDATE_PLAN_ACTIVITIES_SUCCESS, activity}
+        return {type: types.UPDATE_PLAN_ACTIVITY_SUCCESS, activity}
     }
 
     function failure() {
-        return {type: types.UPDATE_PLAN_ACTIVITIES_FAILURE}
+        return {type: types.UPDATE_PLAN_ACTIVITY_FAILURE}
     }
 }
 function getPlan(id) {

@@ -71,14 +71,14 @@ const planReducer=(state = initialState, action) => {
                 loading: true,
                 error: false
             }
-        case types.UPDATE_USER_ACTIVITY_SUCCESS:
+        case types.UPDATE_USER_PLAN_SUCCESS:
             return {
                 ...state,
                 plan: state.plan.map(activity => activity.id !== action.activity.id ? activity : action.activity),
                 loading: false,
                 error: false
             }
-        case types.UPDATE_USER_ACTIVITY_FAILURE:
+        case types.UPDATE_USER_PLAN_FAILURE:
             return {
                 ...state,
                 loading: false,
