@@ -1,63 +1,66 @@
 import * as types from "./types"
-import goalReducer from "../goal";
+import moment from 'moment';
 
 const initialState = {
     loading: false,
-    plan: false,
-    error: false
-
+    plans:false,
+    error: false,
+    date : moment().format('YYYY-MM-DD')
 };
-const planReducer=(state = initialState, action) => {
+const planReducer = (state = initialState, action) => {
+    let date =  moment().format('YYYY-MM-DD')
     switch (action.type) {
         case types.SET_PLAN_ACTIVITIES_REQUEST:
             return {
                 loading: true,
                 error: false,
-                plan: false
+                plans:false
             };
         case types.SET_PLAN_ACTIVITIES_SUCCESS:
             return {
                 loading: false,
                 error: false,
-                plan: action.plan
+                plans:action.plans ,
+                date: action.date
             };
         case types.SET_PLAN_ACTIVITIES_FAILURE:
             return {
                 error: true,
                 loading: false,
-                plan: false
+                plans:false
             };
 
         case types.ADD_PLAN_ACTIVITIES_REQUEST:
             return {
                 loading: true,
                 error: false,
-                plan: state.plan
+                plans:state.plans
             };
         case types.ADD_PLAN_ACTIVITIES_SUCCESS:
             return {
                 loading: false,
                 error: false,
-                plan: state.plan ? state.plan.concat(action.activity) : [action.activity]
+                plans:state.plans ? state.plans .concat(action.activity) : [action.activity],
+                date: state.date
             };
         case types.ADD_PLAN_ACTIVITIES_FAILURE:
             return {
                 ...state,
                 loading: false,
-                plan: false
+                plans:false
             };
 
         case types.REMOVE_ACTIVITY_REQUEST:
             return {
                 loading: true,
                 error: false,
-                plan: state.plan
+                plans:state.plans
             };
         case types.REMOVE_ACTIVITY_SUCCESS:
             return {
                 loading: false,
                 error: false,
-                plan: state.plan.filter(activity => activity.id !== action.activityId)
+                plans:state.plans.filter(activity => activity.id !== action.activityId)
             };
         case types.REMOVE_ACTIVITY_FAILURE:
             return {
@@ -74,9 +77,10 @@ const planReducer=(state = initialState, action) => {
         case types.UPDATE_USER_PLAN_SUCCESS:
             return {
                 ...state,
-                plan: state.plan.map(activity => activity.id !== action.activity.id ? activity : action.activity),
+                plans:state.plans.map(activity => activity.id !== action.activity.id ? activity : action.activity),
                 loading: false,
-                error: false
+                error: false,
+                date: state.date
             }
         case types.UPDATE_USER_PLAN_FAILURE:
             return {
@@ -86,17 +90,20 @@ const planReducer=(state = initialState, action) => {
             }
 
 
-
         case types.GET_TODAY_ACTIVITIES_REQUEST:
+
+
             return {
                 ...state,
                 loading: true,
                 error: false
             }
         case types.GET_TODAY_ACTIVITIES_SUCCESS:
+
             return {
                 ...state,
-                plan: action.plan,
+                date: date,
+                plans:action.plans ,
                 loading: false,
                 error: false
             }
@@ -112,4 +119,4 @@ const planReducer=(state = initialState, action) => {
             return state;
     }
 }
-export default goalReducer;
+export default planReducer;

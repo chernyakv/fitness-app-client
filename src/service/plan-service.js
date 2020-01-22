@@ -3,23 +3,20 @@ import instance from "./instance";
 
 export const planService = {
     getById,
-    updateActivities: updatePlanActivities,
+    updatePlan,
     getPlan,
-    removeActivity,
-    addPlanActivity: addActivity
+
+
 }
 function getById(userId) {
-    return instance.get(`plan/u/${userId}`);
+    return instance.get(`plans/u/${userId}`);
 }
 function getPlan(planId) {
-    return instance.get(`plan/${planId}/activities`);
+    return instance.get(`plans/${planId}/activities`);
 }
-function addActivity(activity) {
-    return instance.post(`plan/activities`, {...activity});
+
+function updatePlan(id , plan) {
+    return instance.put(`plans/activities/${id}`, {...plan});
 }
-function updatePlanActivities(id , activity) {
-    return instance.put(`plan/activities/${id}`, {...activity});
-}
-function removeActivity(activityId) {
-    return instance.delete(`plan/activities/${activityId}`);
-}
+
+

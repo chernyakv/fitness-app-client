@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {goalActions} from '../../../../state/ducks/goal/actions'
 import {actions} from '../../../../state/ducks/user/actions'
+import {planActions} from '../../../../state/ducks/plan/actions'
 import {Affix, Button, Table, Tabs} from 'antd';
 import 'antd/dist/antd.css';
 import './GoalContainerComponent.css'
@@ -35,7 +36,7 @@ class GoalContainerComponent extends Component {
       updateExercise: this.props.updateExercise,
       exercise: this.props.exercise,
     }
-
+    console.log(this.props.exercise);
     return (
       <div className='goals-content'>
         <EditExerciseModal />
@@ -47,7 +48,7 @@ class GoalContainerComponent extends Component {
             <ProgressComponent parameters={this.props.userParameters}/>
           </TabPane>
           <TabPane tab="Планирование" key="3">
-            <PlanningComponent/>
+            <PlanningComponent activities={this.props.activities} date={this.props.date}/>
           </TabPane>
           <TabPane tab="Мотивация" key="4">
             <MotivationComponent/>
@@ -72,13 +73,19 @@ const mapStateToProps = (state) => ({
   error: state.goals.error,
   loading: state.goals.loading,
   goals: state.goals.goals,
+  activities: state.activities.todayActivities,
   exercise: state.exercises.todayExercise,
-  activities: state.goals.activities,
+  date: state.plans.date,
   profile: state.auth.profile,
   userParameters: state.users.userParameters
 });
 
 const mapDispatchToProps = {
+  setUserPlan:planActions.setUserPlan,
+  addPlanActivity: planActions.addPlanActivity,
+  updatePlanActivities: planActions.updatePlanActivities,
+  getPlan: planActions.getPlan,
+  removeActivity: planActions.removeActivity,
   setUserGoals: goalActions.setUserGoals,
   showModal: actions.showModal,
   addGoal: goalActions.addUserGoal,
@@ -87,7 +94,8 @@ const mapDispatchToProps = {
   getUserParameters: actions.getUserParameters,
   getTodayActivities: goalActions.getTodayActivities,
   getTodayExercise: exerciseActions.getExerciseForToday,
-  updateExercise: exerciseActions.updateExercise
+  updateExercise: exerciseActions.updateExercise,
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoalContainerComponent)

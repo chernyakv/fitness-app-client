@@ -3,15 +3,7 @@ import {planService} from "../../../service/plan-service";
 import {createNotification} from "../../../helpers/helpers";
 
 
-
-export const planActions = {
-    setUserPlan,
-    addPlanActivity,
-    updatePlanActivities,
-    getPlan,
-    removeActivity,
-};
-function setUserPlan(id){
+function setUserPlan(id) {
     return async dispatch => {
         dispatch(request());
         try {
@@ -21,6 +13,7 @@ function setUserPlan(id){
             dispatch(failure());
         }
     };
+
     function request() {
         return {type: types.SET_PLAN_ACTIVITIES_REQUEST}
     }
@@ -33,33 +26,12 @@ function setUserPlan(id){
         return {type: types.SET_PLAN_ACTIVITIES_FAILURE}
     }
 }
-function addPlanActivity(activity) {
-    return async dispatch => {
-        dispatch(request());
-        const response = await planService.addPlanActivity(activity);
-        try {
-            createNotification('success', 'Activity has been added');
-            dispatch(success(response.data));
-        } catch (e) {
-            dispatch(failure());
-        }
-    };
-    function request() {
-        return {type: types.ADD_PLAN_ACTIVITIES_REQUEST}
-    }
 
-    function success(activity) {
-        return {type: types.ADD_PLAN_ACTIVITIES_SUCCESS, activity}
-    }
 
-    function failure() {
-        return {type: types.ADD_PLAN_ACTIVITIES_FAILURE}
-    }
-}
-function updatePlanActivities(id, activity) {
+function updatePlan(id, activity) {
     return dispatch => {
         dispatch(request());
-        planService.updateGoal(id, activity)
+        planService.updatePlan(id, activity)
             .then(
                 response => {
                     createNotification('success', 'Activity has been updated');
@@ -72,17 +44,18 @@ function updatePlanActivities(id, activity) {
     };
 
     function request() {
-        return {type: types.UPDATE_PLAN_ACTIVITY_REQUEST}
+        return {type: types.UPDATE_PLAN_REQUEST}
     }
 
     function success(activity) {
-        return {type: types.UPDATE_PLAN_ACTIVITY_SUCCESS, activity}
+        return {type: types.UPDATE_PLAN_SUCCESS, activity}
     }
 
     function failure() {
-        return {type: types.UPDATE_PLAN_ACTIVITY_FAILURE}
+        return {type: types.UPDATE_PLAN_FAILURE}
     }
 }
+
 function getPlan(id) {
     return dispatch => {
         dispatch(request());
@@ -109,30 +82,12 @@ function getPlan(id) {
         return {type: types.GET_TODAY_ACTIVITIES_FAILURE}
     }
 }
-function removeActivity(activityId) {
-    return dispatch => {
-        dispatch(request());
-        planService.removeActivity(activityId)
-            .then(
-                response => {
-                    createNotification('success', 'Activity has been deleted');
-                    dispatch(success(activityId));
-                },
-                error => {
-                    dispatch(failure());
-                }
-            );
-    };
 
-    function request() {
-        return {type: types.REMOVE_ACTIVITY_REQUEST}
-    }
 
-    function success(activityId) {
-        return {type: types.REMOVE_ACTIVITY_SUCCESS, activityId}
-    }
 
-    function failure() {
-        return {type: types.REMOVE_ACTIVITY_FAILURE}
-    }
-}
+export const planActions = {
+    setUserPlan,
+    updatePlan,
+    getPlan,
+
+};
