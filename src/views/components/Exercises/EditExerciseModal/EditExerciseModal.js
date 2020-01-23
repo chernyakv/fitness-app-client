@@ -37,7 +37,7 @@ class EditExerciseModal extends Component {
   };
 
   render() {
-    const {show, handleHide, message, submit} = this.props;
+    const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
     const formItemLayout = {
@@ -48,19 +48,6 @@ class EditExerciseModal extends Component {
       wrapperCol: {
         xs: {span: 14},
         sm: {span: 14},
-      },
-    };
-
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
       },
     };
 

@@ -56,10 +56,10 @@ function updatePlan(id, activity) {
     }
 }
 
-function getPlan(id) {
+function getActivitiesForDay(id) {
     return dispatch => {
         dispatch(request());
-        planService.getPlan(id)
+        planService.getActivitiesForDay(id)
             .then(
                 response => {
                     dispatch(success(response.data));
@@ -88,6 +88,6 @@ function getPlan(id) {
 export const planActions = {
     setUserPlan,
     updatePlan,
-    getPlan,
+    getActivitiesForDay,
 
 };

@@ -26,7 +26,7 @@ class GoalContainerComponent extends Component {
     const endOfMonth = moment().endOf('month').format('YYYY-MM-DD');
     this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
     this.props.getTodayActivities("1", endOfMonth);
-    this.props.getTodayExercise(this.props.profile.id);
+    this.props.getExerciseForToday(this.props.profile.id);
 
   }
 
@@ -48,7 +48,7 @@ class GoalContainerComponent extends Component {
             <ProgressComponent parameters={this.props.userParameters}/>
           </TabPane>
           <TabPane tab="Планирование" key="3">
-            <PlanningComponent activities={this.props.activities} date={this.props.date}/>
+            <PlanningComponent activities={this.props.activity}/>
           </TabPane>
           <TabPane tab="Мотивация" key="4">
             <MotivationComponent/>
@@ -82,10 +82,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   setUserPlan:planActions.setUserPlan,
-  addPlanActivity: planActions.addPlanActivity,
-  updatePlanActivities: planActions.updatePlanActivities,
-  getPlan: planActions.getPlan,
-  removeActivity: planActions.removeActivity,
+  getActivitiesForDay: planActions.getActivitiesForDay,
+  updatePlanActivities: planActions.updatePlan,
   setUserGoals: goalActions.setUserGoals,
   showModal: actions.showModal,
   addGoal: goalActions.addUserGoal,
@@ -93,7 +91,7 @@ const mapDispatchToProps = {
   deleteGoal: goalActions.removeGoal,
   getUserParameters: actions.getUserParameters,
   getTodayActivities: goalActions.getTodayActivities,
-  getTodayExercise: exerciseActions.getExerciseForToday,
+  getExerciseForToday: exerciseActions.getExerciseForToday,
   updateExercise: exerciseActions.updateExercise,
 
 };
