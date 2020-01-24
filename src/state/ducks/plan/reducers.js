@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const initialState = {
     loading: false,
-    plans:false,
+    plans: false,
     error: false,
     date : moment().format('YYYY-MM-DD')
 };
@@ -99,11 +99,13 @@ const planReducer = (state = initialState, action) => {
                 error: false
             }
         case types.GET_TODAY_ACTIVITIES_SUCCESS:
+            console.log("GET_TODAY_ACTIVITIES_SUCCESS");
+            console.log(action);
 
             return {
                 ...state,
-                date: date,
-                plans:action.plans ,
+                date: action.plan.date,
+                plans:action.plan.planId ,
                 loading: false,
                 error: false
             }
@@ -113,7 +115,27 @@ const planReducer = (state = initialState, action) => {
                 loading: false,
                 error: true
             }
-
+        case types.GET_USER_PLAN_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: false
+            }
+        case types.GET_USER_PLAN_SUCCESS:
+            return {
+                ...state,
+                userId: action.plan.userId,
+                plans: action.plan,
+                activities:action.plan.activities,
+                loading: false,
+                error: false
+            }
+        case types.GET_USER_PLAN_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true
+            }
 
         default:
             return state;

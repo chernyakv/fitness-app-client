@@ -2,11 +2,11 @@ import * as types from "./types"
 import {activityService} from "../../../service/activity-service";
 import {createNotification} from "../../../helpers/helpers";
 
-const getTodayActivities = (planId) => {
+const getTodayActivities = (planId, date) => {
   return async dispatch => {
     dispatch(request());
     try {
-      const response = await activityService.getTodayActivities(planId);
+      const response = await activityService.getTodayActivities(planId, date);
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());

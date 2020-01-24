@@ -2,15 +2,14 @@ import instance from "./instance";
 
 export const activityService = {
     updateActivity,
-
     getTodayActivities
 };
 
-function getTodayActivities(planId) {
-    return instance.get(`/activities?planId=${planId}/today`);
+function getTodayActivities(planId, date) {
+    return instance.get(`plans/activities?planId=${planId}/${date}`);
 }
 
 function updateActivity(activityId, activity) {
 
-    return instance.put(`/activities/${activityId}`, {...activity});
+    return instance.put(`plans/activities/${activityId}`, {...activity});
 }

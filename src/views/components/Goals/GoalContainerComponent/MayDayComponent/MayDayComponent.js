@@ -14,7 +14,7 @@ class MayDayComponent extends Component {
 
 
     return (
-      <div className='goals-conte1nt'>
+      <div className='goals-content'>
         <h4>Ближайшее</h4>
 
         <h4>План на сегодня</h4>

@@ -133,8 +133,8 @@ function getTodayActivities(id) {
     return {type: types.GET_TODAY_ACTIVITIES_REQUEST}
   }
 
-  function success(activities) {
-    return {type: types.GET_TODAY_ACTIVITIES_SUCCESS, activities}
+  function success(plan) {
+    return {type: types.GET_TODAY_ACTIVITIES_SUCCESS, plan}
   }
 
   function failure() {

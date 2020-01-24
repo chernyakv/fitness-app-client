@@ -1,6 +1,7 @@
 import * as types from "./types"
 import {planService} from "../../../service/plan-service";
 import {createNotification} from "../../../helpers/helpers";
+import {goalService} from "../../../service/goal-service";
 
 
 function setUserPlan(id) {
@@ -62,6 +63,8 @@ function getActivitiesForDay(id) {
         planService.getActivitiesForDay(id)
             .then(
                 response => {
+                    console.log("getActivitiesForDay");
+                    console.log(response);
                     dispatch(success(response.data));
                 },
                 error => {
@@ -82,6 +85,31 @@ function getActivitiesForDay(id) {
         return {type: types.GET_TODAY_ACTIVITIES_FAILURE}
     }
 }
+function getUserPlan(id) {
+    return async dispatch => {
+        dispatch(request())
+        try {
+            const response = await planService.getById(id);
+            console.log("getUserPlan");
+            console.log(response);
+            dispatch(success(response.data));
+        } catch (e) {
+            dispatch(failure());
+        }
+    };
+
+    function request() {
+        return {type: types.GET_USER_PLAN_REQUEST}
+    }
+
+    function success(plan) {
+        return {type: types.GET_USER_PLAN_SUCCESS, plan}
+    }
+
+    function failure() {
+        return {type: types.GET_USER_PLAN_FAILURE}
+    }
+}
 
 
 
@@ -89,5 +117,5 @@ export const planActions = {
     setUserPlan,
     updatePlan,
     getActivitiesForDay,
-
+    getUserPlan,
 };
