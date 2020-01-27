@@ -1,0 +1,26 @@
+.planning-wrapper {
+    padding: 5px 5px 5px 5px;
+    background: #fff;
+    border-radius: 25px !important;
+    height: 80vh;
+    margin: 0px auto;
+    float: none;
+}
+.plans-content {
+    padding: 5px 5px 5px 5px;
+    background: #fff;
+    border-radius: 25px !important;
+    height: 80vh;
+    margin: 0px auto;
+    float: none;
+}
+.plans {
+    margin: 10px;
+}
+.ul {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}

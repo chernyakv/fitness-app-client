@@ -26,7 +26,6 @@ class GoalContainerComponent extends Component {
         const startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
         const endOfMonth = moment().endOf('month').format('YYYY-MM-DD');
         this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
-        //this.props.getTodayActivities("1", endOfMonth);
         this.props.getExerciseForToday(this.props.profile.id);
         this.props.getUserPlan(this.props.profile.id);
     }
@@ -93,7 +92,6 @@ const mapDispatchToProps = {
     updateGoal: goalActions.updateUserGoal,
     deleteGoal: goalActions.removeGoal,
     getUserParameters: actions.getUserParameters,
-    getTodayActivities: goalActions.getTodayActivities,
     getExerciseForToday: exerciseActions.getExerciseForToday,
     updateExercise: exerciseActions.updateExercise,
     getUserPlan: planActions.getUserPlan

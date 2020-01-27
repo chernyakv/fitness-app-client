@@ -8,7 +8,7 @@ function setUserPlan(id) {
     return async dispatch => {
         dispatch(request());
         try {
-            const response = await planService.getById(id);
+            const response = await planService.getByUserId(id);
             dispatch(success(response.data));
         } catch (e) {
             dispatch(failure());
@@ -89,7 +89,7 @@ function getUserPlan(id) {
     return async dispatch => {
         dispatch(request())
         try {
-            const response = await planService.getById(id);
+            const response = await planService.getByUserId(id);
             console.log("getUserPlan");
             console.log(response);
             dispatch(success(response.data));
