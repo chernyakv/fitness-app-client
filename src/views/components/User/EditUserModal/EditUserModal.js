@@ -25,8 +25,7 @@ class   EditUserModal extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const user = this.props.record;
-    for (var key in this.state.user) user[key] = this.state.user[key];
-    debugger;
+    for (let key in this.state.user) user[key] = this.state.user[key];
     this.props.updateUser(user);
     this.props.handleHide();
   }

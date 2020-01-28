@@ -16,7 +16,7 @@ const ProgressComponent = (props) => {
   });
 
   return (
-    <div>
+    <div className="progress-component">
       <BarChart
         width={800}
         height={550}

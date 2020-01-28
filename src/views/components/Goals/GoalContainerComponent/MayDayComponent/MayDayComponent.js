@@ -4,9 +4,6 @@ import 'antd/dist/antd.css';
 import './MayDayComponent.css'
 import ActivityHorizontal from "./ActivityHorizontal/ActivityHorizontal";
 
-const { Panel } = Collapse;
-
-
 class MayDayComponent extends Component {
 
   render() {

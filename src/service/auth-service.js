@@ -9,7 +9,7 @@ export const authService = {
     logout,
     resetPassword,
     getCurrentUserLogin
-}
+};
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('jwt')));
 
@@ -27,7 +27,7 @@ function login(login, password) {
     }).then(
         response => {
             localStorage.setItem('jwt', JSON.stringify(response.data));
-            currentUserSubject.next(false);
+            currentUserSubject.next(response.data);
             return response;
         }
     );

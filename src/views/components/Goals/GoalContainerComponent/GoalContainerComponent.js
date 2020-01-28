@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {goalActions} from '../../../../state/ducks/goal/actions'
 import {actions} from '../../../../state/ducks/user/actions'
-import {Affix, Button, Table, Tabs} from 'antd';
+import {Affix, Button, Tabs} from 'antd';
 import 'antd/dist/antd.css';
 import './GoalContainerComponent.css'
 import MayDayComponent from "./MayDayComponent/MayDayComponent";
@@ -12,13 +12,10 @@ import MotivationComponent from "./MotivationComponent/MotivationComponent";
 import moment from 'moment';
 import EditExerciseModal from "../../Exercises/EditExerciseModal/EditExerciseModal";
 import {exerciseActions} from "../../../../state/ducks/exercise/actions";
+
 const {TabPane} = Tabs;
 
 class GoalContainerComponent extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     const startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
@@ -26,7 +23,6 @@ class GoalContainerComponent extends Component {
     this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
     this.props.getTodayActivities("1", endOfMonth);
     this.props.getTodayExercise(this.props.profile.id);
-
   }
 
   render() {
@@ -34,11 +30,11 @@ class GoalContainerComponent extends Component {
     const modalProps = {
       updateExercise: this.props.updateExercise,
       exercise: this.props.exercise,
-    }
+    };
 
     return (
       <div className='goals-content'>
-        <EditExerciseModal />
+        <EditExerciseModal/>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Мой день" key="1">
             <MayDayComponent activities={this.props.activities} exercise={this.props.exercise}/>

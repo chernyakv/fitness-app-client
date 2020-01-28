@@ -2,7 +2,6 @@ import {authService} from "../../../service/auth-service";
 import {userService} from "../../../service/user-service";
 import * as types from "./types"
 import {history} from "../../../helpers/History"
-import {goalActions} from '../goal'
 import {createNotification} from "../../../helpers/helpers";
 import jwt_decode from 'jwt-decode';
 
@@ -46,6 +45,7 @@ function login(login, password) {
       history.push("/");
     } catch (e) {
       createNotification('error', e.response.data.message);
+      dispatch(error());
     }
   };
 
@@ -58,7 +58,7 @@ function login(login, password) {
   }
 
   function error(user) {
-    return {type: types.LOGIN_FAILURE, user}
+    return {type: types.LOGIN_FAILURE}
   }
 }
 

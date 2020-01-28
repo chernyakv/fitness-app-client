@@ -2,10 +2,7 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, DatePicker, Form, Input} from 'antd';
-
-
-const {RangePicker} = DatePicker;
+import {Button, Form, Input} from 'antd';
 
 class EditExerciseModal extends Component {
   constructor(props) {
@@ -27,9 +24,8 @@ class EditExerciseModal extends Component {
           water: values.water ? exercise.water - values.water : exercise.water,
           sleep: values.sleep ? exercise.sleep - values.sleep : exercise.sleep,
           activity: exercise.activity
-        }
-        console.log(exercise1);
-        console.log(exercise);
+        };
+
         this.props.updateExercise(exercise1.id, exercise1);
         this.props.handleHide();
       }

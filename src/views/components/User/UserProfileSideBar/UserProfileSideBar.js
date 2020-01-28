@@ -23,6 +23,6 @@ const UserProfileSideBar = props => {
             </div>
         </div>
     )
-}
+};
 
 export default UserProfileSideBar

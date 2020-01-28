@@ -5,7 +5,6 @@ import EditUserModal from '../User/EditUserModal'
 import {actions} from '../../../state/ducks/user/actions'
 import {Button, Divider, Pagination, Table} from 'antd';
 import 'antd/dist/antd.css';
-const {Column, ColumnGroup} = Table;
 
 class Admin extends Component {
 
@@ -60,11 +59,11 @@ class Admin extends Component {
             }
             rowKey={record => record.id}
           >
-            <Column title="ID" dataIndex="id" key="id"/>
-            <Column title="First Name" dataIndex="firstName" key="firstName"/>
-            <Column title="Last Name" dataIndex="lastName" key="lastName"/>
-            <Column title="Login" dataIndex="login" key="login"/>
-            <Column
+            <Table.Column title="ID" dataIndex="id" key="id"/>
+            <Table.Column title="First Name" dataIndex="firstName" key="firstName"/>
+            <Table.Column title="Last Name" dataIndex="lastName" key="lastName"/>
+            <Table.Column title="Login" dataIndex="login" key="login"/>
+            <Table.Column
               align="right"
               title="Action"
               key="action"
