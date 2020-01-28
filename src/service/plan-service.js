@@ -11,7 +11,7 @@ function getByUserId(userId) {
     return instance.get(`plans/u/${userId}`);
 }
 function getActivitiesForDay(planId) {
-    return instance.get(`plans/${planId}`);
+    return instance.get(`plans/${planId}/activities`);
 }
 
 function updatePlan(id , plan) {

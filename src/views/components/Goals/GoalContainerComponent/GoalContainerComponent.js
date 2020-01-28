@@ -13,6 +13,7 @@ import MotivationComponent from "./MotivationComponent/MotivationComponent";
 import moment from 'moment';
 import EditExerciseModal from "../../Exercises/EditExerciseModal/EditExerciseModal";
 import {exerciseActions} from "../../../../state/ducks/exercise/actions";
+import {activityActions} from "../../../../state/ducks/activity";
 
 const {TabPane} = Tabs;
 
@@ -28,6 +29,7 @@ class GoalContainerComponent extends Component {
         this.props.getUserParameters(this.props.profile.id, startOfMonth, endOfMonth);
         this.props.getExerciseForToday(this.props.profile.id);
         this.props.getUserPlan(this.props.profile.id);
+
     }
 
     render() {
@@ -44,13 +46,13 @@ class GoalContainerComponent extends Component {
                 <EditExerciseModal/>
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="Мой день" key="1">
-                        <MayDayComponent activities={this.props.activities} exercise={this.props.exercise}/>
+                        <MayDayComponent exercise={this.props.exercise}/>
                     </TabPane>
                     <TabPane tab="Прогресс" key="2">
                         <ProgressComponent parameters={this.props.userParameters}/>
                     </TabPane>
                     <TabPane tab="Планирование" key="3">
-                        <PlanningComponent plans={this.props.plans}/>
+                        <PlanningComponent plans={this.props.plans} />
                     </TabPane>
                     <TabPane tab="Мотивация" key="4">
                         <MotivationComponent/>
@@ -75,7 +77,6 @@ const mapStateToProps = (state) => ({
     error: state.goals.error,
     loading: state.goals.loading,
     goals: state.goals.goals,
-    activities: state.activities.todayActivities,
     exercise: state.exercises.todayExercise,
     profile: state.auth.profile,
     userParameters: state.users.userParameters,
@@ -84,7 +85,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setUserPlan: planActions.setUserPlan,
-    getActivitiesForDay: planActions.getActivitiesForDay,
+    getActivities: activityActions.getTodayActivities,
+    getPlanActivities: planActions.getActivitiesForDay,
     updatePlanActivities: planActions.updatePlan,
     setUserGoals: goalActions.setUserGoals,
     showModal: actions.showModal,
@@ -94,7 +96,7 @@ const mapDispatchToProps = {
     getUserParameters: actions.getUserParameters,
     getExerciseForToday: exerciseActions.getExerciseForToday,
     updateExercise: exerciseActions.updateExercise,
-    getUserPlan: planActions.getUserPlan
+    getUserPlan: planActions.getUserPlan,
 
 };
 
