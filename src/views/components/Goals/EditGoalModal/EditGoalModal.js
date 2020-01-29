@@ -41,7 +41,7 @@ class EditGoalModal extends Component {
   };
 
   render() {
-    const {show, handleHide, message, submit} = this.props;
+    const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
     const formItemLayout = {
@@ -53,23 +53,6 @@ class EditGoalModal extends Component {
         xs: {span: 24},
         sm: {span: 12},
       },
-    };
-
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 16,
-          offset: 8,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    };
-
-    const config = {
-      rules: [{type: 'object', required: true, message: 'Please select time!'}],
     };
 
     return (

@@ -4,7 +4,8 @@ const initialState = {
   loading: false,
   error: false,
   goals: false,
-  activities: false
+  activities: false,
+
 };
 
 const goalReducer = (state = initialState, action) => {

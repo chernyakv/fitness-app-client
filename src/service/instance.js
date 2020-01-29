@@ -2,9 +2,8 @@ import * as axios from "axios";
 import {authHeader} from "./helpers";
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8082/api/v1/',
-  //headers: authHeader()
-});
+  baseURL: '/api/v1/'
+})
 
 export default instance;
 

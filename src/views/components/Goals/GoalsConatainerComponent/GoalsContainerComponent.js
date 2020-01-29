@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {actions} from '../../../../state/ducks/goal/actions'
+
 import {actions} from '../../../../state/ducks/user/actions'
 import {Button, Divider, Progress, Table} from 'antd';
 import 'antd/dist/antd.css';

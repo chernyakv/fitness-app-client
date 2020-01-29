@@ -30,7 +30,7 @@ class AddGoalModal extends Component {
   };
 
   render() {
-    const {show, handleHide, message, submit} = this.props;
+    const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
     const formItemLayout = {
@@ -44,18 +44,6 @@ class AddGoalModal extends Component {
       },
     };
 
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    };
 
     return (
       <Modal show={show}>

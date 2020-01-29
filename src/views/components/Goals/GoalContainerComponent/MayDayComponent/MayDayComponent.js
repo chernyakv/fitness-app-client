@@ -2,24 +2,21 @@ import React, {Component} from 'react'
 import {Card, Col, Collapse, Row} from 'antd';
 import 'antd/dist/antd.css';
 import './MayDayComponent.css'
-import ActivityHorizontal from "./ActivityHorizontal/ActivityHorizontal";
 
 class MayDayComponent extends Component {
 
   render() {
-    const {exercise, activities} = this.props;
+    const {exercise} = this.props;
 
     if(!exercise) {
       return <h4>No goal</h4>
     }
 
-    if(!activities) {
-      return <h4>No activities</h4>
-    }
+
     return (
-      <div className='goals-conte1nt'>
+      <div className='goals-content'>
         <h4>Ближайшее</h4>
-        <ActivityHorizontal activities={activities} />
+
         <h4>План на сегодня</h4>
         <Row gutter={16}>
           <Col span={6}>

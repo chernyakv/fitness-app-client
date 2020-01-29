@@ -10,7 +10,7 @@ const getExerciseForToday = (goalId) => {
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());
-      createNotification('error', e.response.data);
+      createNotification('error', e.response.data.message);
     }
   };
 
@@ -35,7 +35,7 @@ const updateExercise = (id, exercise) => {
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());
-      createNotification('error', e.response.data);
+      createNotification('error', e.response.data.message);
     }
   };
 
