@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, TimePicker, Form, Input, Checkbox} from 'antd';
+import moment from 'moment';
+import {Button, Checkbox, Form, TimePicker} from 'antd';
 
 class EditActivityModal extends Component {
     constructor(props) {
@@ -17,20 +18,20 @@ class EditActivityModal extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
 
-
                 const activity1 = {
                     ...activity,
                     activityId: activity.activityId,
                     planId: activity.planId,
-                    name: values.name,
-                    description: values.description,
+                    name: activity.name,
+                    description: activity.description,
                     completed: values.isCompleted,
                     start: values.startTime,
-                    end: values.endTime
+                    end: values.endTime,
+                    timeToComplete: activity.timeToComplete
 
                 };
                 console.log(activity1);
-                this.props.updateActivity(activity.activityId,activity1);
+                this.props.updateActivity(activity.activityId, activity1);
                 this.props.handleHide();
             }
         });
@@ -59,25 +60,18 @@ class EditActivityModal extends Component {
 
                 <Modal.Body>
                     <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                        <Form.Item label="Activity Name">
-                            {getFieldDecorator('name')(<Input/>)}
-                        </Form.Item>
-                        <Form.Item label="Activity description">
-                            {getFieldDecorator('description')(<Input/>)}
-                    </Form.Item>
-
                         <Form.Item label="start Time">
                             {getFieldDecorator('startTime', {
                                 valuePropName: 'startTime',
                             })(
-                                <TimePicker />
+                                <TimePicker defaultValue={moment('00:00:00', 'HH:mm:ss')}/>
                             )}
                         </Form.Item>
                         <Form.Item label="end Time">
                             {getFieldDecorator('endTime', {
                                 valuePropName: 'endTime',
                             })(
-                                <TimePicker />
+                                <TimePicker defaultValue={moment('00:00:00', 'HH:mm:ss')}/>
                             )}
                         </Form.Item>
                         <Form.Item {...formItemLayout}>

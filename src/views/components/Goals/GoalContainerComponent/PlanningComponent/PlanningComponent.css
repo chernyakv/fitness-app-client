@@ -6,6 +6,7 @@
     margin: 0px auto;
     float: none;
 }
+
 .plans-content {
     padding: 5px 5px 5px 5px;
     background: #fff;
@@ -14,13 +15,62 @@
     margin: 0px auto;
     float: none;
 }
+
 .plans {
     margin: 10px;
 }
-.ul {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-size: 13px;
-    font-weight: bold;
+
+.topnav {
+    overflow: hidden;
+}
+
+.demo-infinite-container {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    overflow: auto;
+    padding: 8px 24px;
+    height: 300px;
+}
+
+.demo-loading-container{
+    padding: 5px 5px 5px 5px;
+    background: #fff;
+    border-radius: 25px !important;
+    height: 80vh;
+    margin: 0px auto;
+    float: none;
+}
+
+.code-box-demo {
+    text-align: center;
+}
+.ant-layout-header{
+    background: #ffe79a;
+    font-size: 35px;
+}
+.ant-layout-footer,
+.ant-layout-footer {
+    font-size: 25px;
+    background: #ffe79a;
+    color: #5b5b5b;
+}
+.ant-layout-sider {
+    font-size: 25px;
+    text-align: center;
+    background: #ffe79a;
+    color: #5b5b5b;
+    line-height: 120px;
+}
+.ant-layout-content {
+    background: #ffe79a;
+    color: #5b5b5b;
+    min-height: 120px;
+    line-height: 120px;
+}
+> .code-box-demo > div > .ant-layout {
+    text-align: center;
+}
+> .code-box-demo > div > .ant-layout:last-child {
+    text-align: center;
+    margin: 0;
 }
