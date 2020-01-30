@@ -10,7 +10,7 @@ export const goalActions = {
   getTodayActivities
 };
 
-function setUserGoals(id) {
+function setUserGoals(id, goal) {
   return async dispatch => {
     dispatch(request())
     try {

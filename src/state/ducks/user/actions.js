@@ -129,15 +129,15 @@ function updateUser(user) {
   }
 }
 
-function setGoal(userId, templateId) {
+function setGoal(userId, goal) {
   return dispatch => {
     debugger;
     dispatch(request(userId));
 
-    userService.setGoal(userId, templateId)
+    userService.setGoal(userId, goal)
       .then(
         response => {
-          createNotification('success', 'Goal set');
+          createNotification('success', 'Goal has been set');
           dispatch(success(response.data));
         },
         error => {

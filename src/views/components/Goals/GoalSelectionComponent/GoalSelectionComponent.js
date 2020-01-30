@@ -15,8 +15,11 @@ class GoalSelectionComponent extends Component {
 
   handleSubmit = e => {
     const {profile} = this.props;
-    this.props.setUserGoal(profile.id, this.state.goalType);
-  }
+    const goal = {
+      type: this.state.goalType
+    };
+    this.props.setUserGoal(profile.id, goal);
+  };
 
   render() {
     const {goalType} = this.state;

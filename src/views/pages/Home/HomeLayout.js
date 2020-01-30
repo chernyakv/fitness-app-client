@@ -6,10 +6,10 @@ const HomeLayout = (props) => {
   document.title = "Home Page";
 
   return (
-    <dib>
+    <Fragment>
       <Header />
       <Home />
-    </dib>
+    </Fragment>
   );
 };
 

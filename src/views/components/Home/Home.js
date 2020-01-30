@@ -18,8 +18,9 @@ class Home extends Component {
     this.props.setUserProfile(this.props.login);
   }
 
-  setUserGoal = (userId) => {
-    this.props.setUserGoal(this.props.profile.id, '1');
+  setUserGoal = (id, goal) => {
+    debugger;
+    this.props.setUserGoal(this.props.profile.id, goal);
   }
 
   render() {

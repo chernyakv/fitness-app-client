@@ -30,8 +30,8 @@ function updateUser(user) {
     return instance.put('users/' + user.id, {...user});
 }
 
-function setGoal(userId, templateId) {
-    return instance.post(`users/${userId}/goal`);
+function setGoal(userId, goal) {
+    return instance.post(`users/${userId}/goal`, {...goal});
 }
 
 function getUserParameters(userId, fromDate, toDate) {

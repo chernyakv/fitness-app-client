@@ -10,18 +10,9 @@ let rootReducer = combineReducers({
   modal
 });
 
-
-let store = createStore(
+export default createStore(
     rootReducer,
     applyMiddleware(
         thunkMiddleware
     )
 )
-// export default createStore(
-//     rootReducer,
-//     applyMiddleware(
-//         thunkMiddleware
-//     )
-// )
-window.store = store;
-export default store;

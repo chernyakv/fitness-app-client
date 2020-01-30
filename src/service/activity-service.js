@@ -5,6 +5,5 @@ export const activityService = {
 };
 
 function updateActivity(activityId, activity) {
-
     return instance.put(`plans/activities/${activityId}`, {...activity});
 }

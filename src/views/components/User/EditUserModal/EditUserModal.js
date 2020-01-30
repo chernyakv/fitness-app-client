@@ -42,7 +42,7 @@ class   EditUserModal extends Component {
   }
 
   render() {
-    const {show, handleHide, user} = this.props
+    const {show, handleHide} = this.props
 
     return (
       <Modal show={show}>

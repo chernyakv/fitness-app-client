@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, Col, Collapse, Row} from 'antd';
+import {Card, Col, Row} from 'antd';
 import 'antd/dist/antd.css';
 import './MayDayComponent.css'
 
@@ -11,7 +11,6 @@ class MayDayComponent extends Component {
     if(!exercise) {
       return <h4>No goal</h4>
     }
-
 
     return (
       <div className='goals-content'>

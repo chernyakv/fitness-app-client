@@ -10,6 +10,5 @@ function getExerciseForToday(goalId) {
 }
 
 function updateExercise(id, exercise) {
-  debugger;
   return instance.put(`exercises/${id}`, {...exercise});
 }
