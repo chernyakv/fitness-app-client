@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import moment from 'moment';
-import {Button, Checkbox, Form, TimePicker} from 'antd';
+import {Button, TimePicker, Form, Input, Checkbox} from 'antd';
 
 class EditActivityModal extends Component {
     constructor(props) {
@@ -18,20 +17,20 @@ class EditActivityModal extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
 
+
                 const activity1 = {
                     ...activity,
                     activityId: activity.activityId,
                     planId: activity.planId,
-                    name: activity.name,
-                    description: activity.description,
-                    completed: values.isCompleted,
+                    name: values.name,
+                    description: values.description,
+                    isCompleted: values.isCompleted,
                     start: values.startTime,
                     end: values.endTime,
                     timeToComplete: activity.timeToComplete
-
                 };
                 console.log(activity1);
-                this.props.updateActivity(activity.activityId, activity1);
+                this.props.updateActivity(activity.activityId,activity1);
                 this.props.handleHide();
             }
         });
@@ -40,7 +39,7 @@ class EditActivityModal extends Component {
     render() {
         const {show, handleHide} = this.props;
         const {getFieldDecorator} = this.props.form;
-
+        const {activity} = this.props;
         const formItemLayout = {
             labelCol: {
                 xs: {span: 6},
@@ -51,62 +50,75 @@ class EditActivityModal extends Component {
                 sm: {span: 14},
             },
         };
-
+        console.log("aaaaaaaaaaa")
+        console.log(activity)
         return (
-            <Modal show={show}>
-                <Modal.Header>
-                    <Modal.Title>Edit Activity</Modal.Title>
-                </Modal.Header>
+          <Modal show={show}>
+              <Modal.Header>
+                  <Modal.Title>Edit Activity</Modal.Title>
+              </Modal.Header>
 
-                <Modal.Body>
-                    <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                        <Form.Item label="start Time">
-                            {getFieldDecorator('startTime', {
-                                valuePropName: 'startTime',
-                            })(
-                                <TimePicker defaultValue={moment('00:00:00', 'HH:mm:ss')}/>
-                            )}
-                        </Form.Item>
-                        <Form.Item label="end Time">
-                            {getFieldDecorator('endTime', {
-                                valuePropName: 'endTime',
-                            })(
-                                <TimePicker defaultValue={moment('00:00:00', 'HH:mm:ss')}/>
-                            )}
-                        </Form.Item>
-                        <Form.Item {...formItemLayout}>
-                            {getFieldDecorator('isCompleted', {
-                                valuePropName: 'isCompleted',
-                            })(
-                                <Checkbox>
-                                    isCompleted
-                                </Checkbox>,
-                            )}
-                        </Form.Item>
+              <Modal.Body>
+                  <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                      <Form.Item label="Activity Name">
+                          {getFieldDecorator("name",{
+                              initialValue:activity.name
+                          })(<Input />)}
+                      </Form.Item>
+                      <Form.Item label="Activity description"  defaultValue={activity.description}>
+                          {getFieldDecorator('description',{
+                              initialValue:activity.description
+                          })(<Input />)}
+                      </Form.Item>
 
-                    </Form>
+                      <Form.Item label="start Time">
+                          {getFieldDecorator('startTime', {
+                              valuePropName: 'startTime',
+                          })(
+                            <TimePicker />
+                          )}
+                      </Form.Item>
+                      <Form.Item label="end Time">
+                          {getFieldDecorator('endTime', {
+                              valuePropName: 'endTime',
+                          })(
+                            <TimePicker/>
+                          )}
+                      </Form.Item>
+                      <Form.Item {...formItemLayout}>
+                          {getFieldDecorator('isCompleted', {
+                              valuePropName: 'isCompleted',
+                              initialValue:activity.isCompleted
+                          })(
+                            <Checkbox>
+                                isCompleted
+                            </Checkbox>,
+                          )}
+                      </Form.Item>
 
-                </Modal.Body>
+                  </Form>
 
-                <Modal.Footer>
-                    <Button
-                        type="primary"
-                        size="small"
-                        className="btn"
-                        onClick={handleHide}
-                    >
-                        Close
-                    </Button>
-                    <Button
-                        type="primary"
-                        size="small"
-                        className="btn"
-                        onClick={this.handleSubmit}
-                    >
-                        Submit
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+              </Modal.Body>
+
+              <Modal.Footer>
+                  <Button
+                    type="primary"
+                    size="small"
+                    className="btn"
+                    onClick={handleHide}
+                  >
+                      Close
+                  </Button>
+                  <Button
+                    type="primary"
+                    size="small"
+                    className="btn"
+                    onClick={this.handleSubmit}
+                  >
+                      Submit
+                  </Button>
+              </Modal.Footer>
+          </Modal>
         );
     }
 }

@@ -1,4 +1,4 @@
-import reducer from  "./reducers"
+import reducer from "./reducers"
 import {authActions} from "./actions";
 
 export {authActions};

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, {Fragment} from "react";
 import Home from "../../components/Home/Home";
 import {Header} from "../../components/Header/Header";
 
@@ -7,8 +7,8 @@ const HomeLayout = (props) => {
 
   return (
     <Fragment>
-      <Header />
-      <Home />
+      <Header/>
+      <Home/>
     </Fragment>
   );
 };

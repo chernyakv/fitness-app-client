@@ -16,7 +16,7 @@ class RegistrationContainer extends Component {
   render() {
     return (
       <Fragment>
-        <RegistrationForm handleSubmit={this.handleSubmit} />
+        <RegistrationForm handleSubmit={this.handleSubmit}/>
       </Fragment>
     );
   }

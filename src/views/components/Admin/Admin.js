@@ -5,6 +5,7 @@ import EditUserModal from '../User/EditUserModal'
 import {actions} from '../../../state/ducks/user/actions'
 import {Button, Divider, Pagination, Table} from 'antd';
 import 'antd/dist/antd.css';
+
 const {Column, ColumnGroup} = Table;
 
 class Admin extends Component {

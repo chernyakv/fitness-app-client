@@ -25,6 +25,22 @@ const activityReducer = (state = initialState, action) => {
         error: true,
         loading: false
       };
+    case types.ADD_PLAN_ACTIVITY_REQUEST:
+      return {
+        loading: true,
+        error: false
+      };
+    case types.ADD_PLAN_ACTIVITY_SUCCESS:
+      return {
+        loading: false,
+        error: false,
+        activity: action.activity
+      };
+    case types.ADD_PLAN_ACTIVITY_FAILURE:
+      return {
+        error: true,
+        loading: false
+      };
 
     default:
       return state;

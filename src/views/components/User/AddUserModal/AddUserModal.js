@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
-import {Button, DatePicker, Form, Input} from 'antd';
+import {Button, Form, Input} from 'antd';
 import 'antd/dist/antd.css';
 
 class AddUserModal extends Component {
@@ -14,7 +14,7 @@ class AddUserModal extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-      if(!err) {
+      if (!err) {
         const user = {
           login: values.login,
           password: values.password,

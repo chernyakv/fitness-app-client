@@ -4,7 +4,7 @@ import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
 import {Button, DatePicker, Form, Input, Select} from 'antd';
 
-const { Option } = Select;
+const {Option} = Select;
 const {RangePicker} = DatePicker;
 
 class AddGoalModal extends Component {
@@ -55,7 +55,7 @@ class AddGoalModal extends Component {
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Form.Item label="Time" onClick={(event) => event.stopPropagation()}>
               {getFieldDecorator('startEndTime', {
-                rules:  [
+                rules: [
                   {
                     required: true,
                     message: 'Please input time!',
@@ -74,7 +74,7 @@ class AddGoalModal extends Component {
 
             <Form.Item label="Select" hasFeedback>
               {getFieldDecorator('select', {
-                rules: [{ required: true, message: 'Please select your goal!' }],
+                rules: [{required: true, message: 'Please select your goal!'}],
               })(
                 <Select placeholder="Please select a goal type">
                   <Option value="hold1">Набрать вес</Option>

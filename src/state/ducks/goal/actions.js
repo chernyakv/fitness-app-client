@@ -7,7 +7,6 @@ export const goalActions = {
   setUserGoals,
   addUserGoal,
   updateUserGoal,
-  getTodayActivities
 };
 
 function setUserGoals(id) {
@@ -115,29 +114,3 @@ function removeGoal(goalId) {
   }
 }
 
-function getTodayActivities(id) {
-  return dispatch => {
-    dispatch(request())
-    goalService.getTodayActivities(id)
-      .then(
-        response => {
-          dispatch(success(response.data));
-        },
-        error => {
-          dispatch(failure(error.message));
-        }
-      );
-  };
-
-  function request() {
-    return {type: types.GET_TODAY_ACTIVITIES_REQUEST}
-  }
-
-  function success(plan) {
-    return {type: types.GET_TODAY_ACTIVITIES_SUCCESS, plan}
-  }
-
-  function failure() {
-    return {type: types.GET_TODAY_ACTIVITIES_FAILURE}
-  }
-}

@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React, {Fragment} from "react";
 import Login from "../../components/Login";
-import {Header} from "../../components/Header/Header";
 import styles from './LoginLayout.module.css'
 import HeaderIntro from "../../components/HeaderIntro/HeaderIntro";
 

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { authActions } from '../../../state/ducks/auth/actions'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {authActions} from '../../../state/ducks/auth/actions'
 import './Home.css';
 import UserProfileSideBar from '../../components/User/UserProfileSideBar/UserProfileSideBar';
 import GoalContainerComponent from '../../components/Goals/GoalContainerComponent/GoalContainerComponent';
@@ -25,18 +25,18 @@ class Home extends Component {
   render() {
     const {profile} = this.props;
 
-    if(!profile) {
+    if (!profile) {
       return <h4>No user profile</h4>
     }
 
     return (
       <div className="row con">
         <div className="col-md-3">
-          <UserProfileSideBar profile={profile} />
+          <UserProfileSideBar profile={profile}/>
         </div>
         <div className="col-md-9">
           {profile.hasGoal ? (
-            <GoalContainerComponent />
+            <GoalContainerComponent/>
           ) : (
             <GoalSelectionComponent profile={profile} setUserGoal={this.setUserGoal}/>
           )}

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Button, Form, Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 
-class   EditUserModal extends Component {
+class EditUserModal extends Component {
 
   constructor(props) {
     super(props);
@@ -25,7 +25,7 @@ class   EditUserModal extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const user = this.props.record;
-    for (var key in this.state.user) user[key] = this.state.user[key];
+    for (let key in this.state.user) user[key] = this.state.user[key];
     debugger;
     this.props.updateUser(user);
     this.props.handleHide();

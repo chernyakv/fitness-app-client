@@ -2,7 +2,6 @@ import {authService} from "../../../service/auth-service";
 import {userService} from "../../../service/user-service";
 import * as types from "./types"
 import {history} from "../../../helpers/History"
-import {goalActions} from '../goal'
 import {createNotification} from "../../../helpers/helpers";
 import jwt_decode from 'jwt-decode';
 
@@ -18,7 +17,7 @@ function register(login, password) {
   return async dispatch => {
     dispatch(request({login}));
     try {
-      let response = await authService.register(login, password)
+      let response = await authService.register(login, password);
       history.push("/login");
       dispatch(success(response.data));
     } catch (e) {

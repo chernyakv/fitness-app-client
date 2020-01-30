@@ -15,26 +15,26 @@ const LoginForm = (props) => {
     });
   }
 
-  const { getFieldDecorator } = props.form;
+  const {getFieldDecorator} = props.form;
 
   return (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item>
         {getFieldDecorator('login', {
-          rules: [{ required: true, message: 'Please input your login!' }],
+          rules: [{required: true, message: 'Please input your login!'}],
         })(
           <Input
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
             placeholder="Login"
           />,
         )}
       </Form.Item>
       <Form.Item>
         {getFieldDecorator('password', {
-          rules: [{ required: true, message: 'Please input your Password!' }],
+          rules: [{required: true, message: 'Please input your Password!'}],
         })(
           <Input
-            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
             type="password"
             placeholder="Password"
           />,
@@ -57,5 +57,5 @@ const LoginForm = (props) => {
   )
 };
 
-export default Form.create({ name: 'login_form' })(LoginForm)
+export default Form.create({name: 'login_form'})(LoginForm)
 
