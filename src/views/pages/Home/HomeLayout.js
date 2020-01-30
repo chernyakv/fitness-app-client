@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Home from "../../components/Home/Home";
 import {Header} from "../../components/Header/Header";
 
-const HomeLayout = (props) => {
+const HomeLayout = () => {
   document.title = "Home Page";
 
   return (

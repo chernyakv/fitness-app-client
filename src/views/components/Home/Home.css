@@ -1,3 +1,11 @@
+.home-content {
+    padding: 5px 5px 5px 5px;
+    background: #fff;
+    border-radius: 25px !important;
+    height: 100%;
+    margin: 0px auto;
+    float: none;
+}
 
 .content {
     background-color: #fff;
@@ -11,7 +19,6 @@
     padding-top: 20px;
 }
 
-
 .content {
     padding: 5px 0 5px 0;
     background: #fff;
@@ -21,7 +28,6 @@
     margin: 0px auto;
     float: none;
 }
-
 
 /* Profile sidebar */
 .profile-sidebar {

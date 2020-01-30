@@ -1,13 +1,13 @@
 import React from 'react'
 import 'antd/dist/antd.css';
-import './ProgressComponent.css'
+import './Progress.css'
 import 'react-vis/dist/style.css';
 import {Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis} from 'recharts';
 
-const ProgressComponent = (props) => {
+const Progress = ({parameters}) => {
   const month_names_short = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-  const data = props.parameters.map((param) => {
+  const data = parameters.map((param) => {
     const date = new Date(param.date);
     return {
       weight: param.weight,
@@ -33,4 +33,4 @@ const ProgressComponent = (props) => {
   );
 }
 
-export default ProgressComponent
+export default Progress

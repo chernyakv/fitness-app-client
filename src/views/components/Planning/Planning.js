@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import 'antd/dist/antd.css';
-import './PlanningComponent.css'
+import './Planning.css'
 import {Icon, Timeline} from 'antd';
-import EditActivityModal from "../../../Activity/EditActivityModal/EditActivityModal";
-import {actions} from "../../../../../state/ducks/user";
+import EditActivityModal from "../../components/Activity/EditActivityModal/EditActivityModal";
+import {actions} from "../../../state/ducks/user/actions";
 import {connect} from "react-redux";
-import {activityActions} from "../../../../../state/ducks/activity";
+import {activityActions} from "../../../state/ducks/activity/actions";
 
-class PlanningComponent extends Component {
+class Planning extends Component {
 
   render() {
     const {activities, plans} = this.props;
@@ -55,6 +55,6 @@ const mapDispatchToProps = {
   showModal: actions.showModal
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlanningComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(Planning)
 
 
