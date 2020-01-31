@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import 'antd/dist/antd.css';
-import './Motivation.css'
+import './MotivationComponent.css'
 
 
-class Motivation extends Component {
+class MotivationComponent extends Component {
 
 
   render() {
@@ -16,12 +16,8 @@ class Motivation extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({})
 
-});
+const mapDispatchToProps = {}
 
-const mapDispatchToProps = {
-
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Motivation)
+export default connect(mapStateToProps, mapDispatchToProps)(MotivationComponent)

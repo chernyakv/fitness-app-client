@@ -1,26 +1,63 @@
-.planning-wrapper {
-    padding: 5px 5px 5px 5px;
+.card-container > .ant-tabs-card > .ant-tabs-content {
+
+    margin-top: -16px;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
     background: #fff;
-    border-radius: 25px !important;
-    height: 80vh;
-    margin: 0px auto;
-    float: none;
+    padding: 16px;
 }
-.plans-content {
-    padding: 5px 5px 5px 5px;
+
+.card-container > .ant-tabs-card > .ant-tabs-bar {
+    border-color: #fff;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+    border-color: #fff;
     background: #fff;
-    border-radius: 25px !important;
-    height: 80vh;
-    margin: 0px auto;
-    float: none;
 }
-.plans {
-    margin: 10px;
+
+.code-box-demo {
+    background: #F5F5F5;
+    overflow: hidden;
+    padding: 24px;
 }
-.ul {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-size: 13px;
-    font-weight: bold;
-}
+
+/*.code-box-demo {*/
+/*    text-align: center;*/
+/*}*/
+/*.ant-layout-header{*/
+/*    background: #ffe79a;*/
+/*    font-size: 35px;*/
+/*}*/
+/*.ant-layout-footer,*/
+/*.ant-layout-footer {*/
+/*    font-size: 25px;*/
+/*    background: #ffe79a;*/
+/*    color: #5b5b5b;*/
+/*}*/
+/*.ant-layout-sider {*/
+/*    font-size: 25px;*/
+/*    text-align: center;*/
+/*    background: #ffe79a;*/
+/*    color: #5b5b5b;*/
+/*    line-height: 120px;*/
+/*}*/
+/*.ant-layout-content {*/
+/*    background: #ffe79a;*/
+/*    color: #5b5b5b;*/
+/*    min-height: 120px;*/
+/*    line-height: 120px;*/
+/*}*/
+/*> .code-box-demo > div > .ant-layout {*/
+/*    text-align: center;*/
+/*}*/
+/*> .code-box-demo > div > .ant-layout:last-child {*/
+/*    text-align: center;*/
+/*    margin: 0;*/
+/*}*/

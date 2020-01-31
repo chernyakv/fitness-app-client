@@ -24,10 +24,10 @@ class EditActivityModal extends Component {
                     planId: activity.planId,
                     name: values.name,
                     description: values.description,
-                    completed: values.isCompleted,
+                    isCompleted: values.isCompleted,
                     start: values.startTime,
-                    end: values.endTime
-
+                    end: values.endTime,
+                    timeToComplete: activity.timeToComplete
                 };
                 console.log(activity1);
                 this.props.updateActivity(activity.activityId,activity1);
@@ -39,7 +39,7 @@ class EditActivityModal extends Component {
     render() {
         const {show, handleHide} = this.props;
         const {getFieldDecorator} = this.props.form;
-
+        const {activity} = this.props;
         const formItemLayout = {
             labelCol: {
                 xs: {span: 6},
@@ -50,69 +50,75 @@ class EditActivityModal extends Component {
                 sm: {span: 14},
             },
         };
-
+        console.log("aaaaaaaaaaa")
+        console.log(activity)
         return (
-            <Modal show={show}>
-                <Modal.Header>
-                    <Modal.Title>Edit Activity</Modal.Title>
-                </Modal.Header>
+          <Modal show={show}>
+              <Modal.Header>
+                  <Modal.Title>Edit Activity</Modal.Title>
+              </Modal.Header>
 
-                <Modal.Body>
-                    <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                        <Form.Item label="Activity Name">
-                            {getFieldDecorator('name')(<Input/>)}
-                        </Form.Item>
-                        <Form.Item label="Activity description">
-                            {getFieldDecorator('description')(<Input/>)}
-                    </Form.Item>
+              <Modal.Body>
+                  <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                      <Form.Item label="Activity Name">
+                          {getFieldDecorator("name",{
+                              initialValue:activity.name
+                          })(<Input />)}
+                      </Form.Item>
+                      <Form.Item label="Activity description"  defaultValue={activity.description}>
+                          {getFieldDecorator('description',{
+                              initialValue:activity.description
+                          })(<Input />)}
+                      </Form.Item>
 
-                        <Form.Item label="start Time">
-                            {getFieldDecorator('startTime', {
-                                valuePropName: 'startTime',
-                            })(
-                                <TimePicker />
-                            )}
-                        </Form.Item>
-                        <Form.Item label="end Time">
-                            {getFieldDecorator('endTime', {
-                                valuePropName: 'endTime',
-                            })(
-                                <TimePicker />
-                            )}
-                        </Form.Item>
-                        <Form.Item {...formItemLayout}>
-                            {getFieldDecorator('isCompleted', {
-                                valuePropName: 'isCompleted',
-                            })(
-                                <Checkbox>
-                                    isCompleted
-                                </Checkbox>,
-                            )}
-                        </Form.Item>
+                      <Form.Item label="start Time">
+                          {getFieldDecorator('startTime', {
+                              valuePropName: 'startTime',
+                          })(
+                            <TimePicker />
+                          )}
+                      </Form.Item>
+                      <Form.Item label="end Time">
+                          {getFieldDecorator('endTime', {
+                              valuePropName: 'endTime',
+                          })(
+                            <TimePicker/>
+                          )}
+                      </Form.Item>
+                      <Form.Item {...formItemLayout}>
+                          {getFieldDecorator('isCompleted', {
+                              valuePropName: 'isCompleted',
+                              initialValue:activity.isCompleted
+                          })(
+                            <Checkbox>
+                                isCompleted
+                            </Checkbox>,
+                          )}
+                      </Form.Item>
 
-                    </Form>
+                  </Form>
 
-                </Modal.Body>
+              </Modal.Body>
 
-                <Modal.Footer>
-                    <Button
-                        type="primary"
-                        size="small"
-                        className="btn"
-                        onClick={handleHide}
-                    >
-                        Close
-                    </Button>
-                    <Button
-                        type="primary"
-                        size="small"
-                        className="btn"
-                        onClick={this.handleSubmit}
-                    >
-                        Submit
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+              <Modal.Footer>
+                  <Button
+                    type="primary"
+                    size="small"
+                    className="btn"
+                    onClick={handleHide}
+                  >
+                      Close
+                  </Button>
+                  <Button
+                    type="primary"
+                    size="small"
+                    className="btn"
+                    onClick={this.handleSubmit}
+                  >
+                      Submit
+                  </Button>
+              </Modal.Footer>
+          </Modal>
         );
     }
 }

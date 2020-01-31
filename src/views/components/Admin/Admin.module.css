@@ -29,7 +29,7 @@ td:last-child {
     border-top-right-radius: 10px;
 }
 
-tbody>tr {
+tbody > tr {
     overflow: hidden;
     border-bottom: 10px solid #fff;
     border-radius: 20px;

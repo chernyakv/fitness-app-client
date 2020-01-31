@@ -2,13 +2,14 @@ import * as types from "./types"
 import {activityService} from "../../../service/activity-service";
 import {createNotification} from "../../../helpers/helpers";
 
-const getTodayActivities = (planId) => {
+const addActivity = (planId, activity) => {
   return async dispatch => {
     dispatch(request());
+    const response = await activityService.addActivity(planId, activity);
     try {
-      console.log("getTodayActivities");
-      console.log(planId);
-      const response = await activityService.getTodayActivities(planId);
+      console.log("addActivity");
+      console.log(activity);
+
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());
@@ -17,15 +18,15 @@ const getTodayActivities = (planId) => {
   };
 
   function request() {
-    return {type: types.GET_TODAY_PLAN_REQUEST}
+    return {type: types.ADD_PLAN_ACTIVITY_REQUEST}
   }
 
-  function success(activities) {
-    return {type: types.GET_TODAY_PLAN_SUCCESS, activities}
+  function success(activity) {
+    return {type: types.ADD_PLAN_ACTIVITY_SUCCESS, activity}
   }
 
   function failure() {
-    return {type: types.GET_TODAY_PLAN_FAILURE}
+    return {type: types.ADD_PLAN_ACTIVITY_FAILURE}
   }
 };
 
@@ -58,7 +59,7 @@ const updateActivity = (activityId, activity) => {
 
 
 export const activityActions = {
-  getTodayActivities,
+  addActivity,
   updateActivity,
 
 };

@@ -1,13 +1,12 @@
 import * as types from "./types"
-import moment from 'moment';
 
 const initialState = {
   loading: false,
   plans: false,
   error: false,
-  date: moment().format('YYYY-MM-DD')
 };
 const planReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case types.SET_PLAN_ACTIVITIES_REQUEST:
       return {
@@ -19,8 +18,7 @@ const planReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: false,
-        plans: action.plans,
-        date: action.date
+        plans: action.plans
       };
     case types.SET_PLAN_ACTIVITIES_FAILURE:
       return {
@@ -40,7 +38,6 @@ const planReducer = (state = initialState, action) => {
         loading: false,
         error: false,
         plans: state.plans ? state.plans.concat(action.activity) : [action.activity],
-        date: state.date
       };
     case types.ADD_PLAN_ACTIVITIES_FAILURE:
       return {
@@ -103,8 +100,7 @@ const planReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        date: action.plan.date,
-        plans: action.plan.planId,
+        activities: action.activities,
         loading: false,
         error: false
       }
@@ -123,13 +119,34 @@ const planReducer = (state = initialState, action) => {
     case types.GET_USER_PLAN_SUCCESS:
       return {
         ...state,
-        userId: action.plan.userId,
         plans: action.plan,
-        activities: action.plan.activities,
         loading: false,
         error: false
       }
     case types.GET_USER_PLAN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      }
+    case types.GET_USER_PLAN_FOR_DATE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    case types.GET_USER_PLAN_FOR_DATE_SUCCESS:
+      console.log("getByUserIdAndDate");
+      console.log(action);
+      return {
+        ...state,
+        date: action.plan.date,
+        activities: action.plan.activities,
+        plans: action.plan,
+        loading: false,
+        error: false
+      }
+    case types.GET_USER_PLAN_FOR_DATE_FAILURE:
       return {
         ...state,
         loading: false,

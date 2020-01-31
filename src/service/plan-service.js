@@ -4,10 +4,16 @@ export const planService = {
   getByUserId,
   updatePlan,
   getActivitiesForDay,
+  getByUserIdAndDate
+
 }
 
 function getByUserId(userId) {
   return instance.get(`plans/u/${userId}`);
+}
+
+function getByUserIdAndDate(userId, date) {
+  return instance.get(`plans/u/${userId}/${date}`)
 }
 
 function getActivitiesForDay(planId) {

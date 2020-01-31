@@ -17,7 +17,7 @@ function register(login, password) {
   return async dispatch => {
     dispatch(request({login}));
     try {
-      let response = await authService.register(login, password)
+      let response = await authService.register(login, password);
       history.push("/login");
       dispatch(success(response.data));
     } catch (e) {
