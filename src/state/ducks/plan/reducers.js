@@ -8,19 +8,19 @@ const initialState = {
 const planReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case types.SET_PLAN_ACTIVITIES_REQUEST:
+    case types.SET_PLAN_REQUEST:
       return {
         loading: true,
         error: false,
         plans: false
       };
-    case types.SET_PLAN_ACTIVITIES_SUCCESS:
+    case types.SET_PLAN_SUCCESS:
       return {
         loading: false,
         error: false,
-        plans: action.plans
+        plans: action.plan
       };
-    case types.SET_PLAN_ACTIVITIES_FAILURE:
+    case types.SET_PLAN_FAILURE:
       return {
         error: true,
         loading: false,

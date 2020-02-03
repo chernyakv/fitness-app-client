@@ -35,10 +35,10 @@ class Home extends Component {
     const modalProps = {
       updateExercise: this.props.updateExercise,
       exercise: this.props.exercise,
-      plans: this.props.plans
     };
 
     return (
+
       <div className="home-content">
         <Tabs defaultActiveKey="1">
           <TabPane tab="Мой день" key="1">
@@ -74,7 +74,8 @@ class Home extends Component {
     if (!profile) {
       return <h4>No user profile</h4>
     }
-
+    console.log("props");
+    console.log(this.props);
     return (
       <div className="row con">
         <div className="col-md-3">
@@ -95,7 +96,6 @@ class Home extends Component {
 const mapStateToProps = (state) => ({
   exercise: state.exercises.todayExercise,
   profile: state.auth.profile,
-  plans: state.plans.plans,
   login: state.auth.login
 });
 

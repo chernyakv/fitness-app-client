@@ -3,11 +3,11 @@ import {planService} from "../../../service/plan-service";
 import {createNotification} from "../../../helpers/helpers";
 
 
-function setUserPlan(id) {
+function setPlan(plan) {
     return async dispatch => {
         dispatch(request());
         try {
-            const response = await planService.getByUserId(id);
+            const response = await planService.setPlan(plan);
             dispatch(success(response.data));
         } catch (e) {
             dispatch(failure());
@@ -15,15 +15,15 @@ function setUserPlan(id) {
     };
 
     function request() {
-        return {type: types.SET_PLAN_ACTIVITIES_REQUEST}
+        return {type: types.SET_PLAN_REQUEST}
     }
 
     function success(plan) {
-        return {type: types.SET_PLAN_ACTIVITIES_SUCCESS, plan}
+        return {type: types.SET_PLAN_SUCCESS, plan}
     }
 
     function failure() {
-        return {type: types.SET_PLAN_ACTIVITIES_FAILURE}
+        return {type: types.SET_PLAN_FAILURE}
     }
 }
 
@@ -138,7 +138,7 @@ function getByUserIdAndDate(userId, date) {
 }
 
 export const planActions = {
-  setUserPlan,
+  setPlan,
   updatePlan,
   getActivitiesForDay,
   getUserPlan,

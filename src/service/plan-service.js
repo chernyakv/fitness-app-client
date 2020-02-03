@@ -1,13 +1,16 @@
 import instance from "./instance";
 
 export const planService = {
+  setPlan,
   getByUserId,
   updatePlan,
   getActivitiesForDay,
   getByUserIdAndDate
 
 }
-
+function setPlan(plan){
+  return instance.post(``,{...plan});
+}
 function getByUserId(userId) {
   return instance.get(`plans/u/${userId}`);
 }

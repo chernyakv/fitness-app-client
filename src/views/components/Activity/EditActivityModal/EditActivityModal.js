@@ -21,7 +21,6 @@ class EditActivityModal extends Component {
                 const activity1 = {
                     ...activity,
                     activityId: activity.activityId,
-                    planId: activity.planId,
                     name: values.name,
                     description: values.description,
                     isCompleted: values.isCompleted,
@@ -50,8 +49,8 @@ class EditActivityModal extends Component {
                 sm: {span: 14},
             },
         };
-        console.log("aaaaaaaaaaa")
-        console.log(activity)
+        console.log("aaaaaaaaaaa");
+        console.log(activity);
         return (
           <Modal show={show}>
               <Modal.Header>
