@@ -32,6 +32,7 @@ class EditActivityModal extends Component {
                 this.props.updateActivity(activity.activityId,activity1);
                 this.props.handleHide();
             }
+            window.location.reload();
         });
     };
 
@@ -39,6 +40,7 @@ class EditActivityModal extends Component {
         const {show, handleHide} = this.props;
         const {getFieldDecorator} = this.props.form;
         const {activity} = this.props;
+        const format = 'HH:mm';
         const formItemLayout = {
             labelCol: {
                 xs: {span: 6},
@@ -49,8 +51,6 @@ class EditActivityModal extends Component {
                 sm: {span: 14},
             },
         };
-        console.log("aaaaaaaaaaa");
-        console.log(activity);
         return (
           <Modal show={show}>
               <Modal.Header>
@@ -74,14 +74,14 @@ class EditActivityModal extends Component {
                           {getFieldDecorator('startTime', {
                               valuePropName: 'startTime',
                           })(
-                            <TimePicker />
+                            <TimePicker format={format}/>
                           )}
                       </Form.Item>
                       <Form.Item label="end Time">
                           {getFieldDecorator('endTime', {
                               valuePropName: 'endTime',
                           })(
-                            <TimePicker/>
+                            <TimePicker format={format}/>
                           )}
                       </Form.Item>
                       <Form.Item {...formItemLayout}>

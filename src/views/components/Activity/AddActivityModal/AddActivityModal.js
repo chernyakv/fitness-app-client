@@ -7,17 +7,11 @@ import {Button, TimePicker, Form, Input, Checkbox} from 'antd';
 class AddActivityModal extends Component {
     constructor(props) {
         super(props);
-        console.log("  super(props);")
-        console.log(this.props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log("this.props")
-        console.log(this.props);
-        console.log("this.props.props")
-        console.log(this.props.props)
         const {plans} = this.props;
 
         this.props.form.validateFieldsAndScroll((err, values) => {
@@ -32,18 +26,17 @@ class AddActivityModal extends Component {
                     end: values.endTime,
                     timeToComplete: values.timeToComplete
                 };
-                console.log("this.props.props")
-                console.log(plans)
-                console.log(activity1);
                 this.props.addActivity(plans.planId,activity1);
                 this.props.handleHide();
             }
         });
+        window.location.reload();
     };
 
     render() {
         const {show, handleHide} = this.props;
         const {getFieldDecorator} = this.props.form;
+        const format = 'HH:mm';
         const formItemLayout = {
             labelCol: {
                 xs: {span: 6},
@@ -73,14 +66,14 @@ class AddActivityModal extends Component {
                             {getFieldDecorator('startTime', {
                                 valuePropName: 'startTime',
                             })(
-                                <TimePicker />
+                                <TimePicker format={format} />
                             )}
                         </Form.Item>
                         <Form.Item label="end Time">
                             {getFieldDecorator('endTime', {
                                 valuePropName: 'endTime',
                             })(
-                                <TimePicker/>
+                                <TimePicker format={format}/>
                             )}
                         </Form.Item>
                         <Form.Item {...formItemLayout}>
