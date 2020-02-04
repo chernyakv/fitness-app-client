@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, TimePicker, Form, Input, Checkbox} from 'antd';
-
+import {Button, TimePicker, Form, Input, Switch} from 'antd';
+const format = 'HH:mm';
 class AddActivityModal extends Component {
     constructor(props) {
         super(props);
@@ -16,31 +16,29 @@ class AddActivityModal extends Component {
 
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-
-
                 const activity1 = {
                     name: values.name,
                     description: values.description,
-                    isCompleted: values.isCompleted,
-                    start: values.startTime,
-                    end: values.endTime,
+                    completed: values.completed,
+                    start: values.startTime.format(format),
+                    end: values.endTime.format(format),
                     timeToComplete: values.timeToComplete
                 };
                 this.props.addActivity(plans.planId,activity1);
                 this.props.handleHide();
             }
+            window.location.reload();
         });
-        window.location.reload();
     };
 
     render() {
         const {show, handleHide} = this.props;
         const {getFieldDecorator} = this.props.form;
-        const format = 'HH:mm';
+
         const formItemLayout = {
             labelCol: {
-                xs: {span: 6},
-                sm: {span: 6},
+                xs: {span: 8},
+                sm: {span: 8},
             },
             wrapperCol: {
                 xs: {span: 14},
@@ -76,12 +74,10 @@ class AddActivityModal extends Component {
                                 <TimePicker format={format}/>
                             )}
                         </Form.Item>
-                        <Form.Item {...formItemLayout}>
-                            {getFieldDecorator('isCompleted', {
-                                valuePropName: 'isCompleted'})(
-                                <Checkbox>
-                                    isCompleted
-                                </Checkbox>,
+                        <Form.Item label="Completed">
+                            {getFieldDecorator('completed', {
+                                valuePropName: 'completed'})(
+                              <Switch />,
                             )}
                         </Form.Item>
 

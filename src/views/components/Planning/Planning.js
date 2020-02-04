@@ -16,10 +16,6 @@ const planTabs = [];
 for (let i = 0; i < tabNum; i++) {
   planTabs.push(moment().add("days", i));
 }
-const time = [];
-for (let i = 1; i < 25; i++) {
-  time.push([moment("00:00:00","HH:mm:ss").add(i-1,"hours").format("HH:mm"),moment("00:00:00","HH:mm:ss").add(i,"hours").format("HH:mm")]);
-}
 
 const Planning = (props) => {
 
@@ -30,24 +26,15 @@ const Planning = (props) => {
   };
 
   useEffect(() => {
-    console.log("time");
-    console.log(time);
+
     props.getPlan(props.profile.id, moment().format("YYYY-MM-DD"));
   }, []);
-  // const customizeRenderEmpty = () => (
-  //   <div style={{ textAlign: 'center' }}>
-  //     <Icon type="smile" style={{ fontSize: 20 }} />
-  //     <p>Data Not Found</p>
-  //   </div>
-  // );
-
   return (
     <div className="card-container">
       <EditActivityModal/>
       <AddActivityModal/>
-      <Tabs type="card"  onTabClick={(key, e) => {
+      <Tabs type="card" onTabClick={(key, e) => {
         props.getPlan(props.profile.id, (moment().add('days', key)).format("YYYY-MM-DD"));
-
       }} tabBarExtraContent={<Button onClick={() => {
         props.showModal("AddActivityModal", {
           ...modalProps, plans
@@ -55,13 +42,15 @@ const Planning = (props) => {
       }} style={{backgroundColor: 'gold', fontSize: '16px'}}>+</Button>}>
         {[...Array(tabNum).keys()].map(i => (
 
-          <TabPane  tab={planTabs[i].format("ddd")} key={i}>
-            <List  style={{"backgroundColor": "#ffe79a"}}
+          <TabPane tab={planTabs[i].format("ddd")} key={i}>
+            <List style={{"backgroundColor": "#ffe79a"}}
                   size="large"
                   bordered
                   dataSource={props.activities}
                   renderItem={activity => (
-                    <List.Item style={{"backgroundColor": "#fff1d2"}} >
+                    <List.Item style={activity.completed?{"backgroundColor": "#ffea93"}:{"backgroundColor": "#ffa5a9"}}
+                               extra={<Tag style={{backgroundColor: 'gold'}}>{activity.timeToComplete} minutes <Icon
+                                 type="clock-circle" style={{fontSize: '16px'}}/></Tag>}>
                       <List.Item.Meta
                         onClick={() => {
                           props.showModal("EditActivityModal", {
@@ -69,11 +58,9 @@ const Planning = (props) => {
                           });
                         }}
                         title={activity.name}
-                        description={activity.description}
+                        description={<div>{activity.description}
+                          <div>{activity.start}-{activity.end}</div></div>}
                       />
-                      <Tag style={{backgroundColor: 'gold'}}>{activity.timeToComplete} minutes <Icon
-                        type="clock-circle" style={{fontSize: '16px'}}/></Tag>
-
                     </List.Item>
                   )}/>
           </TabPane>
