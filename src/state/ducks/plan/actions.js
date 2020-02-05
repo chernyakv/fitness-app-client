@@ -84,24 +84,26 @@ const addActivity = (planId, activity) => {
 };
 
 function removeActivity(planId, activityId) {
-
-  return async dispatch => {
+  return dispatch => {
     dispatch(request());
-    const response = await planService.removeActivity(planId, activityId);
-    try {
-      dispatch(success(response.data));
-    } catch (e) {
-      dispatch(failure());
-      createNotification('error', e.response.data.message);
-    }
+    planService.removeActivity(planId, activityId)
+      .then(
+        response => {
+          createNotification('success', 'Activity has been deleted');
+          dispatch(success(activityId));
+        },
+        error => {
+          dispatch(failure());
+        }
+      );
   };
 
   function request() {
     return {type: types.REMOVE_PLAN_ACTIVITY_REQUEST}
   }
 
-  function success(activity) {
-    return {type: types.REMOVE_PLAN_ACTIVITY_SUCCESS, activity}
+  function success(activityId) {
+    return {type: types.REMOVE_PLAN_ACTIVITY_SUCCESS, activityId}
   }
 
   function failure() {

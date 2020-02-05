@@ -36,12 +36,14 @@ const planReducer = (state = initialState, action) => {
         plans: state.plans
       };
     case types.REMOVE_PLAN_ACTIVITY_SUCCESS:
+
+      debugger;
       return {
         loading: false,
         error: false,
         plans: {
           ...state.plans,
-          activities: state.plans.activities.filter(activity => activity.activityId !== action.activity.activityId)
+          activities: state.plans.activities.filter(activity => activity.activityId!== action.activityId)
         },
       };
     case types.REMOVE_PLAN_ACTIVITY_FAILURE:

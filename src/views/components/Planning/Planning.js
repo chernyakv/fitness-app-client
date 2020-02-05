@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import 'antd/dist/antd.css';
-import {Button, Icon, List, Tabs, Tag} from 'antd';
+import {Button, Icon, List, Tabs, Tag,Modal} from 'antd';
 import './Planning.css'
 import EditActivityModal from "../../components/Activity/EditActivityModal/EditActivityModal";
 import {actions} from "../../../state/ducks/user/actions";
@@ -8,14 +8,26 @@ import {connect} from "react-redux";
 import AddActivityModal from "../Activity/AddActivityModal/AddActivityModal";
 import {planActions} from "../../../state/ducks/plan";
 import moment from "moment";
-
+const { confirm } = Modal;
 const {TabPane} = Tabs;
 const tabNum = 5;
 const planTabs = [];
 for (let i = 0; i < tabNum; i++) {
   planTabs.push(moment().add("days", i));
 }
-
+function showConfirm(props,activity) {
+  confirm({
+    title: 'Do you want to delete these activity?',
+    content: 'When clicked the OK button, this dialog will be closed after 1 second',
+    onOk() {
+      props.removeActivity(props.plans.planId, activity.activityId)
+      return new Promise((resolve, reject) => {
+        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+      }).catch(() => console.log('Oops errors!'));
+    },
+    onCancel() {},
+  });
+}
 const Planning = (props) => {
 
   const {plans} = props;
@@ -57,7 +69,7 @@ const Planning = (props) => {
                         </Tag>}>
                       <Tag style={{backgroundColor: 'gold'}}> <Icon type="delete" style={{fontSize: '16px'}}
                                                                     onClick={() => {
-                                                                      props.removeActivity(plans.planId, activity.activityId)
+                                                                      showConfirm(props,activity)
                                                                     }}/></Tag>
                       <List.Item.Meta
                         onClick={() => {
