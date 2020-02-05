@@ -36,7 +36,6 @@ class EditActivityModal extends Component {
         this.props.updateActivity(activity.activityId, activity1);
         this.props.handleHide();
       }
-      window.location.reload();
     });
   };
 

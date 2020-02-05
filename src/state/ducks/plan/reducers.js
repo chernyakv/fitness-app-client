@@ -3,7 +3,7 @@ import * as types from "./types"
 const initialState = {
   loading: false,
   plans: false,
-  error: false,
+  error: false
 };
 const planReducer = (state = initialState, action) => {
 
@@ -69,7 +69,7 @@ const planReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case types.UPDATE_USER_PLAN_SUCCESS:
       return {
         ...state,
@@ -77,13 +77,13 @@ const planReducer = (state = initialState, action) => {
         loading: false,
         error: false,
         date: state.date
-      }
+      };
     case types.UPDATE_USER_PLAN_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
 
 
     case types.GET_TODAY_ACTIVITIES_REQUEST:
@@ -93,7 +93,7 @@ const planReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case types.GET_TODAY_ACTIVITIES_SUCCESS:
       console.log("GET_TODAY_ACTIVITIES_SUCCESS");
       console.log(action);
@@ -103,41 +103,40 @@ const planReducer = (state = initialState, action) => {
         activities: action.activities,
         loading: false,
         error: false
-      }
+      };
     case types.GET_TODAY_ACTIVITIES_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
     case types.GET_USER_PLAN_REQUEST:
       return {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case types.GET_USER_PLAN_SUCCESS:
       return {
         ...state,
         plans: action.plan,
         loading: false,
         error: false
-      }
+      };
     case types.GET_USER_PLAN_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
     case types.GET_USER_PLAN_FOR_DATE_REQUEST:
       return {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case types.GET_USER_PLAN_FOR_DATE_SUCCESS:
-      console.log("getByUserIdAndDate");
-      console.log(action);
+
       return {
         ...state,
         date: action.plan.date,
@@ -145,16 +144,57 @@ const planReducer = (state = initialState, action) => {
         plans: action.plan,
         loading: false,
         error: false
-      }
+      };
     case types.GET_USER_PLAN_FOR_DATE_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
+
+    case types.UPDATE_PLAN_ACTIVITY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+    case types.UPDATE_PLAN_ACTIVITY_SUCCESS:
+      return {
+        loading: false,
+        error: false,
+        plans: {
+          ...state.plans,
+          activities: state.plans.activities.map(activity => activity.activityId !== action.activity.activityId ? activity : action.activity)
+        },
+      };
+    case types.UPDATE_PLAN_ACTIVITY_FAILURE:
+      return {
+        error: true,
+        loading: false
+      };
+    case types.ADD_PLAN_ACTIVITY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+    case types.ADD_PLAN_ACTIVITY_SUCCESS:
+      return {
+        loading: false,
+        error: false,
+        plans: {
+          ...state.plans,
+          activities: state.plans.activities ? state.plans.activities.concat(action.activity) : [action.activity]
+        },
+      };
+    case types.ADD_PLAN_ACTIVITY_FAILURE:
+      return {
+        error: true,
+        loading: false
+      };
 
     default:
       return state;
   }
-}
+};
 export default planReducer;

@@ -136,11 +136,66 @@ function getByUserIdAndDate(userId, date) {
     return {type: types.GET_USER_PLAN_FOR_DATE_FAILURE}
   }
 }
+const updateActivity = (activityId, activity) => {
+  return async dispatch => {
+    dispatch(request());
+    try {
+      console.log("updateActivity");
+      console.log(activity);
+      const response = await planService.updateActivity(activityId, activity);
+      dispatch(success(response.data));
+    } catch (e) {
+      dispatch(failure());
+      console.log(e)
+      //createNotification('error', e.response.data.message);
+    }
+  };
 
+  function request() {
+    return {type: types.UPDATE_PLAN_ACTIVITY_REQUEST}
+  }
+
+  function success(activity) {
+    return {type: types.UPDATE_PLAN_ACTIVITY_SUCCESS, activity}
+  }
+
+  function failure() {
+    return {type: types.UPDATE_PLAN_ACTIVITY_FAILURE}
+  }
+};
+const addActivity = (planId, activity) => {
+  return async dispatch => {
+    dispatch(request());
+    const response = await planService.addActivity(planId, activity);
+    try {
+      console.log("addActivity");
+      console.log(activity);
+
+      dispatch(success(response.data));
+    } catch (e) {
+      dispatch(failure());
+      createNotification('error', e.response.data.message);
+    }
+  };
+
+  function request() {
+    return {type: types.ADD_PLAN_ACTIVITY_REQUEST}
+  }
+
+  function success(activity) {
+    return {type: types.ADD_PLAN_ACTIVITY_SUCCESS, activity}
+  }
+
+  function failure() {
+    return {type: types.ADD_PLAN_ACTIVITY_FAILURE}
+  }
+};
 export const planActions = {
   setPlan,
   updatePlan,
   getActivitiesForDay,
   getUserPlan,
-  getByUserIdAndDate
+  getByUserIdAndDate,
+  updateActivity,
+  addActivity
 };

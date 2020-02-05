@@ -27,7 +27,6 @@ class AddActivityModal extends Component {
                 this.props.addActivity(plans.planId,activity1);
                 this.props.handleHide();
             }
-            window.location.reload();
         });
     };
 

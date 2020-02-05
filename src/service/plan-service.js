@@ -5,12 +5,16 @@ export const planService = {
   getByUserId,
   updatePlan,
   getActivitiesForDay,
-  getByUserIdAndDate
+  getByUserIdAndDate,
+  addActivity,
+  updateActivity
 
+};
+
+function setPlan(plan) {
+  return instance.post(``, {...plan});
 }
-function setPlan(plan){
-  return instance.post(``,{...plan});
-}
+
 function getByUserId(userId) {
   return instance.get(`plans/u/${userId}`);
 }
@@ -25,6 +29,16 @@ function getActivitiesForDay(planId) {
 
 function updatePlan(id, plan) {
   return instance.put(`plans/${id}`, {...plan});
+}
+
+function updateActivity(activityId, activity) {
+
+  return instance.put(`plans/activities/${activityId}`, {...activity});
+}
+
+function addActivity(planId, activity) {
+
+  return instance.post(`plans/${planId}/activities`, {...activity});
 }
 
 

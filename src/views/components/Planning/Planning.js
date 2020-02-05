@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 import AddActivityModal from "../Activity/AddActivityModal/AddActivityModal";
 import {planActions} from "../../../state/ducks/plan";
 import moment from "moment";
-import {activityActions} from "../../../state/ducks/activity";
 
 const {TabPane} = Tabs;
 const tabNum = 5;
@@ -20,6 +19,7 @@ for (let i = 0; i < tabNum; i++) {
 const Planning = (props) => {
 
   const {plans} = props;
+
   const modalProps = {
     updateActivity: props.updateActivity,
     addActivity: props.addActivity
@@ -46,9 +46,9 @@ const Planning = (props) => {
             <List style={{"backgroundColor": "#ffe79a"}}
                   size="large"
                   bordered
-                  dataSource={props.activities}
+                  dataSource={plans.activities}
                   renderItem={activity => (
-                    <List.Item style={activity.completed?{"backgroundColor": "#ffea93"}:{"backgroundColor": "#ffa5a9"}}
+                    <List.Item style={activity.completed?{"backgroundColor": "#ffea93"}:{"backgroundColor": "#ffffff"}}
                                extra={<Tag style={{backgroundColor: 'gold'}}>{activity.timeToComplete} minutes <Icon
                                  type="clock-circle" style={{fontSize: '16px'}}/></Tag>}>
                       <List.Item.Meta
@@ -73,15 +73,13 @@ const Planning = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-
-  activities: state.plans.activities,
   profile: state.auth.profile,
   plans: state.plans.plans
 });
 
 const mapDispatchToProps = {
-  updateActivity: activityActions.updateActivity,
-  addActivity: activityActions.addActivity,
+  updateActivity: planActions.updateActivity,
+  addActivity: planActions.addActivity,
   getPlan: planActions.getByUserIdAndDate,
   showModal: actions.showModal
 };
