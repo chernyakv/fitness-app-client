@@ -48,9 +48,17 @@ const Planning = (props) => {
                   bordered
                   dataSource={plans.activities}
                   renderItem={activity => (
-                    <List.Item style={activity.completed?{"backgroundColor": "#ffea93"}:{"backgroundColor": "#ffffff"}}
-                               extra={<Tag style={{backgroundColor: 'gold'}}>{activity.timeToComplete} minutes <Icon
-                                 type="clock-circle" style={{fontSize: '16px'}}/></Tag>}>
+                    <List.Item
+                      style={activity.completed ? {"backgroundColor": "#ffea93"} : {"backgroundColor": "#ffffff"}}
+                      extra={
+
+                        <Tag style={{backgroundColor: 'gold'}}>{activity.timeToComplete} minutes <Icon
+                          type="clock-circle" style={{fontSize: '16px'}}/>
+                        </Tag>}>
+                      <Tag style={{backgroundColor: 'gold'}}> <Icon type="delete" style={{fontSize: '16px'}}
+                                                                    onClick={() => {
+                                                                      props.removeActivity(plans.planId, activity.activityId)
+                                                                    }}/></Tag>
                       <List.Item.Meta
                         onClick={() => {
                           props.showModal("EditActivityModal", {
@@ -59,7 +67,8 @@ const Planning = (props) => {
                         }}
                         title={activity.name}
                         description={<div>{activity.description}
-                          <div>{activity.start}-{activity.end}</div></div>}
+                          <div>{activity.start}-{activity.end}</div>
+                        </div>}
                       />
                     </List.Item>
                   )}/>
@@ -81,6 +90,7 @@ const mapDispatchToProps = {
   updateActivity: planActions.updateActivity,
   addActivity: planActions.addActivity,
   getPlan: planActions.getByUserIdAndDate,
+  removeActivity: planActions.removeActivity,
   showModal: actions.showModal
 };
 

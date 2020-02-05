@@ -1,4 +1,4 @@
-import  * as reducers from "./ducks"
+import * as reducers from "./ducks"
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import {reducer as formReducer} from "redux-form";
 import thunkMiddleware from 'redux-thunk';
@@ -11,8 +11,8 @@ let rootReducer = combineReducers({
 });
 
 export default createStore(
-    rootReducer,
-    applyMiddleware(
-        thunkMiddleware
-    )
+  rootReducer,
+  applyMiddleware(
+    thunkMiddleware
+  )
 )

@@ -15,7 +15,7 @@ const ProgressContainerComponent = ({userParameters, profile, getUserParameters}
     getUserParameters(profile.id, startOfMonth, endOfMonth);
   }, []);
 
-  if(!userParameters) {
+  if (!userParameters) {
     return <h4>No user parameters</h4>
   }
   return <Progress parameters={userParameters}/>

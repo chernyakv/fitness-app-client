@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import './ActivityHorizontal.css'
-import {Tag, Switch, Icon} from 'antd';
+import {Icon, Switch, Tag} from 'antd';
 import 'antd/dist/antd.css';
 
 const MenuItem = ({text, isCompleted}) => {
@@ -16,8 +16,8 @@ const MenuItem = ({text, isCompleted}) => {
     </div>
     <div className={'menu-item-switch'}>
       <Switch
-        checkedChildren={<Icon type="check" />}
-        unCheckedChildren={<Icon type="close" />}
+        checkedChildren={<Icon type="check"/>}
+        unCheckedChildren={<Icon type="close"/>}
         defaultChecked={isCompleted}
       />
     </div>

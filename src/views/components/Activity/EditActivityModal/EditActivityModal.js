@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, Radio, Form, Input, TimePicker} from 'antd';
+import {Button, Form, Input, Radio, TimePicker} from 'antd';
 import moment from 'moment';
 
 const format = 'HH:mm';
@@ -92,11 +92,11 @@ class EditActivityModal extends Component {
             <Form.Item label="Completed">
               {getFieldDecorator('completed', {
                 valuePropName: 'completed',
-                  initialValue: activity.completed
+                initialValue: activity.completed
               })(
                 <Radio.Group defaultValue={false} buttonStyle="solid">
-                    <Radio.Button value={true}>Done</Radio.Button>
-                    <Radio.Button value={false}>Not Done</Radio.Button>
+                  <Radio.Button value={true}>Done</Radio.Button>
+                  <Radio.Button value={false}>Not Done</Radio.Button>
                 </Radio.Group>,
               )}
             </Form.Item>

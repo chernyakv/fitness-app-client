@@ -8,24 +8,6 @@ const initialState = {
 const planReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case types.SET_PLAN_REQUEST:
-      return {
-        loading: true,
-        error: false,
-        plans: false
-      };
-    case types.SET_PLAN_SUCCESS:
-      return {
-        loading: false,
-        error: false,
-        plans: action.plan
-      };
-    case types.SET_PLAN_FAILURE:
-      return {
-        error: true,
-        loading: false,
-        plans: false
-      };
 
     case types.ADD_PLAN_ACTIVITIES_REQUEST:
       return {
@@ -46,89 +28,28 @@ const planReducer = (state = initialState, action) => {
         plans: false
       };
 
-    case types.REMOVE_ACTIVITY_REQUEST:
+    case types.REMOVE_PLAN_ACTIVITY_REQUEST:
       return {
+        ...state,
         loading: true,
         error: false,
         plans: state.plans
       };
-    case types.REMOVE_ACTIVITY_SUCCESS:
+    case types.REMOVE_PLAN_ACTIVITY_SUCCESS:
       return {
         loading: false,
         error: false,
-        plans: state.plans.filter(activity => activity.id !== action.activityId)
+        plans: {
+          ...state.plans,
+          activities: state.plans.activities.filter(activity => activity.activityId !== action.activity.activityId)
+        },
       };
-    case types.REMOVE_ACTIVITY_FAILURE:
+    case types.REMOVE_PLAN_ACTIVITY_FAILURE:
       return {
         error: true,
         loading: false,
       };
 
-    case types.UPDATE_USER_PLAN_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: false
-      };
-    case types.UPDATE_USER_PLAN_SUCCESS:
-      return {
-        ...state,
-        plans: state.plans.map(activity => activity.id !== action.activity.id ? activity : action.activity),
-        loading: false,
-        error: false,
-        date: state.date
-      };
-    case types.UPDATE_USER_PLAN_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: true
-      };
-
-
-    case types.GET_TODAY_ACTIVITIES_REQUEST:
-
-
-      return {
-        ...state,
-        loading: true,
-        error: false
-      };
-    case types.GET_TODAY_ACTIVITIES_SUCCESS:
-      console.log("GET_TODAY_ACTIVITIES_SUCCESS");
-      console.log(action);
-
-      return {
-        ...state,
-        activities: action.activities,
-        loading: false,
-        error: false
-      };
-    case types.GET_TODAY_ACTIVITIES_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: true
-      };
-    case types.GET_USER_PLAN_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: false
-      };
-    case types.GET_USER_PLAN_SUCCESS:
-      return {
-        ...state,
-        plans: action.plan,
-        loading: false,
-        error: false
-      };
-    case types.GET_USER_PLAN_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: true
-      };
     case types.GET_USER_PLAN_FOR_DATE_REQUEST:
       return {
         ...state,

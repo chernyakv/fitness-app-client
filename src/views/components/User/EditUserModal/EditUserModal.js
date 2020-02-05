@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Button, Form, Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 
-class   EditUserModal extends Component {
+class EditUserModal extends Component {
 
   constructor(props) {
     super(props);
