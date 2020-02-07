@@ -12,6 +12,7 @@ import Motivation from "../Motivation";
 import {Affix, Button, Tabs} from 'antd';
 import 'antd/dist/antd.css';
 import {exerciseActions} from "../../../state/ducks/exercise";
+import EditExerciseModal from "../Exercises/EditExerciseModal/EditExerciseModal";
 
 const {TabPane} = Tabs;
 
@@ -40,6 +41,7 @@ class Home extends Component {
     return (
 
       <div className="home-content">
+        <EditExerciseModal/>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Мой день" key="1">
             <MayDay/>
