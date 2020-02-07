@@ -1,17 +1,17 @@
 import instance from "./instance";
 
-export const planService = {
-  getByUserId,
-  addNews,
-
+export const motivationsService = {
+  getMotivationByUserId,
+  addMotivationItem
 };
 
-function getByUserId(userId) {
+function getMotivationByUserId(userId) {
   return instance.get(`motivations/u/${userId}`)
 }
 
-function addNews(motivationId, news) {
 
-  return instance.post(`motivations/${motivationId}/news`, {...news});
-}
+function addMotivationItem(motivationId, motivationItem) {
+
+  return instance.post(`motivations/${motivationId}/motivationItems`, {...motivationItem});
+} 
 

@@ -9,35 +9,30 @@ import MotivationItem from "../MotivationItem/MotivationItem";
 
 const Motivation = (props) => {
 
-    const {motivations} = props;
 
-    useEffect(() => {
-        console.log("props");
-        console.log(props);
-        props.getMotivation(props.profile.id)
+  useEffect(() => {
+    props.getMotivation(props.profile.id);
+  }, []);
 
-    }, []);
+  return (
 
-    return (
+    <div className='motivation-wrapper'>
+      <MotivationItem motivationItems={props.motivationItems}/>
 
-        <div className='motivation-wrapper'>
-            <MotivationItem motivations={motivations}/>
-
-
-            <div>{motivations.motivationId}</div>
-        </div>
-    )
+    </div>
+  )
 }
 
 
 const mapStateToProps = (state) => ({
-    profile: state.auth.profile,
-    motivations: state.motivations.motivations
+  motivationItems: state.motivations.motivations.motivationItems,
+  profile: state.auth.profile,
+  motivations: state.motivations.motivations
 })
 
 const mapDispatchToProps = {
-    getMotivation: motivationActions.getMotivationByUserId,
-    showModal: actions.showModal
+  getMotivation: motivationActions.getMotivationByUserId,
+  showModal: actions.showModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Motivation)

@@ -2,30 +2,37 @@ import React from 'react'
 import 'antd/dist/antd.css';
 import {List} from 'antd';
 
-const MotivationItem = ({motivations}) => {
-    const {data} = motivations.motivationItems;
+const MotivationItem = ({motivationItems}) => {
 
-    return (
+  return (
+    <div>
+      {motivationItems? (
+
         <List
-            size="large"
-            bordered
-            dataSource={data}
-            renderItem={motivationItem => (
-                <div>{motivationItem.motivationItemType === "NEWS" ?
-                    <List.Item>
-                        <List.Item.Meta
-                            title={"NEWS"}
-                            description={"motivationItem.motivationItemType.toString()"}
-                        />
-                    </List.Item> :
-                    <List.Item>
-                        <List.Item.Meta
-                            title={"ADVICE"}
-                            description={"motivationItem.motivationItemType.toString()"}
-                        />
-                    </List.Item>
-                }</div>
-            )}/>
-    );
+          size="large"
+          bordered
+          dataSource={motivationItems}
+          renderItem={motivationItem => (
+            <div>{motivationItem.newsItems.length!==0?
+              <List.Item>
+                <List.Item.Meta
+                  title={"NEWS"}
+                  description={motivationItem.description}
+                />
+              </List.Item> :
+              <List.Item>
+                <List.Item.Meta
+                  title={"ADVICE"}
+                  description={motivationItem.description}
+                />
+              </List.Item>
+            }</div>
+          )}/>
+      ) : (
+        (<div>
+            {"NOOOOOOOOOOOOOOOOOOOOOODAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAA"}
+          </div>
+        ))}
+    </div>);
 };
 export default MotivationItem

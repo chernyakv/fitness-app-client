@@ -22,7 +22,8 @@ function addActivity(planId, activity) {
 
   return instance.post(`plans/${planId}/activities`, {...activity});
 }
-function removeActivity(planId,activityId) {
+
+function removeActivity(planId, activityId) {
   return instance.delete(`plans/${planId}/activities/${activityId}`);
 }
 

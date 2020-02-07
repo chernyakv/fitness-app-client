@@ -42,7 +42,7 @@ const planReducer = (state = initialState, action) => {
         error: false,
         plans: {
           ...state.plans,
-          activities: state.plans.activities.filter(activity => activity.activityId!== action.activityId)
+          activities: state.plans.activities.filter(activity => activity.activityId !== action.activityId)
         },
       };
     case types.REMOVE_PLAN_ACTIVITY_FAILURE:
