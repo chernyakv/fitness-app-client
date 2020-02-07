@@ -37,7 +37,6 @@ const planReducer = (state = initialState, action) => {
       };
     case types.REMOVE_PLAN_ACTIVITY_SUCCESS:
 
-      debugger;
       return {
         loading: false,
         error: false,

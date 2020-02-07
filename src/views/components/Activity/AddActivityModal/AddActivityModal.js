@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, Form, Input, Radio, Switch, TimePicker} from 'antd';
+import {Button, Form, Input, Radio, TimePicker} from 'antd';
 
 const format = 'HH:mm';
 

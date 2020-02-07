@@ -8,8 +8,6 @@ function getByUserIdAndDate(userId, date) {
     try {
 
       const response = await planService.getByUserIdAndDate(userId, date);
-      console.log("getByUserIdAndDate");
-      console.log(response);
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());
