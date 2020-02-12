@@ -19,7 +19,11 @@ const motivationReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: false,
-        motivations: state.motivations ? state.motivations.concat(action.motivationItem) : [action.motivationItem],
+        motivations: {
+          ...state.motivations,
+          motivationItems: state.motivations.motivationItems ? state.motivations.motivationItems.concat(action.motivationItem) : [action.motivationItem]
+        },
+
       };
     case types.ADD_MOTIVATION_ITEM_FAILURE:
       return {
@@ -46,6 +50,29 @@ const motivationReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: true
+      };
+
+    case types.REMOVE_MOTIVATION_ITEM_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        motivations: state.motivations
+      };
+    case types.REMOVE_MOTIVATION_ITEM_SUCCESS:
+
+      return {
+        loading: false,
+        error: false,
+        motivations: {
+          ...state.motivations,
+          motivationItems: state.motivations.motivationItems.filter(motivationItem => motivationItem.motivationItemId !== action.motivationItemId)
+        },
+      };
+    case types.REMOVE_MOTIVATION_ITEM_FAILURE:
+      return {
+        error: true,
+        loading: false,
       };
 
 

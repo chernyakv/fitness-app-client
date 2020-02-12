@@ -2,7 +2,8 @@ import instance from "./instance";
 
 export const motivationsService = {
   getMotivationByUserId,
-  addMotivationItem
+  addMotivationItem,
+  removeMotivationItem
 };
 
 function getMotivationByUserId(userId) {
@@ -13,5 +14,8 @@ function getMotivationByUserId(userId) {
 function addMotivationItem(motivationId, motivationItem) {
 
   return instance.post(`motivations/${motivationId}/motivationItems`, {...motivationItem});
-} 
+}
+function removeMotivationItem(motivationId, motivationItemId) {
+  return instance.delete(`motivations/${motivationId}/motivationItems/${motivationItemId}`);
+}
 

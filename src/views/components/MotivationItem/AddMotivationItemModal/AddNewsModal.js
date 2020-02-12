@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input,Rate} from 'antd';
 
 class AddNewsModal extends Component {
   constructor(props) {
@@ -48,7 +48,6 @@ class AddNewsModal extends Component {
         <Modal.Header>
           <Modal.Title>Add news item</Modal.Title>
         </Modal.Header>
-
         <Modal.Body>
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Form.Item label="News description">
@@ -60,11 +59,10 @@ class AddNewsModal extends Component {
             <Form.Item label="News timeToRead">
               {getFieldDecorator('timeToRead')(<Input/>)}
             </Form.Item>
-            <Form.Item label="News description">
-              {getFieldDecorator('description')(<Input/>)}
-            </Form.Item>
             <Form.Item label="News score">
-              {getFieldDecorator('score')(<Input/>)}
+              {getFieldDecorator('score', {
+                initialValue: 3.5,
+              })(<Rate />)}
             </Form.Item>
 
           </Form>

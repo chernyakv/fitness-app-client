@@ -13,7 +13,7 @@ import {Button, Modal} from "antd";
 const Motivation = (props) => {
   const [visible, setVisible] = useState(false);
   const ButtonGroup = Button.Group;
-
+  const {motivations} = props;
   const showModal = () => {
     setVisible(true);
   };
@@ -27,12 +27,12 @@ const Motivation = (props) => {
   };
   const Advice = () => {
     props.showModal("AddAdviceModal", {
-      ...modalProps, props
+      ...modalProps, motivations
     })
   };
   const News = () => {
     props.showModal("AddNewsModal", {
-      ...modalProps, props
+      ...modalProps, motivations
     })
   };
   useEffect(() => {
@@ -61,7 +61,7 @@ const Motivation = (props) => {
         </ButtonGroup>
 
       </Modal>
-      <MotivationItem motivationItems={props.motivationItems}/>
+      <MotivationItem motivationItems={props.motivationItems} removeMotivationItem={props.removeMotivationItem} motivations={motivations}/>
 
     </div>
   )
@@ -69,14 +69,16 @@ const Motivation = (props) => {
 
 
 const mapStateToProps = (state) => ({
-  addMotivationItem: state.motivations.addMotivationItem,
+
   motivationItems: state.motivations.motivations.motivationItems,
   profile: state.auth.profile,
   motivations: state.motivations.motivations
 })
 
 const mapDispatchToProps = {
+  addMotivationItem: motivationActions.addMotivationItem,
   getMotivation: motivationActions.getMotivationByUserId,
+  removeMotivationItem:motivationActions.removeMotivationItem,
   showModal: actions.showModal
 }
 

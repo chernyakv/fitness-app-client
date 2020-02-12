@@ -30,8 +30,10 @@ const addMotivationItem = (motivationId, motivationItem) => {
   return async dispatch => {
     dispatch(request());
     const response = await motivationsService.addMotivationItem(motivationId, motivationItem);
+
     try {
       dispatch(success(response.data));
+
     } catch (e) {
       dispatch(failure());
       createNotification('error', e.response.data.message);
@@ -50,7 +52,35 @@ const addMotivationItem = (motivationId, motivationItem) => {
     return {type: types.ADD_MOTIVATION_ITEM_FAILURE}
   }
 };
+function removeMotivationItem(motivationId, motivationItemId) {
+  return dispatch => {
+    dispatch(request());
+    motivationsService.removeMotivationItem(motivationId, motivationItemId)
+      .then(
+        response => {
+          createNotification('success', 'MOTIVATIONITEM has been deleted');
+          dispatch(success(motivationItemId));
+        },
+        error => {
+          dispatch(failure());
+        }
+      );
+  };
+
+  function request() {
+    return {type: types.REMOVE_MOTIVATION_ITEM_REQUEST}
+  }
+
+  function success(motivationItemId) {
+    return {type: types.REMOVE_MOTIVATION_ITEM_SUCCESS, motivationItemId}
+  }
+
+  function failure() {
+    return {type: types.REMOVE_MOTIVATION_ITEM_FAILURE}
+  }
+}
 export const motivationActions = {
   getMotivationByUserId,
-  addMotivationItem
+  addMotivationItem,
+  removeMotivationItem
 };
