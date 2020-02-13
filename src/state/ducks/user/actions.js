@@ -166,7 +166,6 @@ function getUserParameters(userId, fromDate, toDate) {
     userService.getUserParameters(userId, fromDate, toDate)
       .then(
         response => {
-
           dispatch(success(response.data));
         },
         error => {

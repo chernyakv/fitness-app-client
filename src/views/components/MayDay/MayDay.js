@@ -1,15 +1,19 @@
 import React, {useEffect} from 'react'
-import {Card, Col, Row} from 'antd';
+import {Card, Col, Row, Spin} from 'antd';
 import 'antd/dist/antd.css';
 import './MayDay.css'
 import {connect} from "react-redux";
 import {exerciseActions} from "../../../state/ducks/exercise/actions";
 
-const MayDay = ({profile, exercise, getExerciseForToday}) => {
+const MayDay = ({profile, exercise, loading, getExerciseForToday}) => {
 
   useEffect(() => {
     getExerciseForToday(profile.id);
   }, []);
+
+  if(loading) {
+    return <Spin size="large" />
+  }
 
   if (!exercise) {
     return <h4>No exercise</h4>
@@ -51,6 +55,7 @@ const MayDay = ({profile, exercise, getExerciseForToday}) => {
 const mapStateToProps = (state) => ({
   profile: state.auth.profile,
   exercise: state.exercises.todayExercise,
+  loading: state.exercises.loading
 });
 
 const mapDispatchToProps = {

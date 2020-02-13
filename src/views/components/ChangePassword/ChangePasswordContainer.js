@@ -13,7 +13,7 @@ class ChangePasswordContainer extends Component {
 
   handleSubmit = (values) => {
     this.props.reset(values.oldPassword, values.newPassword)
-  }
+  };
 
   render() {
     return (

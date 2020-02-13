@@ -19,7 +19,7 @@ const App = () => {
         <PrivateRoute exact path="/" component={HomePage}/>
         <NotAuthenticatedRoute exact path="/registration" component={RegistrationPage}/>
         <NotAuthenticatedRoute exact path="/login" component={LoginPage}/>
-        <PrivateRoute exact path="/admin" roles={['ADMIN']} component={AdminPage}/>
+        <PrivateRoute exact path="/admin" roles={['ROLE_Role(id=1, name=ADMIN)']} component={AdminPage}/>
         <PrivateRoute exact path="/resetPassword" component={ChangePasswordPage}/>
         <Redirect from="*" to="/"/>
       </Switch>

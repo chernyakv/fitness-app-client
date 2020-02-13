@@ -34,17 +34,6 @@ class AddUserModal extends Component {
     const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
-    const formItemLayout = {
-      labelCol: {
-        xs: {span: 6},
-        sm: {span: 6},
-      },
-      wrapperCol: {
-        xs: {span: 14},
-        sm: {span: 14},
-      },
-    };
-
     return (
       <Modal show={show}>
         <Modal.Header>
@@ -52,7 +41,7 @@ class AddUserModal extends Component {
         </Modal.Header>
 
         <Modal.Body>
-          <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             <Form.Item label="Login">
               {getFieldDecorator('login', {
                 rules: [
