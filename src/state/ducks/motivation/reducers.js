@@ -66,7 +66,7 @@ const motivationReducer = (state = initialState, action) => {
         error: false,
         motivations: {
           ...state.motivations,
-          motivationItems: state.motivations.motivationItems.filter(motivationItem => motivationItem.motivationItemId !== action.motivationItemId)
+          motivationItems: state.motivations.motivationItems.filter(motivationItem => motivationItem.id !== action.id)
         },
       };
     case types.REMOVE_MOTIVATION_ITEM_FAILURE:

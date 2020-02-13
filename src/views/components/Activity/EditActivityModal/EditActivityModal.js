@@ -24,7 +24,7 @@ class EditActivityModal extends Component {
         console.log(values);
         const activity1 = {
           ...activity,
-          activityId: activity.activityId,
+          id: activity.id,
           name: values.name,
           description: values.description,
           completed: values.completed,
@@ -33,7 +33,7 @@ class EditActivityModal extends Component {
           timeToComplete: activity.timeToComplete
         };
         console.log(activity1);
-        this.props.updateActivity(activity.activityId, activity1);
+        this.props.updateActivity(activity.id, activity1);
         this.props.handleHide();
       }
     });

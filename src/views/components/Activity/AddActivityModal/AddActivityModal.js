@@ -26,7 +26,7 @@ class AddActivityModal extends Component {
           end: values.endTime.format(format),
           timeToComplete: values.timeToComplete
         };
-        this.props.addActivity(plans.planId, activity1);
+        this.props.addActivity(plans.id, activity1);
         this.props.handleHide();
       }
     });

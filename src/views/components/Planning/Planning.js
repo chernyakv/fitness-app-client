@@ -93,7 +93,7 @@ const Planning = (props) => {
                         title={activity.name}
                         description={
                           <div>{activity.description}
-                            <div>{activity.start}-{activity.end}</div>
+                            <div>{activity.startTime}-{activity.endTime}</div>
                           </div>}
                       />
                     </List.Item>

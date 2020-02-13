@@ -84,7 +84,7 @@ class Home extends Component {
           <UserProfileSideBar profile={profile}/>
         </div>
         <div className="col-md-9">
-          {profile.hasGoal ? (
+          {profile.goal ? (
             this.renderHomeTabs()
           ) : (
             <GoalSelectionComponent profile={profile} setUserGoal={this.setUserGoal}/>

@@ -42,7 +42,7 @@ const planReducer = (state = initialState, action) => {
         error: false,
         plans: {
           ...state.plans,
-          activities: state.plans.activities.filter(activity => activity.activityId !== action.activityId)
+          activities: state.plans.activities.filter(activity => activity.id !== action.activityId)
         },
       };
     case types.REMOVE_PLAN_ACTIVITY_FAILURE:
@@ -86,7 +86,7 @@ const planReducer = (state = initialState, action) => {
         error: false,
         plans: {
           ...state.plans,
-          activities: state.plans.activities.map(activity => activity.activityId !== action.activity.activityId ? activity : action.activity)
+          activities: state.plans.activities.map(activity => activity.id !== action.activity.id ? activity : action.activity)
         },
       };
     case types.UPDATE_PLAN_ACTIVITY_FAILURE:

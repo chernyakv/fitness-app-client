@@ -1,7 +1,7 @@
 import * as axios from "axios";
 
 const instance = axios.create({
-  baseURL: '/api/v1/'
+  baseURL: 'https://capparishealth.herokuapp.com'
 });
 
 export default instance;
