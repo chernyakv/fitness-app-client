@@ -18,7 +18,7 @@ const UserProfileSideBar = props => {
                     {profile.firstName + ' ' + profile.lastName}
                 </div>
                 <div className="profile-usertitle-job">
-                    {profile.role.role}
+                    {profile.roles[0].name}
                 </div>
             </div>
         </div>

@@ -1,30 +1,26 @@
 import instance from "./instance";
 
 export const planService = {
-  getByUserIdAndDate,
+  getPlanByUserIdAndDate,
   addActivity,
   updateActivity,
   removeActivity
-
 };
 
-function getByUserIdAndDate(userId, date) {
-  return instance.get(`plans/u/${userId}/${date}`)
+function getPlanByUserIdAndDate(userId, date) {
+  return instance.get(`/tasks/plans/u/${userId}/${date}`)
 }
 
-
 function updateActivity(activityId, activity) {
-
-  return instance.put(`plans/activities/${activityId}`, {...activity});
+  return instance.put(`/tasks/plans/activities/${activityId}`, {...activity});
 }
 
 function addActivity(planId, activity) {
-
-  return instance.post(`plans/${planId}/activities`, {...activity});
+  return instance.post(`/tasks/plans/${planId}/activities`, {...activity});
 }
 
 function removeActivity(planId, activityId) {
-  return instance.delete(`plans/${planId}/activities/${activityId}`);
+  return instance.delete(`/tasks/plans/${planId}/activities/${activityId}`);
 }
 
 

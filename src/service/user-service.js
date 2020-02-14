@@ -10,6 +10,7 @@ export const userService = {
     getUserParameters
 }
 
+
 function getByLogin(login) {
     return instance.get(`users/login/${login}`);
 }

@@ -6,8 +6,7 @@ function getByUserIdAndDate(userId, date) {
   return async dispatch => {
     dispatch(request());
     try {
-
-      const response = await planService.getByUserIdAndDate(userId, date);
+      const response = await planService.getPlanByUserIdAndDate(userId, date);
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());
@@ -31,8 +30,6 @@ const updateActivity = (activityId, activity) => {
   return async dispatch => {
     dispatch(request());
     try {
-      console.log("updateActivity");
-      console.log(activity);
       const response = await planService.updateActivity(activityId, activity);
       dispatch(success(response.data));
     } catch (e) {

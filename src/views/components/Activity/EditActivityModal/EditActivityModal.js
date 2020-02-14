@@ -19,9 +19,6 @@ class EditActivityModal extends Component {
 
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-
-        console.log("isC");
-        console.log(values);
         const activity1 = {
           ...activity,
           id: activity.id,

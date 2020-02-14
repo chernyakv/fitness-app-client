@@ -36,16 +36,8 @@ class AddActivityModal extends Component {
     const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
-    const formItemLayout = {
-      labelCol: {
-        xs: {span: 8},
-        sm: {span: 8},
-      },
-      wrapperCol: {
-        xs: {span: 14},
-        sm: {span: 14},
-      },
-    };
+    const formItemLayout = null;
+
     return (
       <Modal show={show}>
         <Modal.Header>

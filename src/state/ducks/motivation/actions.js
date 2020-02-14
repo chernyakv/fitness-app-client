@@ -58,7 +58,7 @@ function removeMotivationItem(motivationId, motivationItemId) {
     motivationsService.removeMotivationItem(motivationId, motivationItemId)
       .then(
         response => {
-          createNotification('success', 'MOTIVATIONITEM has been deleted');
+          createNotification('success', 'Motivation item has been deleted');
           dispatch(success(motivationItemId));
         },
         error => {

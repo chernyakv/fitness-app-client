@@ -5,10 +5,10 @@ export const exerciseService = {
   getExerciseForToday
 };
 
-function getExerciseForToday(goalId) {
-  return instance.get(`exercises/today?goalId=${goalId}`);
+function getExerciseForToday(userId) {
+  return instance.get(`tasks/today?userId=${userId}`);
 }
 
 function updateExercise(id, exercise) {
-  return instance.put(`exercises/${id}`, {...exercise});
+  return instance.put(`tasks/${id}`, {...exercise});
 }
