@@ -19,8 +19,8 @@ function addActivity(planId, activity) {
   return instance.post(`/tasks/plans/${planId}/activities`, {...activity});
 }
 
-function removeActivity(planId, activityId) {
-  return instance.delete(`/tasks/plans/${planId}/activities/${activityId}`);
+function removeActivity(activityId) {
+  return instance.delete(`/tasks/plans/activities/${activityId}`);
 }
 
 

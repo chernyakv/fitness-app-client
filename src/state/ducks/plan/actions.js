@@ -78,10 +78,10 @@ const addActivity = (planId, activity) => {
   }
 };
 
-function removeActivity(planId, activityId) {
+function removeActivity(activityId) {
   return dispatch => {
     dispatch(request());
-    planService.removeActivity(planId, activityId)
+    planService.removeActivity(activityId)
       .then(
         response => {
           createNotification('success', 'Activity has been deleted');

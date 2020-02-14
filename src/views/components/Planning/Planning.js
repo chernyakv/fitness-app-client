@@ -24,7 +24,7 @@ function showConfirm(props, activity) {
     title: 'Do you want to delete these activity?',
     content: 'When clicked the OK button, this dialog will be closed after 1 second',
     onOk() {
-      props.removeActivity(props.plans.planId, activity.activityId)
+      props.removeActivity( activity.id)
       return new Promise((resolve, reject) => {
         setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
       }).catch(() => console.log('Oops errors!'));
@@ -59,25 +59,25 @@ const Planning = (props) => {
           props.showModal("AddActivityModal", {
             ...modalProps, plans
           });
-        }} style={{backgroundColor: 'gold', fontSize: '16px'}}>+
+        }} style={{backgroundColor: '#9ad0ff', fontSize: '16px'}}>+
         </Button>
       }>
         {[...Array(tabNum).keys()].map(i => (
 
           <TabPane tab={planTabs[i].format("ddd")} key={i}>
-            <List style={{"backgroundColor": "#ffe79a"}}
+            <List style={{"backgroundColor": "#65ccff"}}
                   size="large"
                   bordered
                   dataSource={plans.activities}
                   renderItem={activity => (
                     <List.Item
-                      style={activity.completed ? {"backgroundColor": "#ffea93"} : {"backgroundColor": "#ffffff"}}
+                      style={activity.completed ? {"backgroundColor": "#e2f3ff"} : {"backgroundColor": "#ffffff"}}
                       extra={
-                        <Tag style={{backgroundColor: 'gold'}}>{activity.timeToComplete} minutes <Icon
+                        <Tag style={{backgroundColor: '#65ccff'}}>{activity.timeToComplete} minutes <Icon
                           type="clock-circle" style={{fontSize: '16px'}}/>
                         </Tag>
                       }>
-                      <Tag style={{backgroundColor: 'gold'}}>
+                      <Tag style={{backgroundColor: '#9ad0ff'}}>
                         <Icon type="delete"
                               style={{fontSize: '16px'}}
                               onClick={() => {
