@@ -12,18 +12,19 @@ class AddNewsModal extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const {motivations} = this.props;
+    const {motivationItem} = this.props;
 
     this.props.form.validateFieldsAndScroll((err, values) => {
 
       if (!err) {
-        const motivationItem = {
+
+        const motivationItem1 = {
           description: values.description,
           tag: values.tag,
           timeToRead: values.timeToRead,
           score: values.score
         };
-        this.props.addMotivationItem(motivations.motivationId, motivationItem);
+        this.props.addMotivationItem(motivationItem.id, motivationItem1);
         this.props.handleHide();
       }
     });
@@ -92,6 +93,6 @@ class AddNewsModal extends Component {
   }
 }
 
-const WrappedAddAddNewsModalForm = Form.create({name: 'addNewsModalModal'})(AddNewsModal);
+const WrappedAddAddNewsModalForm = Form.create({name: 'addNewsModal'})(AddNewsModal);
 
 export default connectModal({name: 'AddNewsModal', destroyOnHide: false})(WrappedAddAddNewsModalForm)

@@ -4,7 +4,7 @@ import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
 import {Button, Form, Input} from 'antd';
 
-class AddAdviceModal extends Component {
+class AddNewsItemModal extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -12,23 +12,30 @@ class AddAdviceModal extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const {motivations} = this.props;
-
+    const {motivationItem} = this.props;
+    console.log(motivationItem);
     this.props.form.validateFieldsAndScroll((err, values) => {
-      console.log("AddAdviceModal")
-      console.log(this.props)
-      if (!err) {
-        const motivationItem = {
-          description: values.description,
 
+      if (!err) {
+        const newsItem = {
+          item: values.item,
+          itemType: values.itemType,
+          motivationItem: motivationItem
         };
-        this.props.addMotivationItem(motivations.id, motivationItem);
+        console.log("AddNewsItemModal newsItem")
+        console.log(newsItem);
+        console.log("AddNewsItemModal motivationItem")
+        console.log(motivationItem);
+
+        this.props.updateMotivationItem(motivationItem.id, newsItem);
         this.props.handleHide();
       }
     });
   };
 
   render() {
+    console.log("AddNewsItemModal")
+    console.log(this.props)
     const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
@@ -50,8 +57,13 @@ class AddAdviceModal extends Component {
 
         <Modal.Body>
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-            <Form.Item label="Advice description">
-              {getFieldDecorator('description')(<Input/>)}
+
+            <Form.Item label="Item type">
+              {getFieldDecorator('itemType', {initialValue: "TEXT"})(<Input/>)}
+            </Form.Item>
+            <Form.Item label="Item">
+              {getFieldDecorator('item', {initialValue: "Arrays and/or values to concatenate into a new array. If all valueN parameters are omitted, concat returns a shallow copy of the existing array on which it is called. See the description below for more details."})(
+                <Input/>)}
             </Form.Item>
 
 
@@ -82,6 +94,6 @@ class AddAdviceModal extends Component {
   }
 }
 
-const WrappedAddAdviceModalForm = Form.create({name: 'addAdviceModal'})(AddAdviceModal);
+const WrappedAddNewsItemModalForm = Form.create({name: 'addNewsItemModal'})(AddNewsItemModal);
 
-export default connectModal({name: 'AddAdviceModal', destroyOnHide: false})(WrappedAddAdviceModalForm)
+export default connectModal({name: 'AddNewsItemModal', destroyOnHide: false})(WrappedAddNewsItemModalForm)

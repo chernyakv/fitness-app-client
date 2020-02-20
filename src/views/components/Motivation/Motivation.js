@@ -12,8 +12,11 @@ import {Button, Modal} from "antd";
 
 const Motivation = (props) => {
   const [visible, setVisible] = useState(false);
+  const [visibleButton, setVisibleButton] = useState(false);
+
   const ButtonGroup = Button.Group;
   const {motivations} = props;
+
   const showModal = () => {
     setVisible(true);
   };
@@ -35,20 +38,26 @@ const Motivation = (props) => {
       ...modalProps, motivations
     })
   };
+
   useEffect(() => {
     props.getMotivation(props.profile.id);
+    props.profile.roles[0].name === "ADMIN" ? setVisibleButton(true) : setVisibleButton(false);
   }, []);
   const modalProps = {
-    addMotivationItem: props.addMotivationItem
+    addMotivationItem: props.addMotivationItem,
+    updateMotivationItem: props.updateMotivationItem,
+    showModal: props.showModal
   };
   return (
 
     <div className='motivation-wrapper'>
       <AddNewsModal/>
       <AddAdviceModal/>
-      <Button type="primary" onClick={showModal}>
-        Add news or advice
-      </Button>
+      <div>{visibleButton ?
+        <Button type="primary" onClick={showModal}>
+          Add news or advice
+        </Button> : <div></div>
+      }</div>
       <Modal
         title="Add motivation news or advice"
         visible={visible}
@@ -61,25 +70,25 @@ const Motivation = (props) => {
         </ButtonGroup>
 
       </Modal>
-      <MotivationItem motivationItems={props.motivationItems} removeMotivationItem={props.removeMotivationItem} motivations={motivations}/>
+      <MotivationItem props={props}
+                      motivations={motivations} setVisibleButton={setVisibleButton}/>
 
     </div>
   )
-}
+};
 
 
 const mapStateToProps = (state) => ({
-
-  motivationItems: state.motivations.motivations.motivationItems,
   profile: state.auth.profile,
   motivations: state.motivations.motivations
-})
+});
 
 const mapDispatchToProps = {
   addMotivationItem: motivationActions.addMotivationItem,
+  updateMotivationItem: motivationActions.updateMotivationItem,
   getMotivation: motivationActions.getMotivationByUserId,
-  removeMotivationItem:motivationActions.removeMotivationItem,
+  removeMotivationItem: motivationActions.removeMotivationItem,
   showModal: actions.showModal
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Motivation)

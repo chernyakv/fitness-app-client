@@ -2,7 +2,7 @@ import React from 'react'
 import 'antd/dist/antd.css';
 import {Card, Icon, List, Rate} from "antd";
 
-const News = ({onClose, newsItems}) => {
+const News = ({onClose,  motivationItem, visibleAddNews}) => {
   return (
     <div>
 
@@ -13,10 +13,10 @@ const News = ({onClose, newsItems}) => {
           <div>
 
             <Icon type="close-circle" style={{fontSize: '24px'}} onClick={onClose}/>
-            <p align="center"> {newsItems.description}</p>
+            <p align="center"> {motivationItem.description}</p>
           </div>
         }
-        dataSource={newsItems.newsItems}
+        dataSource={motivationItem.newsItems}
         renderItem={newsItem => (
 
           <List.Item>
@@ -30,13 +30,13 @@ const News = ({onClose, newsItems}) => {
               <List.Item.Meta
                 description={<Card
                   style={{width: '50%', height: '30%', marginLeft: '10%'}}
-                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                  cover={<img alt="example" src={newsItem.item}/>}
                 />}
               />
             )}</List.Item>)
         }
       />
-      <Rate allowHalf defaultValue={newsItems.score}/>
+      <Rate allowHalf defaultValue={motivationItem.score}/>
     </div>
   );
 };

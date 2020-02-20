@@ -50,6 +50,7 @@ const Planning = (props) => {
 
   return (
     <div className="card-container">
+
       <EditActivityModal/>
       <AddActivityModal/>
       <Tabs type="card" onTabClick={(key, e) => {

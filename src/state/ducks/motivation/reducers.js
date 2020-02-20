@@ -66,7 +66,7 @@ const motivationReducer = (state = initialState, action) => {
         error: false,
         motivations: {
           ...state.motivations,
-          motivationItems: state.motivations.motivationItems.filter(motivationItem => motivationItem.id !== action.id)
+          motivationItems: state.motivations.motivationItems.filter(motivationItem => motivationItem.id !== action.motivationItemId)
         },
       };
     case types.REMOVE_MOTIVATION_ITEM_FAILURE:
@@ -75,7 +75,35 @@ const motivationReducer = (state = initialState, action) => {
         loading: false,
       };
 
+    case types.UPDATE_MOTIVATION_ITEM_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
 
+    case types.UPDATE_MOTIVATION_ITEM_SUCCESS:
+      console.log("action - updateMotivationItem");
+      console.log(action);
+      console.log("state - updateMotivationItem");
+      console.log(state);
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        motivations: {
+          ...state.motivations,
+          motivationItems: state.motivations.motivationItems.map(motivationItem =>
+            motivationItem.id === action.motivationItemId ? {...motivationItem, newsItems: motivationItem.newsItems.push(action.newsItem) } : motivationItem)
+        }
+
+      };
+    case types.UPDATE_MOTIVATION_ITEM_FAILURE:
+      return {
+        ...state,
+        error: true,
+        loading: false
+      };
     default:
       return state;
   }
