@@ -11,8 +11,8 @@ const MayDay = ({profile, exercise, loading, getExerciseForToday}) => {
     getExerciseForToday(profile.id);
   }, []);
 
-  if(loading) {
-    return <Spin size="large" />
+  if (loading) {
+    return <Spin size="large"/>
   }
 
   if (!exercise) {

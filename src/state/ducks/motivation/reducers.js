@@ -87,14 +87,19 @@ const motivationReducer = (state = initialState, action) => {
       console.log(action);
       console.log("state - updateMotivationItem");
       console.log(state);
+
       return {
         ...state,
         loading: false,
         error: false,
+
         motivations: {
           ...state.motivations,
           motivationItems: state.motivations.motivationItems.map(motivationItem =>
-            motivationItem.id === action.motivationItemId ? {...motivationItem, newsItems: motivationItem.newsItems.push(action.newsItem) } : motivationItem)
+            motivationItem.id === action.motivationItemId ? {
+              ...motivationItem,
+              newsItems: motivationItem.newsItems.push(action.newsItem)
+            } : motivationItem)
         }
 
       };

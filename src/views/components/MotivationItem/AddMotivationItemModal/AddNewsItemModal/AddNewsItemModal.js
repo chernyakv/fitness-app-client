@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input, Radio} from 'antd';
+
 
 class AddNewsItemModal extends Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class AddNewsItemModal extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const {motivationItem} = this.props;
-    console.log(motivationItem);
     this.props.form.validateFieldsAndScroll((err, values) => {
 
       if (!err) {
@@ -22,11 +22,6 @@ class AddNewsItemModal extends Component {
           itemType: values.itemType,
           motivationItem: motivationItem
         };
-        console.log("AddNewsItemModal newsItem")
-        console.log(newsItem);
-        console.log("AddNewsItemModal motivationItem")
-        console.log(motivationItem);
-
         this.props.updateMotivationItem(motivationItem.id, newsItem);
         this.props.handleHide();
       }
@@ -34,8 +29,6 @@ class AddNewsItemModal extends Component {
   };
 
   render() {
-    console.log("AddNewsItemModal")
-    console.log(this.props)
     const {show, handleHide} = this.props;
     const {getFieldDecorator} = this.props.form;
 
@@ -59,11 +52,18 @@ class AddNewsItemModal extends Component {
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
 
             <Form.Item label="Item type">
-              {getFieldDecorator('itemType', {initialValue: "TEXT"})(<Input/>)}
+              {getFieldDecorator('itemType', {initialValue: "TEXT"})(
+                <Radio.Group buttonStyle="solid">
+                  <Radio.Button value={"TEXT"}>Text</Radio.Button>
+                  <Radio.Button value={"IMAGE"}>Image</Radio.Button>
+                </Radio.Group>
+              )}
             </Form.Item>
             <Form.Item label="Item">
-              {getFieldDecorator('item', {initialValue: "Arrays and/or values to concatenate into a new array. If all valueN parameters are omitted, concat returns a shallow copy of the existing array on which it is called. See the description below for more details."})(
-                <Input/>)}
+              {getFieldDecorator('item', {initialValue: "write text/url"})(
+                <Input pattern={{
+                  pattern:"[A-Za-z]",
+                  title:"The Social Security Number"} }/>)}
             </Form.Item>
 
 

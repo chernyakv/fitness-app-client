@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
 import {connectModal} from 'redux-modal'
 import 'antd/dist/antd.css';
-import {Button, Form, Input,Rate} from 'antd';
+import {Button, Form, Input, Rate} from 'antd';
 
 class AddNewsModal extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class AddNewsModal extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const {motivationItem} = this.props;
+    const {motivations} = this.props;
 
     this.props.form.validateFieldsAndScroll((err, values) => {
 
@@ -22,9 +22,12 @@ class AddNewsModal extends Component {
           description: values.description,
           tag: values.tag,
           timeToRead: values.timeToRead,
-          score: values.score
+          score: values.score,
+          image:values.image
         };
-        this.props.addMotivationItem(motivationItem.id, motivationItem1);
+        console.log(this.props)
+        console.log(motivations)
+        this.props.addMotivationItem(motivations.id, motivationItem1);
         this.props.handleHide();
       }
     });
@@ -60,10 +63,13 @@ class AddNewsModal extends Component {
             <Form.Item label="News timeToRead">
               {getFieldDecorator('timeToRead')(<Input/>)}
             </Form.Item>
+            <Form.Item label="Image">
+              {getFieldDecorator('image')(<Input/>)}
+            </Form.Item>
             <Form.Item label="News score">
               {getFieldDecorator('score', {
                 initialValue: 3.5,
-              })(<Rate />)}
+              })(<Rate/>)}
             </Form.Item>
 
           </Form>

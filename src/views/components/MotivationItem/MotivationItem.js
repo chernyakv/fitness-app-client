@@ -2,9 +2,10 @@ import React, {useState} from 'react'
 import 'antd/dist/antd.css';
 import {Button, Icon, List, Modal, Tag} from 'antd';
 import News from "../News/News";
-import AddNewsItemModal from "./AddMotivationItemModal/AddNewsItemModal";
+import AddNewsItemModal from "./AddMotivationItemModal/AddNewsItemModal/AddNewsItemModal";
+
 const {confirm} = Modal;
-const MotivationItem = ({ setVisibleButton,props}) => {
+const MotivationItem = ({setVisibleButton, props}) => {
 
   const [visible, setVisible] = useState(true);
   const [visibleAddNews, setVisibleAddNews] = useState(false);
@@ -35,14 +36,16 @@ const MotivationItem = ({ setVisibleButton,props}) => {
     });
   }
 
-  return (
+  return  (
     visible ? (
       <div>
+        {console.log(props.motivations.motivationItems)
+        }
         {props.motivations.motivationItems ? (
           <div>
 
             <List
-              size="large"
+              size="default"
               bordered
               header={<h3>Motivation</h3>}
               dataSource={props.motivations.motivationItems}
@@ -58,7 +61,7 @@ const MotivationItem = ({ setVisibleButton,props}) => {
                                <Tag style={{backgroundColor: '#65ccff'}}>{motivationItem.timeToRead} minutes to
                                  read <Icon
                                    type="clock-circle" style={{fontSize: '16px'}}/>
-                               </Tag>}>
+                               </Tag>} style={{backgroundImage:"url(" + motivationItem.image + ")" }}>
                     <Tag style={{backgroundColor: '#9ad0ff'}}>
                       <Icon type="delete"
                             style={{fontSize: '16px'}}
@@ -101,7 +104,7 @@ const MotivationItem = ({ setVisibleButton,props}) => {
             props.showModal("AddNewsItemModal", {
               ...props, motivationItem
             })
-          } }>Add news</Button> : <div></div>
+          }}>Add news</Button> : <div> </div>
         }</div>
         <News onClose={onClose} motivationItem={motivationItem} visibleAddNews={visibleAddNews}/>
       </div>)

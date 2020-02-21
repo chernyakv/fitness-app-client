@@ -2,16 +2,22 @@ import React from 'react'
 import 'antd/dist/antd.css';
 import {Card, Icon, List, Rate} from "antd";
 
-const News = ({onClose,  motivationItem, visibleAddNews}) => {
+const News = ({onClose, motivationItem}) => {
   return (
     <div>
 
       <List
+        pagination={{
+          onChange: page => {
+            console.log(page);
+          },
+          pageSize: 7,
+        }}
         size="large"
         bordered
         header={
-          <div>
 
+          <div >
             <Icon type="close-circle" style={{fontSize: '24px'}} onClick={onClose}/>
             <p align="center"> {motivationItem.description}</p>
           </div>
