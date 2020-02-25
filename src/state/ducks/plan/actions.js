@@ -55,9 +55,6 @@ const addActivity = (planId, activity) => {
     dispatch(request());
     const response = await planService.addActivity(planId, activity);
     try {
-      console.log("addActivity");
-      console.log(activity);
-
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());

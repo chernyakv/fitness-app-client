@@ -33,16 +33,10 @@ const MotivationItem = (props) => {
   }
 
   return (
-
     visible ? (
       <div>
-
-        {console.log(props)
-        }
         {props.motivations.motivationItems ? (
           <div>
-
-
             <List
               size="default"
               bordered
@@ -51,7 +45,7 @@ const MotivationItem = (props) => {
               renderItem={motivationItem => (
                 <div>{motivationItem.newsItems.length !== 0 || motivationItem.tag ?
 
-                  <NavLink to={`/motivation/${motivationItem.id}/news`}>News</NavLink> :
+                  <NavLink to={`/motivation/${motivationItem.id}`}>News</NavLink> :
                   <List.Item>
                     <Tag style={{backgroundColor: '#9ad0ff'}}>
                       <Icon type="delete"

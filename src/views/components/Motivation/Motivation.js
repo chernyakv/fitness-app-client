@@ -12,6 +12,8 @@ import {motivationItemActions} from "../../../state/ducks/motivation_item";
 import {BrowserRouter, Redirect, Route, Router, Switch} from 'react-router-dom'
 import News from "../News/News";
 import {history} from "../../../helpers/History";
+import { withRouter } from "react-router";
+
 
 const Motivation = (props) => {
   const [visible, setVisible] = useState(false);
@@ -72,8 +74,8 @@ const Motivation = (props) => {
         </ButtonGroup>
 
       </Modal>
-
-
+      <MotivationItem props={props}
+                      motivations={motivations} />
 
     </div>
   )

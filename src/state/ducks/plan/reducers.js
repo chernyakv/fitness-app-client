@@ -19,6 +19,7 @@ const planReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: false,
+          
         plans: state.plans ? state.plans.concat(action.activity) : [action.activity],
       };
     case types.ADD_PLAN_ACTIVITIES_FAILURE:
@@ -36,7 +37,6 @@ const planReducer = (state = initialState, action) => {
         plans: state.plans
       };
     case types.REMOVE_PLAN_ACTIVITY_SUCCESS:
-
       return {
         loading: false,
         error: false,

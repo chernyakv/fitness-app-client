@@ -18,8 +18,7 @@ const App = () => {
   return (
     <Router history={history}>
       <Switch>
-        <PrivateRoute exact path="/" component={HomePage}/>
-        <Route path='/motivation/:id/news' component={News}/>
+        <PrivateRoute path="/:tab?" component={HomePage}/>
         <NotAuthenticatedRoute exact path="/registration" component={RegistrationPage}/>
         <NotAuthenticatedRoute exact path="/login" component={LoginPage}/>
         <PrivateRoute exact path="/admin" roles={['ROLE_Role(id=1, name=ADMIN)']} component={AdminPage}/>

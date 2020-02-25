@@ -13,7 +13,8 @@ import {Affix, Button, Icon, Tabs} from 'antd';
 import 'antd/dist/antd.css';
 import {exerciseActions} from "../../../state/ducks/exercise";
 import EditExerciseModal from "../Exercises/EditExerciseModal/EditExerciseModal";
-import Main from "../Motivation/Main";
+import { withRouter } from "react-router";
+import MotivationTab from "../Motivation/MotivationTab";
 
 const {TabPane} = Tabs;
 
@@ -32,7 +33,7 @@ class Home extends Component {
     this.props.setUserGoal(this.props.profile.id, goal);
   };
 
-  renderHomeTabs = () => {
+  renderHomeTabs = (tab) => {
 
     const modalProps = {
       updateExercise: this.props.updateExercise,
@@ -40,24 +41,25 @@ class Home extends Component {
     };
 
     return (
-
       <div className="home-content">
         <EditExerciseModal/>
-        <Tabs defaultActiveKey="1">
+        <Tabs defaultActiveKey={tab}
+              onChange={key => {
+                this.props.history.push(`/${key}`);
+              }}>
           <TabPane tab={
             <snap>
-              <Icon type="heart" />
+              <Icon type="heart"/>
               Мой день
             </snap>
-          } key="1">
+          } key="day">
             <MayDay/>
           </TabPane>
           <TabPane tab={
             <snap>
               <Icon type="bar-chart"/>
               Прогресс
-            </snap>} key="2">
-
+            </snap>} key="progress">
             <Progress/>
           </TabPane>
           <TabPane tab={
@@ -65,7 +67,7 @@ class Home extends Component {
               <Icon type="carry-out"/>
               Планирование
             </snap>
-          } key="3">
+          } key="planning">
             <PlanningComponent/>
           </TabPane>
           <TabPane tab={
@@ -73,8 +75,8 @@ class Home extends Component {
               <Icon type="line-chart"/>
               Мотивация
             </snap>
-          } key="4">
-            <Motivation />
+          } key="motivation">
+            <MotivationTab/>
           </TabPane>
         </Tabs>
         <Affix style={{position: 'absolute', top: 10, right: 15}}>
@@ -92,13 +94,11 @@ class Home extends Component {
   };
 
   render() {
-    const {profile} = this.props;
+    const {profile, match} = this.props;
 
     if (!profile) {
       return <h4>No user profile</h4>
     }
-    console.log("props");
-    console.log(this.props);
     return (
       <div className="row con">
         <div className="col-md-3">
@@ -106,7 +106,7 @@ class Home extends Component {
         </div>
         <div className="col-md-9">
           {profile.goal ? (
-            this.renderHomeTabs()
+            this.renderHomeTabs(match.params.tab)
           ) : (
             <GoalSelectionComponent profile={profile} setUserGoal={this.setUserGoal}/>
           )}
@@ -129,4 +129,5 @@ const mapDispatchToProps = {
   showModal: actions.showModal,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+const HomeWithRouter =  withRouter(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeWithRouter)
