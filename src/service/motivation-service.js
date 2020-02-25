@@ -4,7 +4,6 @@ export const motivationsService = {
   getMotivationByUserId,
   addMotivationItem,
   removeMotivationItem,
-  updateMotivationItem
 };
 
 function getMotivationByUserId(userId) {
@@ -19,7 +18,5 @@ function removeMotivationItem(motivationItemId) {
   return instance.delete(`news/motivationItems/${motivationItemId}`);
 }
 
-function updateMotivationItem(motivationItemId, newsItem) {
-  return instance.put(`news/motivationItems/${motivationItemId}`, {...newsItem})
-}
+
 

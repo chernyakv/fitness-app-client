@@ -81,36 +81,9 @@ function removeMotivationItem(motivationItemId) {
   }
 }
 
-const updateMotivationItem = (motivationItemId, newsItem) => {
-  return async dispatch => {
-    console.log("DEBUG - updateMotivationItem");
-    dispatch(request());
-    try {
-      const response = await motivationsService.updateMotivationItem(motivationItemId, newsItem);
-      console.log("DEBUG - SUCCESS");
-      dispatch(success(motivationItemId, response.data));
-    } catch (e) {
-      console.log("DEBUG - ERROR");
-      dispatch(failure());
-      createNotification('error', e);
-    }
-  };
-
-  function request() {
-    return {type: types.UPDATE_MOTIVATION_ITEM_REQUEST}
-  }
-
-  function success(motivationItemId, newsItem) {
-    return {type: types.UPDATE_MOTIVATION_ITEM_SUCCESS, motivationItemId, newsItem}
-  }
-
-  function failure() {
-    return {type: types.UPDATE_MOTIVATION_ITEM_FAILURE}
-  }
-};
 export const motivationActions = {
+
   getMotivationByUserId,
   addMotivationItem,
-  removeMotivationItem,
-  updateMotivationItem
+  removeMotivationItem
 };

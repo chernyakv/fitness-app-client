@@ -1,23 +1,19 @@
 import React, {useState} from 'react'
 import 'antd/dist/antd.css';
-import {Button, Icon, List, Modal, Tag} from 'antd';
+import {Icon, List, Modal, Tag} from 'antd';
+import {
+  NavLink
+} from "react-router-dom";
 import News from "../News/News";
-import AddNewsItemModal from "./AddMotivationItemModal/AddNewsItemModal/AddNewsItemModal";
 
 const {confirm} = Modal;
-const MotivationItem = ({setVisibleButton, props}) => {
+const MotivationItem = (props) => {
 
   const [visible, setVisible] = useState(true);
-  const [visibleAddNews, setVisibleAddNews] = useState(false);
   const [motivationItem, setMotivationItem] = useState(null);
 
-  const showNews = () => {
-    setVisible(false);
-  };
 
   const onClose = () => {
-    setVisibleAddNews(false);
-    setVisibleButton(true);
     setVisible(true);
   };
 
@@ -36,13 +32,16 @@ const MotivationItem = ({setVisibleButton, props}) => {
     });
   }
 
-  return  (
+  return (
+
     visible ? (
       <div>
-        {console.log(props.motivations.motivationItems)
+
+        {console.log(props)
         }
         {props.motivations.motivationItems ? (
           <div>
+
 
             <List
               size="default"
@@ -51,30 +50,8 @@ const MotivationItem = ({setVisibleButton, props}) => {
               dataSource={props.motivations.motivationItems}
               renderItem={motivationItem => (
                 <div>{motivationItem.newsItems.length !== 0 || motivationItem.tag ?
-                  <List.Item onClick={() => {
-                    setMotivationItem(motivationItem);
-                    setVisibleButton(false);
-                    setVisibleAddNews(true);
-                    showNews()
-                  }}
-                             extra={
-                               <Tag style={{backgroundColor: '#65ccff'}}>{motivationItem.timeToRead} minutes to
-                                 read <Icon
-                                   type="clock-circle" style={{fontSize: '16px'}}/>
-                               </Tag>} style={{backgroundImage:"url(" + motivationItem.image + ")" }}>
-                    <Tag style={{backgroundColor: '#9ad0ff'}}>
-                      <Icon type="delete"
-                            style={{fontSize: '16px'}}
-                            onClick={() => {
-                              showConfirm(motivationItem)
-                            }}/>
-                    </Tag>
-                    <List.Item.Meta
-                      title={"NEWS"}
-                      description={motivationItem.description}
-                    />
 
-                  </List.Item> :
+                  <NavLink to={`/motivation/${motivationItem.id}/news`}>News</NavLink> :
                   <List.Item>
                     <Tag style={{backgroundColor: '#9ad0ff'}}>
                       <Icon type="delete"
@@ -98,15 +75,8 @@ const MotivationItem = ({setVisibleButton, props}) => {
           ))}
       </div>) : (
       <div>
-        <AddNewsItemModal/>
-        <div> {visibleAddNews ?
-          <Button type="primary" onClick={() => {
-            props.showModal("AddNewsItemModal", {
-              ...props, motivationItem
-            })
-          }}>Add news</Button> : <div> </div>
-        }</div>
-        <News onClose={onClose} motivationItem={motivationItem} visibleAddNews={visibleAddNews}/>
+        {/*<News onClose={onClose} motivationItem={motivationItem}/>*/}
+
       </div>)
   );
 };

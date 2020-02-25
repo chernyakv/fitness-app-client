@@ -71,20 +71,20 @@ const goalReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case types.UPDATE_USER_GOAL_SUCCESS:
       return {
         ...state,
         goals: state.goals.map(goal => goal.id !== action.goal.id ? goal : action.goal),
         loading: false,
         error: false
-      }
+      };
     case types.UPDATE_USER_GOAL_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
 
 
     case types.UPDATE_GOAL_EXERCISE_REQUEST:
@@ -92,20 +92,20 @@ const goalReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false
-      }
+      };
     case types.UPDATE_GOAL_EXERCISE_SUCCESS:
       return {
         ...state,
         exercise: action.exercise,
         loading: false,
         error: false
-      }
+      };
     case types.UPDATE_GOAL_EXERCISE_FAILURE:
       return {
         ...state,
         loading: false,
         error: true
-      }
+      };
     default:
       return state;
   }

@@ -75,40 +75,40 @@ const motivationReducer = (state = initialState, action) => {
         loading: false,
       };
 
-    case types.UPDATE_MOTIVATION_ITEM_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: false
-      };
-
-    case types.UPDATE_MOTIVATION_ITEM_SUCCESS:
-      console.log("action - updateMotivationItem");
-      console.log(action);
-      console.log("state - updateMotivationItem");
-      console.log(state);
-
-      return {
-        ...state,
-        loading: false,
-        error: false,
-
-        motivations: {
-          ...state.motivations,
-          motivationItems: state.motivations.motivationItems.map(motivationItem =>
-            motivationItem.id === action.motivationItemId ? {
-              ...motivationItem,
-              newsItems: motivationItem.newsItems.push(action.newsItem)
-            } : motivationItem)
-        }
-
-      };
-    case types.UPDATE_MOTIVATION_ITEM_FAILURE:
-      return {
-        ...state,
-        error: true,
-        loading: false
-      };
+    // case types.UPDATE_MOTIVATION_ITEM_REQUEST:
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //     error: false
+    //   };
+    //
+    // case types.UPDATE_MOTIVATION_ITEM_SUCCESS:
+    //   console.log("action - updateMotivationNewsItem");
+    //   console.log(action);
+    //   console.log("state - updateMotivationNewsItem");
+    //   console.log(state);
+    //
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: false,
+    //
+    //     motivations: {
+    //       ...state.motivations,
+    //       motivationItems: state.motivations.motivationItems.map(motivationItem =>
+    //         motivationItem.id === action.motivationItemId ? {
+    //           ...motivationItem,
+    //           newsItems: motivationItem.newsItems.push(action.newsItem)
+    //         } : motivationItem)
+    //     }
+    //
+    //   };
+    // case types.UPDATE_MOTIVATION_ITEM_FAILURE:
+    //   return {
+    //     ...state,
+    //     error: true,
+    //     loading: false
+    //   };
     default:
       return state;
   }

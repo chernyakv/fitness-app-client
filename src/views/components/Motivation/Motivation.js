@@ -8,11 +8,14 @@ import MotivationItem from "../MotivationItem/MotivationItem";
 import AddNewsModal from "../MotivationItem/AddMotivationItemModal/AddNewsModal";
 import AddAdviceModal from "../MotivationItem/AddMotivationItemModal/AddAdviceModal";
 import {Button, Modal} from "antd";
-
+import {motivationItemActions} from "../../../state/ducks/motivation_item";
+import {BrowserRouter, Redirect, Route, Router, Switch} from 'react-router-dom'
+import News from "../News/News";
+import {history} from "../../../helpers/History";
 
 const Motivation = (props) => {
   const [visible, setVisible] = useState(false);
-  const [visibleButton, setVisibleButton] = useState(false);
+
 
   const ButtonGroup = Button.Group;
   const {motivations} = props;
@@ -41,11 +44,10 @@ const Motivation = (props) => {
 
   useEffect(() => {
     props.getMotivation(props.profile.id);
-    props.profile.roles[0].name === "ADMIN" ? setVisibleButton(true) : setVisibleButton(false);
   }, []);
   const modalProps = {
     addMotivationItem: props.addMotivationItem,
-    updateMotivationItem: props.updateMotivationItem,
+    updateMotivationNewsItem: props.updateMotivationNewsItem,
     showModal: props.showModal
   };
   return (
@@ -53,7 +55,7 @@ const Motivation = (props) => {
     <div className='motivation-wrapper'>
       <AddNewsModal/>
       <AddAdviceModal/>
-      <div>{visibleButton ?
+      <div>{props.profile.roles[0].name === "ADMIN" ?
         <Button type="primary" onClick={showModal}>
           Add news or advice
         </Button> : <div></div>
@@ -70,8 +72,8 @@ const Motivation = (props) => {
         </ButtonGroup>
 
       </Modal>
-      <MotivationItem props={props}
-                      motivations={motivations} setVisibleButton={setVisibleButton}/>
+
+
 
     </div>
   )
@@ -80,12 +82,14 @@ const Motivation = (props) => {
 
 const mapStateToProps = (state) => ({
   profile: state.auth.profile,
-  motivations: state.motivations.motivations
+  motivations: state.motivations.motivations,
+  motivationItem: state.motivationItem.motivationItem
 });
 
 const mapDispatchToProps = {
+  getMotivationItem: motivationItemActions.getMotivationItem,
   addMotivationItem: motivationActions.addMotivationItem,
-  updateMotivationItem: motivationActions.updateMotivationItem,
+  addNewsItem: motivationItemActions.addNewsItem,
   getMotivation: motivationActions.getMotivationByUserId,
   removeMotivationItem: motivationActions.removeMotivationItem,
   showModal: actions.showModal

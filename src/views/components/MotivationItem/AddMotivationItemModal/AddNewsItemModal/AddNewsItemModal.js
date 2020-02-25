@@ -22,7 +22,7 @@ class AddNewsItemModal extends Component {
           itemType: values.itemType,
           motivationItem: motivationItem
         };
-        this.props.updateMotivationItem(motivationItem.id, newsItem);
+        this.props.updateMotivationNewsItem(motivationItem.id, newsItem);
         this.props.handleHide();
       }
     });

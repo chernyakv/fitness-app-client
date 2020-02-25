@@ -9,10 +9,11 @@ import MayDay from "../MayDay";
 import Progress from "../Progress";
 import PlanningComponent from "../Planning/Planning";
 import Motivation from "../Motivation";
-import {Affix, Button, Tabs} from 'antd';
+import {Affix, Button, Icon, Tabs} from 'antd';
 import 'antd/dist/antd.css';
 import {exerciseActions} from "../../../state/ducks/exercise";
 import EditExerciseModal from "../Exercises/EditExerciseModal/EditExerciseModal";
+import Main from "../Motivation/Main";
 
 const {TabPane} = Tabs;
 
@@ -43,17 +44,37 @@ class Home extends Component {
       <div className="home-content">
         <EditExerciseModal/>
         <Tabs defaultActiveKey="1">
-          <TabPane tab="Мой день" key="1">
+          <TabPane tab={
+            <snap>
+              <Icon type="heart" />
+              Мой день
+            </snap>
+          } key="1">
             <MayDay/>
           </TabPane>
-          <TabPane tab="Прогресс" key="2">
+          <TabPane tab={
+            <snap>
+              <Icon type="bar-chart"/>
+              Прогресс
+            </snap>} key="2">
+
             <Progress/>
           </TabPane>
-          <TabPane tab="Планирование" key="3">
+          <TabPane tab={
+            <snap>
+              <Icon type="carry-out"/>
+              Планирование
+            </snap>
+          } key="3">
             <PlanningComponent/>
           </TabPane>
-          <TabPane tab="Мотивация" key="4">
-            <Motivation/>
+          <TabPane tab={
+            <snap>
+              <Icon type="line-chart"/>
+              Мотивация
+            </snap>
+          } key="4">
+            <Motivation />
           </TabPane>
         </Tabs>
         <Affix style={{position: 'absolute', top: 10, right: 15}}>

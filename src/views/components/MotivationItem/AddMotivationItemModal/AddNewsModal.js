@@ -25,8 +25,6 @@ class AddNewsModal extends Component {
           score: values.score,
           image:values.image
         };
-        console.log(this.props)
-        console.log(motivations)
         this.props.addMotivationItem(motivations.id, motivationItem1);
         this.props.handleHide();
       }
