@@ -23,7 +23,7 @@ class AddNewsModal extends Component {
           tag: values.tag,
           timeToRead: values.timeToRead,
           score: values.score,
-          image:values.image
+          image: values.image
         };
         this.props.addMotivationItem(motivations.id, motivationItem1);
         this.props.handleHide();

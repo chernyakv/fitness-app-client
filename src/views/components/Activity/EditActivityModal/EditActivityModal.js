@@ -25,8 +25,8 @@ class EditActivityModal extends Component {
           name: values.name,
           description: values.description,
           completed: values.completed,
-          start: values.startTime.format(format),
-          end: values.endTime.format(format),
+          startTime: values.startTime.format(format),
+          endTime: values.endTime.format(format),
           timeToComplete: activity.timeToComplete
         };
         console.log(activity1);
@@ -73,7 +73,7 @@ class EditActivityModal extends Component {
             <Form.Item label="Change start Time">
               {getFieldDecorator('startTime', {
                 valuePropName: 'startTime',
-                initialValue: moment(activity.start, format)
+                initialValue: moment(activity.startTime, format)
               })(
                 <TimePicker format={format}/>
               )}
@@ -81,7 +81,7 @@ class EditActivityModal extends Component {
             <Form.Item label="Change end Time">
               {getFieldDecorator('endTime', {
                 valuePropName: 'endTime',
-                initialValue: moment(activity.end, format)
+                initialValue: moment(activity.endTime, format)
               })(
                 <TimePicker format={format}/>
               )}

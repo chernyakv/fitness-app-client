@@ -11,6 +11,7 @@ import {planActions} from "../../../state/ducks/plan";
 import {Button, Icon, List, Modal, Tabs, Tag} from 'antd';
 import moment from "moment";
 
+
 const {confirm} = Modal;
 const {TabPane} = Tabs;
 const tabNum = 5;
@@ -55,6 +56,7 @@ const Planning = (props) => {
       <AddActivityModal/>
       <Tabs type="card" onTabClick={(key, e) => {
         props.getPlan(props.profile.id, (moment().add('days', key)).format("YYYY-MM-DD"));
+
       }} tabBarExtraContent={
         <Button onClick={() => {
           props.showModal("AddActivityModal", {
@@ -66,6 +68,21 @@ const Planning = (props) => {
         {[...Array(tabNum).keys()].map(i => (
 
           <TabPane tab={planTabs[i].format("ddd")} key={i}>
+            {/*<Paper>*/}
+            {/*  <Scheduler*/}
+            {/*    data={plans.activities}*/}
+            {/*  >*/}
+            {/*    <ViewState*/}
+            {/*      currentDate={moment().format("YYYY-MM-DD")}*/}
+            {/*    />*/}
+            {/*    <DayView*/}
+            {/*      startDayHour={8}*/}
+            {/*      endDayHour={24}*/}
+            {/*    />*/}
+            {/*    <Appointments />*/}
+            {/*  </Scheduler>*/}
+            {/*</Paper>*/}
+
             <List style={{"backgroundColor": "#65ccff"}}
                   size="large"
                   bordered

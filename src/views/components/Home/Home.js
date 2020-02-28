@@ -8,12 +8,11 @@ import {actions} from "../../../state/ducks/user/actions";
 import MayDay from "../MayDay";
 import Progress from "../Progress";
 import PlanningComponent from "../Planning/Planning";
-import Motivation from "../Motivation";
 import {Affix, Button, Icon, Tabs} from 'antd';
 import 'antd/dist/antd.css';
 import {exerciseActions} from "../../../state/ducks/exercise";
 import EditExerciseModal from "../Exercises/EditExerciseModal/EditExerciseModal";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import MotivationTab from "../Motivation/MotivationTab";
 
 const {TabPane} = Tabs;
@@ -129,5 +128,5 @@ const mapDispatchToProps = {
   showModal: actions.showModal,
 };
 
-const HomeWithRouter =  withRouter(Home);
+const HomeWithRouter = withRouter(Home);
 export default connect(mapStateToProps, mapDispatchToProps)(HomeWithRouter)

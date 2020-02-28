@@ -22,7 +22,7 @@ class AddNewsItemModal extends Component {
           itemType: values.itemType,
           motivationItem: motivationItem
         };
-        this.props.updateMotivationNewsItem(motivationItem.id, newsItem);
+        this.props.addNewsItem(motivationItem.id, newsItem);
         this.props.handleHide();
       }
     });
@@ -62,8 +62,9 @@ class AddNewsItemModal extends Component {
             <Form.Item label="Item">
               {getFieldDecorator('item', {initialValue: "write text/url"})(
                 <Input pattern={{
-                  pattern:"[A-Za-z]",
-                  title:"The Social Security Number"} }/>)}
+                  pattern: "[A-Za-z]",
+                  title: "The Social Security Number"
+                }}/>)}
             </Form.Item>
 
 

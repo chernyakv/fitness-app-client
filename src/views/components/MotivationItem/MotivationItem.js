@@ -1,10 +1,7 @@
 import React, {useState} from 'react'
 import 'antd/dist/antd.css';
 import {Icon, List, Modal, Tag} from 'antd';
-import {
-  NavLink
-} from "react-router-dom";
-import News from "../News/News";
+import {NavLink} from "react-router-dom";
 
 const {confirm} = Modal;
 const MotivationItem = (props) => {
@@ -44,8 +41,25 @@ const MotivationItem = (props) => {
               dataSource={props.motivations.motivationItems}
               renderItem={motivationItem => (
                 <div>{motivationItem.newsItems.length !== 0 || motivationItem.tag ?
+                  <List.Item
+                    extra={
+                      <Tag style={{backgroundColor: '#65ccff'}}>{motivationItem.timeToRead} minutes to
+                        read <Icon
+                          type="clock-circle" style={{fontSize: '16px'}}/>
+                      </Tag>} style={{backgroundImage: "url(" + motivationItem.image + ")"}}>
+                    <Tag style={{backgroundColor: '#9ad0ff'}}>
+                      <Icon type="delete"
+                            style={{fontSize: '16px'}}
+                            onClick={() => {
+                              showConfirm(motivationItem)
+                            }}/>
+                    </Tag>
+                    <List.Item.Meta
+                      title={<NavLink to={`/motivation/${motivationItem.id}`}>News</NavLink>}
+                      description={motivationItem.description}
+                    />
 
-                  <NavLink to={`/motivation/${motivationItem.id}`}>News</NavLink> :
+                  </List.Item> :
                   <List.Item>
                     <Tag style={{backgroundColor: '#9ad0ff'}}>
                       <Icon type="delete"
@@ -69,7 +83,6 @@ const MotivationItem = (props) => {
           ))}
       </div>) : (
       <div>
-        {/*<News onClose={onClose} motivationItem={motivationItem}/>*/}
 
       </div>)
   );

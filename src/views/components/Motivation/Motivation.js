@@ -9,10 +9,6 @@ import AddNewsModal from "../MotivationItem/AddMotivationItemModal/AddNewsModal"
 import AddAdviceModal from "../MotivationItem/AddMotivationItemModal/AddAdviceModal";
 import {Button, Modal} from "antd";
 import {motivationItemActions} from "../../../state/ducks/motivation_item";
-import {BrowserRouter, Redirect, Route, Router, Switch} from 'react-router-dom'
-import News from "../News/News";
-import {history} from "../../../helpers/History";
-import { withRouter } from "react-router";
 
 
 const Motivation = (props) => {
@@ -50,7 +46,6 @@ const Motivation = (props) => {
   const modalProps = {
     addMotivationItem: props.addMotivationItem,
     updateMotivationNewsItem: props.updateMotivationNewsItem,
-    showModal: props.showModal
   };
   return (
 
@@ -75,7 +70,7 @@ const Motivation = (props) => {
 
       </Modal>
       <MotivationItem props={props}
-                      motivations={motivations} />
+                      motivations={motivations}/>
 
     </div>
   )
@@ -84,12 +79,10 @@ const Motivation = (props) => {
 
 const mapStateToProps = (state) => ({
   profile: state.auth.profile,
-  motivations: state.motivations.motivations,
-  motivationItem: state.motivationItem.motivationItem
+  motivations: state.motivations.motivations
 });
 
 const mapDispatchToProps = {
-  getMotivationItem: motivationItemActions.getMotivationItem,
   addMotivationItem: motivationActions.addMotivationItem,
   addNewsItem: motivationItemActions.addNewsItem,
   getMotivation: motivationActions.getMotivationByUserId,

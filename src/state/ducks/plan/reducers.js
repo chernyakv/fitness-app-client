@@ -19,7 +19,7 @@ const planReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: false,
-          
+
         plans: state.plans ? state.plans.concat(action.activity) : [action.activity],
       };
     case types.ADD_PLAN_ACTIVITIES_FAILURE:
@@ -81,12 +81,25 @@ const planReducer = (state = initialState, action) => {
         error: false
       };
     case types.UPDATE_PLAN_ACTIVITY_SUCCESS:
+      let act = state.plans.activities.map(activity => activity.id !== action.activity.id ? activity : action.activity);
+      act = act.sort(function compare(a, b) {
+        if (a.startTime > (b.startTime)) {
+          return 1;
+        } else if (a.startTime < (b.startTime)) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+
+      console.log(act)
       return {
         loading: false,
         error: false,
+
         plans: {
           ...state.plans,
-          activities: state.plans.activities.map(activity => activity.id !== action.activity.id ? activity : action.activity)
+          activities: act
         },
       };
     case types.UPDATE_PLAN_ACTIVITY_FAILURE:

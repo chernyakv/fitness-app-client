@@ -94,6 +94,7 @@ function setCurrentUser(login) {
     userService.getByLogin(login)
       .then(
         response => {
+          console.log(response);
           dispatch(success(response.data));
         },
         error => {

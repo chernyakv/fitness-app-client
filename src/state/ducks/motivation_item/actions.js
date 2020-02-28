@@ -1,7 +1,6 @@
 import * as types from "./types"
 import {motivationItemService} from "../../../service/motivation_item_service";
 import {createNotification} from "../../../helpers/helpers";
-import {motivationsService} from "../../../service/motivation-service";
 
 
 const addNewsItem = (motivationItemId, newsItem) => {
@@ -11,6 +10,7 @@ const addNewsItem = (motivationItemId, newsItem) => {
     try {
       const response = await motivationItemService.addNewsItem(motivationItemId, newsItem);
       console.log("DEBUG - SUCCESS");
+      console.log(response)
       dispatch(success(motivationItemId, response.data));
     } catch (e) {
       console.log("DEBUG - ERROR");
@@ -31,11 +31,12 @@ const addNewsItem = (motivationItemId, newsItem) => {
     return {type: types.ADD_NEWS_ITEM_FAILURE}
   }
 };
+
 function getMotivationItem(motivationItemId) {
   return async dispatch => {
     dispatch(request());
     try {
-      const response = await motivationsService.getMotivationItem(motivationItemId);
+      const response = await motivationItemService.getMotivationItem(motivationItemId);
       dispatch(success(response.data));
     } catch (e) {
       dispatch(failure());
@@ -54,6 +55,7 @@ function getMotivationItem(motivationItemId) {
     return {type: types.GET_MOTIVATION_ITEM_FAILURE}
   }
 }
+
 export const motivationItemActions = {
   getMotivationItem,
   addNewsItem

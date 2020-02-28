@@ -13,24 +13,25 @@ const motivationItemReducer = (state = initialState, action) => {
       return {
         loading: true,
         error: false,
-        news: state.news
+        motivationItem: state.motivationItem
       };
     case types.ADD_NEWS_ITEM_SUCCESS:
-      console.log("action - updateMotivationNewsItem");
-      console.log(action);
-      console.log("state - updateMotivationNewsItem");
-      console.log(state);
+
       return {
         ...state,
         loading: false,
         error: false,
-        news: state.news ? state.news.concat(action.newsItem) : [action.newsItem]
+        motivationItem: {
+          ...state.motivationItem,
+          newsItems: state.motivationItem.newsItems ? state.motivationItem.newsItems.concat(action.newsItem) : [action.newsItem]
+        },
+
       };
     case types.ADD_NEWS_ITEM_FAILURE:
       return {
         ...state,
         loading: false,
-        motivations: false
+        motivationItem: false
       };
     case types.GET_MOTIVATION_ITEM_REQUEST:
       return {
@@ -39,13 +40,9 @@ const motivationItemReducer = (state = initialState, action) => {
         error: false
       };
     case types.GET_MOTIVATION_ITEM_SUCCESS:
-
       return {
         ...state,
-        news: {
-          ...state.news,
-          motivationItem:  action.motivationItem
-        },
+        motivationItem: action.motivationItem,
         loading: false,
         error: false
       };
